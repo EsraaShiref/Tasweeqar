@@ -1,44 +1,265 @@
-// ── Hero ───────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+//  projects.scss  —  Tasweeqar General Contracting
+//  Updated to match About & Services page design system
+//  Themes : dark / light  |  Languages : AR (rtl) / EN (ltr)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Tokens (from global styles.scss) ─────────────────────────────────────────
+$bg: var(--color-bg);
+$surface: var(--color-surface);
+$text: var(--color-text);
+$muted: var(--color-text-muted);
+$border: var(--color-border);
+$transition: var(--transition);
+
+$gold: #c8a96e;
+$gold-dark: #a8893e;
+$gold-light: #f5e098;
+
+// ── Keyframes ─────────────────────────────────────────────────────────────────
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes scroll-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: .55;
+    }
+
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer-sweep {
+    0% {
+        transform: translateX(-130%) skewX(-18deg);
+    }
+
+    100% {
+        transform: translateX(230%) skewX(-18deg);
+    }
+}
+
+@keyframes card-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ── Shared helpers ────────────────────────────────────────────────────────────
+
+.gold-text {
+    background: linear-gradient(135deg, $gold 0%, $gold-light 50%, $gold-dark 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: $gold;
+    border: 1px solid rgba($gold, .28);
+    border-radius: 100px;
+    padding: 5px 14px;
+    background: rgba($gold, .07);
+
+    i {
+        font-size: .78rem;
+    }
+}
+
+.container {
+    max-width: var(--container-max, 1200px);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  1 · HERO  — identical structure to About & Services hero
+// ══════════════════════════════════════════════════════════════════════════════
 .projects-hero {
-    padding-top: 100px;
-    background: linear-gradient(135deg, #1a2744 0%, #0f1a33 100%);
-    padding-block: 80px 60px;
-    text-align: center;
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    background: #0b1628;
+    overflow: hidden;
+    padding: 110px 0 85px;
+
+    [data-theme='dark'] & {
+        background: #07101e;
+    }
+
+    // Fine dot grid
+    &__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba($gold, .055) 1px, transparent 1px),
+            linear-gradient(90deg, rgba($gold, .055) 1px, transparent 1px);
+        background-size: 44px 44px;
+        pointer-events: none;
+    }
+
+    // Central radial glow
+    &__glow {
+        position: absolute;
+        width: 740px;
+        height: 740px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba($gold, .15) 0%, transparent 62%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__content {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto;
+        animation: slide-up .85s ease both;
+    }
+
+    // Gold pill badge
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba($gold, .11);
+        border: 1px solid rgba($gold, .33);
+        color: $gold;
+        font-size: .78rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 7px 18px;
+        border-radius: 100px;
+        margin-bottom: 22px;
+        animation: hero-float 3s ease-in-out infinite;
+    }
 
     &__title {
-        font-size: clamp(32px, 5vw, 52px);
+        font-size: clamp(2rem, 5vw, 3.3rem);
         font-weight: 800;
-        color: #fff;
-        margin-bottom: 16px;
-        line-height: 1.2;
+        color: #f0ece3;
+        line-height: 1.22;
+        margin-bottom: 18px;
 
-        .accent {
-            color: var(--color-accent);
+        .gold-text {
+            display: block;
+            font-size: clamp(2.3rem, 5.8vw, 4rem);
         }
     }
 
     &__subtitle {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.75);
+        font-size: clamp(.93rem, 2vw, 1.1rem);
+        color: rgba(240, 236, 227, .62);
+        line-height: 1.8;
         max-width: 540px;
-        margin-inline: auto;
-        line-height: 1.7;
+        margin: 0 auto 30px;
+    }
+
+    // Ornamental divider
+    .hero-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: rgba($gold, .5);
+
+        span {
+            display: block;
+            width: 56px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba($gold, .5));
+
+            &:last-child {
+                background: linear-gradient(270deg, transparent, rgba($gold, .5));
+            }
+        }
+
+        i {
+            font-size: .42rem;
+            color: $gold;
+        }
+    }
+
+    // Bouncing down arrow
+    .hero-scroll-cue {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba($gold, .5);
+        font-size: .75rem;
+        animation: scroll-bob 1.9s ease-in-out infinite;
+        z-index: 2;
     }
 }
 
-// ── Main Section ───────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  2 · MAIN CONTENT AREA
+// ══════════════════════════════════════════════════════════════════════════════
 .projects-main {
-    background: var(--color-bg);
-    padding-block: 48px 96px;
-
-    .container {
-        max-width: var(--container-max);
-        margin-inline: auto;
-        padding-inline: 24px;
-    }
+    background: $bg;
+    padding-block: 56px 100px;
 }
 
-// ── Search Bar — exact clone of reference ─────────────────
+// Section label above search
+.projects-main__header {
+    margin-bottom: 24px;
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  3 · SEARCH BAR
+// ══════════════════════════════════════════════════════════════════════════════
 .search-bar {
     display: flex;
     gap: 12px;
@@ -54,7 +275,7 @@
         inset-inline-start: 16px;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--color-text-secondary);
+        color: $muted;
         font-size: 15px;
         pointer-events: none;
     }
@@ -62,47 +283,55 @@
     &__input {
         width: 100%;
         height: 52px;
-        padding-inline: 44px 20px;
-        border: 1.5px solid var(--color-border);
-        border-radius: 10px;
-        background: var(--color-surface);
-        color: var(--color-text);
-        font-size: 15px;
+        padding-inline: 46px 20px;
+        border: 1.5px solid $border;
+        border-radius: 12px;
+        background: $surface;
+        color: $text;
+        font-size: 14.5px;
         font-family: inherit;
-        transition: border-color var(--transition), box-shadow var(--transition);
+        transition: border-color .3s, box-shadow .3s;
 
         &::placeholder {
-            color: var(--color-text-secondary);
+            color: $muted;
         }
 
         &:focus {
             outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(27, 47, 110, 0.1);
+            border-color: $gold;
+            box-shadow: 0 0 0 3px rgba($gold, .12);
         }
     }
 
     &__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         height: 52px;
-        padding-inline: 28px;
-        background: var(--color-primary);
+        padding-inline: 26px;
+        background: linear-gradient(135deg, $gold, $gold-dark);
         color: #fff;
         border: none;
-        border-radius: 10px;
-        font-size: 15px;
+        border-radius: 12px;
+        font-size: 14.5px;
         font-weight: 600;
         font-family: inherit;
         cursor: pointer;
         white-space: nowrap;
-        transition: background var(--transition), transform var(--transition);
+        transition: transform .3s, box-shadow .3s;
+        box-shadow: 0 4px 16px rgba($gold, .28);
+
+        i {
+            font-size: .85rem;
+        }
 
         &:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba($gold, .38);
         }
 
         &:active {
-            transform: scale(0.98);
+            transform: scale(.97);
         }
     }
 
@@ -111,70 +340,80 @@
 
         &__btn {
             width: 100%;
+            justify-content: center;
         }
     }
 }
 
-// ── Filter Pills ───────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  4 · FILTER PILLS
+// ══════════════════════════════════════════════════════════════════════════════
 .filter-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 
     &__pill {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 8px 16px;
-        border-radius: 50px;
-        border: 1.5px solid var(--color-border);
-        background: var(--color-surface);
-        color: var(--color-text-secondary);
-        font-size: 14px;
+        padding: 8px 18px;
+        border-radius: 100px;
+        border: 1.5px solid $border;
+        background: $surface;
+        color: $muted;
+        font-size: 13.5px;
         font-weight: 500;
         font-family: inherit;
         cursor: pointer;
-        transition: all var(--transition);
+        transition: all .3s ease;
 
         i {
-            font-size: 13px;
+            font-size: 12px;
         }
 
         &:hover {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-            background: rgba(27, 47, 110, 0.05);
+            border-color: rgba($gold, .45);
+            color: $gold;
+            background: rgba($gold, .06);
         }
 
-        // Active state — matches green active pill in screenshot
+        // Active — gold gradient fill (matches services active style)
         &--active {
-            background: var(--color-primary);
-            border-color: var(--color-primary);
+            background: linear-gradient(135deg, $gold, $gold-dark);
+            border-color: transparent;
             color: #fff;
+            box-shadow: 0 4px 14px rgba($gold, .3);
 
             &:hover {
-                background: var(--color-primary-dark);
-                border-color: var(--color-primary-dark);
+                background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 6%));
                 color: #fff;
             }
         }
     }
 }
 
-// ── Results Count ──────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  5 · RESULTS COUNT
+// ══════════════════════════════════════════════════════════════════════════════
 .results-count {
-    font-size: 15px;
-    color: var(--color-text-secondary);
+    font-size: 14px;
+    color: $muted;
     margin-bottom: 28px;
 
     strong {
-        color: var(--color-text);
+        color: $gold;
         font-weight: 700;
     }
 }
 
-// ── Cards Grid ─────────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  6 · PROJECTS GRID
+// ══════════════════════════════════════════════════════════════════════════════
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -189,24 +428,32 @@
     }
 }
 
-// ── Project Card — exact match to destination card ─────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  7 · PROJECT CARD  — unified with Services/About card language
+// ══════════════════════════════════════════════════════════════════════════════
 .project-card {
-    background: var(--color-surface);
-    border-radius: 16px;
+    position: relative;
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
 
-    // Reveal animation
+    // ── Scroll-reveal (keep existing class names from .ts) ──
     &.reveal {
         opacity: 0;
         transform: translateY(28px);
         transition:
-            opacity 0.5s ease calc(var(--delay, 0s)),
-            transform 0.5s ease calc(var(--delay, 0s)),
-            box-shadow 0.35s ease;
+            opacity .55s ease calc(var(--delay, 0s)),
+            transform .55s ease calc(var(--delay, 0s)),
+            box-shadow .35s ease,
+            border-color .35s ease;
     }
 
     &.revealed {
@@ -214,12 +461,31 @@
         transform: translateY(0);
     }
 
+    // ── Hover ───────────────────────────────────────────────
     &:hover {
         transform: translateY(-6px);
-        box-shadow: var(--shadow-lg);
+        border-color: rgba($gold, .42);
+        box-shadow: 0 16px 48px rgba($gold, .13);
+
+        .project-card__image img {
+            transform: scale(1.06);
+        }
+
+        .project-card__shimmer {
+            animation: shimmer-sweep .7s ease forwards;
+        }
+
+        .project-card__accent {
+            width: 100%;
+        }
+
+        .project-card__link {
+            gap: 10px;
+            color: $gold;
+        }
     }
 
-    // ── Image ─────────────────────────────────────────────
+    // ── Image ───────────────────────────────────────────────
     &__image {
         position: relative;
         height: 220px;
@@ -230,83 +496,110 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.55s ease;
+            transition: transform .55s ease;
             display: block;
         }
 
-        // Gradient overlay at bottom
+        // Bottom gradient overlay
         &::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom,
-                    transparent 50%,
-                    rgba(0, 0, 0, 0.35) 100%);
+            background: linear-gradient(to bottom, transparent 45%, rgba(0, 0, 0, .38) 100%);
+            pointer-events: none;
         }
     }
 
-    &:hover &__image img {
-        transform: scale(1.06);
+    // Shimmer overlay (same as Services cards)
+    &__shimmer {
+        position: absolute;
+        inset: 0;
+        width: 45%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+        transform: translateX(-130%) skewX(-18deg);
+        pointer-events: none;
+        z-index: 3;
     }
 
-    // City badge — white pill top-left (matches reference exactly)
+    // City badge — top-start
     &__city {
         position: absolute;
         top: 14px;
         inset-inline-start: 14px;
-        z-index: 2;
-        background: rgba(255, 255, 255, 0.95);
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255, 255, 255, .93);
         color: #1a1a2e;
-        padding: 5px 14px;
-        border-radius: 50px;
-        font-size: 13px;
+        padding: 5px 13px;
+        border-radius: 100px;
+        font-size: 12.5px;
         font-weight: 600;
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(6px);
+
+        [data-theme='dark'] & {
+            background: rgba(15, 20, 40, .88);
+            color: #f0ece3;
+        }
+
+        i {
+            font-size: 10px;
+            color: $gold;
+        }
     }
 
-    // Featured badge — gold top-right (matches reference exactly)
+    // Featured badge — top-end
     &__featured {
         position: absolute;
         top: 14px;
         inset-inline-end: 14px;
-        z-index: 2;
-        background: var(--color-accent);
-        color: var(--color-primary-dark);
+        z-index: 4;
+        background: linear-gradient(135deg, $gold, $gold-dark);
+        color: #fff;
         padding: 5px 12px;
-        border-radius: 50px;
-        font-size: 12px;
+        border-radius: 100px;
+        font-size: 11.5px;
         font-weight: 700;
         display: flex;
         align-items: center;
         gap: 5px;
+        box-shadow: 0 3px 10px rgba($gold, .35);
 
         i {
-            font-size: 11px;
+            font-size: 10px;
         }
     }
 
-    // ── Body ──────────────────────────────────────────────
+    // ── Body ────────────────────────────────────────────────
     &__body {
-        padding: 20px;
+        padding: 22px 22px 20px;
         display: flex;
         flex-direction: column;
         gap: 8px;
         flex: 1;
     }
 
-    // Category label — small caps accent (matches reference exactly)
+    // Category label — matches Services card label style
     &__category {
-        font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: .7rem;
         font-weight: 700;
-        letter-spacing: 1.5px;
+        letter-spacing: .1em;
         text-transform: uppercase;
-        color: var(--color-accent);
+        color: $gold;
+
+        i {
+            font-size: .65rem;
+        }
     }
 
     &__title {
-        font-size: 18px;
+        font-size: 1.05rem;
         font-weight: 700;
-        color: var(--color-text);
+        color: $text;
         line-height: 1.3;
         margin: 0;
     }
@@ -315,19 +608,19 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        color: var(--color-text-secondary);
-        font-size: 13px;
+        color: $muted;
+        font-size: .82rem;
         margin: 0;
 
         i {
-            color: var(--color-primary);
-            font-size: 12px;
+            color: $gold;
+            font-size: 11px;
         }
     }
 
     &__desc {
-        color: var(--color-text-secondary);
-        font-size: 14px;
+        color: $muted;
+        font-size: .875rem;
         line-height: 1.65;
         margin: 0;
         flex: 1;
@@ -338,11 +631,11 @@
         overflow: hidden;
     }
 
-    // ── Footer ────────────────────────────────────────────
+    // ── Footer ──────────────────────────────────────────────
     &__footer {
-        margin-top: 12px;
+        margin-top: 14px;
         padding-top: 14px;
-        border-top: 1px solid var(--color-border);
+        border-top: 1px solid $border;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -353,8 +646,8 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 5px 12px;
-        border-radius: 50px;
+        padding: 5px 13px;
+        border-radius: 100px;
         font-size: 12px;
         font-weight: 600;
 
@@ -363,13 +656,23 @@
         }
 
         &--done {
-            background: rgba(34, 197, 94, 0.12);
+            background: rgba(34, 197, 94, .1);
             color: #16a34a;
+
+            [data-theme='dark'] & {
+                background: rgba(34, 197, 94, .12);
+                color: #4ade80;
+            }
         }
 
         &--progress {
-            background: rgba(201, 168, 76, 0.15);
-            color: var(--color-accent);
+            background: rgba($gold, .13);
+            color: $gold-dark;
+
+            [data-theme='dark'] & {
+                background: rgba($gold, .12);
+                color: $gold;
+            }
         }
     }
 
@@ -377,137 +680,127 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        color: var(--color-primary);
-        font-size: 14px;
+        color: $gold;
+        font-size: .87rem;
         font-weight: 600;
         text-decoration: none;
         white-space: nowrap;
-        transition: gap var(--transition), color var(--transition);
+        transition: gap .3s, color .3s;
 
         i {
-            font-size: 13px;
-            transition: transform var(--transition);
+            font-size: 12px;
+            transition: transform .3s;
         }
 
         &:hover {
-            color: var(--color-accent);
-            gap: 10px;
+            color: $gold-dark;
+
+            i {
+                [dir='ltr'] & {
+                    transform: translateX(3px);
+                }
+
+                [dir='rtl'] & {
+                    transform: translateX(-3px);
+                }
+            }
+        }
+    }
+
+    // ── Bottom gold accent bar (matches Services/About cards) ──
+    &__accent {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: linear-gradient(90deg, $gold, $gold-light);
+        border-radius: 0 0 0 20px;
+        transition: width .4s ease;
+        pointer-events: none;
+
+        [dir='rtl'] & {
+            left: auto;
+            right: 0;
+            border-radius: 0 0 20px 0;
+            background: linear-gradient(270deg, $gold, $gold-light);
         }
     }
 }
 
-// ── No Results ─────────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  8 · NO RESULTS
+// ══════════════════════════════════════════════════════════════════════════════
 .no-results {
     text-align: center;
-    padding: 80px 24px;
-    color: var(--color-text-secondary);
+    padding: 90px 24px;
+    color: $muted;
 
-    &__icon {
-        font-size: 56px;
-        color: var(--color-border);
-        margin-bottom: 20px;
-        display: block;
+    &__icon-wrap {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: rgba($gold, .07);
+        border: 1px solid rgba($gold, .2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+
+        i {
+            font-size: 2.2rem;
+            color: rgba($gold, .45);
+        }
     }
 
     h3 {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 700;
-        color: var(--color-text);
+        color: $text;
         margin-bottom: 8px;
     }
 
     p {
-        font-size: 15px;
+        font-size: .93rem;
+        color: $muted;
+        margin-bottom: 28px;
+    }
+
+    // Reset button
+    &__reset {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, $gold, $gold-dark);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 28px;
+        font-size: .9rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba($gold, .28);
+        transition: transform .3s, box-shadow .3s;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba($gold, .38);
+        }
+
+        i {
+            font-size: .85rem;
+        }
     }
 }
 
-// ── Dark Mode ──────────────────────────────────────────────
-[data-theme='dark'] {
-    .projects-hero {
-        background: var(--color-bg-alt);
 
-        &__title {
-            color: var(--color-text);
-        }
-    }
-
-    .search-bar {
-        &__input {
-            background: var(--color-surface);
-            border-color: var(--color-border);
-            color: var(--color-text);
-
-            &:focus {
-                border-color: var(--color-accent);
-                box-shadow: 0 0 0 3px rgba(232, 201, 106, 0.1);
-            }
-        }
-
-        &__btn {
-            background: var(--color-accent);
-            color: var(--color-primary-dark);
-        }
-    }
-
-    .filter-pills__pill {
-        background: var(--color-surface);
-        border-color: var(--color-border);
-        color: var(--color-text-secondary);
-
-        &:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-            background: rgba(232, 201, 106, 0.06);
-        }
-
-        &--active {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-            color: var(--color-primary-dark);
-        }
-    }
-
-    .project-card {
-        background: var(--color-surface);
-        border-color: var(--color-border);
-
-        &:hover {
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-        }
-
-        &__title {
-            color: var(--color-text);
-        }
-
-        &__category {
-            color: var(--color-accent);
-        }
-
-        &__location i {
-            color: var(--color-accent);
-        }
-
-        &__status--done {
-            background: rgba(34, 197, 94, 0.1);
-            color: #4ade80;
-        }
-
-        &__status--progress {
-            background: rgba(232, 201, 106, 0.12);
-            color: var(--color-accent);
-        }
-
-        &__link {
-            color: var(--color-accent);
-
-            &:hover {
-                color: var(--color-accent-light);
-            }
-        }
-
-        &__city {
-            background: rgba(20, 29, 53, 0.9);
-            color: var(--color-text);
-        }
+// ══════════════════════════════════════════════════════════════════════════════
+//  Responsive
+// ══════════════════════════════════════════════════════════════════════════════
+@media (max-width: 640px) {
+    .projects-main {
+        padding-block: 40px 72px;
     }
 }

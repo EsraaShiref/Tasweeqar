@@ -1,21 +1,63 @@
-<!-- ── Hero Banner ─────────────────────────────────────── -->
+<!-- ══════════════════════════════════════════════════════
+     HERO  — matches About & Services hero exactly
+══════════════════════════════════════════════════════ -->
 <section class="projects-hero">
+  <!-- Decorative layers -->
+  <div class="projects-hero__grid"></div>
+  <div class="projects-hero__glow"></div>
+
   <div class="container">
-    <h1 class="projects-hero__title">
-      {{ 'projects_page.hero_title' | translate }}
-      <span class="accent">{{ 'projects_page.hero_title_accent' | translate }}</span>
-    </h1>
-    <p class="projects-hero__subtitle">
-      {{ 'projects_page.hero_subtitle' | translate }}
-    </p>
+    <div class="projects-hero__content">
+
+      <!-- Gold pill badge -->
+      <span class="hero-badge">
+        <i class="fas fa-city"></i>
+        {{ 'nav.projects' | translate }}
+      </span>
+
+      <!-- Main heading -->
+      <h1 class="projects-hero__title">
+        {{ 'projects_page.hero_title' | translate }}
+        <span class="gold-text">{{ 'projects_page.hero_title_accent' | translate }}</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="projects-hero__subtitle">
+        {{ 'projects_page.hero_subtitle' | translate }}
+      </p>
+
+      <!-- Decorative divider -->
+      <div class="hero-divider">
+        <span></span>
+        <i class="fas fa-circle"></i>
+        <span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll-cue">
+    <i class="fas fa-chevron-down"></i>
   </div>
 </section>
 
-<!-- ── Search + Filter + Grid ─────────────────────────── -->
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN  — search · filter · grid
+══════════════════════════════════════════════════════ -->
 <section class="projects-main">
   <div class="container">
 
-    <!-- Search Bar -->
+    <!-- ── Section label ──────────────────────── -->
+    <div class="projects-main__header">
+      <span class="section-label">
+        <i class="fas fa-layer-group"></i>
+        {{ 'projects_page.filter_all' | translate }}
+      </span>
+    </div>
+
+    <!-- ── Search Bar ─────────────────────────── -->
     <div class="search-bar">
       <div class="search-bar__input-wrap">
         <i class="fa-solid fa-magnifying-glass search-bar__icon" aria-hidden="true"></i>
@@ -28,11 +70,12 @@
         />
       </div>
       <button class="search-bar__btn">
+        <i class="fas fa-search"></i>
         {{ 'projects_page.search_btn' | translate }}
       </button>
     </div>
 
-    <!-- Filter Pills -->
+    <!-- ── Filter Pills ───────────────────────── -->
     <div class="filter-pills" role="group">
       @for (cat of categories; track cat) {
         <button
@@ -60,23 +103,26 @@
       }
     </div>
 
-    <!-- Results Count -->
+    <!-- ── Results count ──────────────────────── -->
     <p class="results-count">
       {{ 'projects_page.showing' | translate }}
       <strong>{{ filteredProjects().length }}</strong>
       {{ 'projects_page.projects_count' | translate }}
     </p>
 
-    <!-- Cards Grid -->
+    <!-- ══════════════════════════════════════════
+         CARDS GRID
+    ══════════════════════════════════════════ -->
     @if (filteredProjects().length > 0) {
       <div class="projects-grid">
         @for (project of filteredProjects(); track project.id; let i = $index) {
+
           <div
             #revealEl
             class="project-card reveal"
             [style.--delay]="(i * 0.08) + 's'"
           >
-            <!-- Image Area -->
+            <!-- ── Image ── -->
             <div class="project-card__image">
               <img
                 [src]="project.image"
@@ -84,12 +130,16 @@
                 loading="lazy"
               />
 
-              <!-- City Badge top-left -->
+              <!-- Shimmer on hover -->
+              <div class="project-card__shimmer"></div>
+
+              <!-- City badge -->
               <div class="project-card__city">
+                <i class="fas fa-location-dot"></i>
                 {{ 'projects_page.items.' + project.key + '.city' | translate }}
               </div>
 
-              <!-- Featured Badge top-right -->
+              <!-- Featured badge -->
               @if (project.featured) {
                 <div class="project-card__featured">
                   <i class="fa-solid fa-star" aria-hidden="true"></i>
@@ -98,11 +148,12 @@
               }
             </div>
 
-            <!-- Content -->
+            <!-- ── Body ── -->
             <div class="project-card__body">
 
-              <!-- Category Label -->
+              <!-- Category -->
               <span class="project-card__category">
+                <i class="fas fa-tag"></i>
                 {{ 'projects_page.categories.' + project.categoryKey | translate }}
               </span>
 
@@ -111,7 +162,7 @@
                 {{ 'projects_page.items.' + project.key + '.title' | translate }}
               </h3>
 
-              <!-- Location -->
+              <!-- Region -->
               <p class="project-card__location">
                 <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                 {{ 'projects_page.items.' + project.key + '.region' | translate }}
@@ -154,16 +205,27 @@
               </div>
 
             </div>
+
+            <!-- Bottom gold accent bar (matches Services cards) -->
+            <div class="project-card__accent"></div>
+
           </div>
+
         }
       </div>
 
     } @else {
-      <!-- No Results -->
+      <!-- ── No Results ── -->
       <div class="no-results">
-        <i class="fa-solid fa-folder-open no-results__icon" aria-hidden="true"></i>
+        <div class="no-results__icon-wrap">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+        </div>
         <h3>{{ 'projects_page.no_results' | translate }}</h3>
         <p>{{ 'projects_page.no_results_sub' | translate }}</p>
+        <button class="no-results__reset" (click)="setFilter('all'); onSearch('')">
+          <i class="fas fa-rotate-left"></i>
+          {{ langService.currentLang() === 'ar' ? 'إعادة تعيين الفلاتر' : 'Reset Filters' }}
+        </button>
       </div>
     }
 
