@@ -32,6 +32,7 @@ $gold-light: #f5e098;
 }
 
 @keyframes hero-float {
+
   0%,
   100% {
     transform: translateY(0);
@@ -43,6 +44,7 @@ $gold-light: #f5e098;
 }
 
 @keyframes scroll-bob {
+
   0%,
   100% {
     transform: translateY(0);
@@ -391,7 +393,13 @@ $gold-light: #f5e098;
     .srv-card__arrow {
       background: $gold;
       color: #fff;
+
+      i {
+        color: #fff !important;
+      }
     }
+
+
   }
 
   // Shimmer overlay
@@ -806,13 +814,11 @@ $gold-light: #f5e098;
   &__lines {
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      rgba($gold, 0.04) 0,
-      rgba($gold, 0.04) 1px,
-      transparent 0,
-      transparent 50%
-    );
+    background-image: repeating-linear-gradient(-45deg,
+        rgba($gold, 0.04) 0,
+        rgba($gold, 0.04) 1px,
+        transparent 0,
+        transparent 50%);
     background-size: 32px 32px;
     pointer-events: none;
   }
@@ -884,6 +890,7 @@ $gold-light: #f5e098;
 //  Responsive
 // ══════════════════════════════════════════════════════════════════════════════
 @media (max-width: 640px) {
+
   .srv-grid-section,
   .process-section,
   .srv-cta {
