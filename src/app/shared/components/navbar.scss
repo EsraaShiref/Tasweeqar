@@ -1,10 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  navbar.component.scss
-//  Tasweeqar General Contracting
-//  Updated: scrolled-state border unified with projects/services/about gold theme
+//  navbar.component.scss — Tasweeqar General Contracting
+//  Fix: logo visually separated from nav links AND from hero background image
 // ─────────────────────────────────────────────────────────────────────────────
 
 $gold: #c8a96e;
+$gold-dark: #a8893e;
 
 .navbar {
   position: fixed;
@@ -14,13 +14,26 @@ $gold: #c8a96e;
   z-index: 1000;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: all 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 
-  // ── Scrolled state ──────────────────────────────────────────────────────────
+  // ── Scrolled state ────────────────────────────────────────────────────────
   &.scrolled {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+
+    // Logo box becomes subtle in scrolled state
+    .navbar__logo-box {
+      background: transparent;
+      border-color: rgba($gold, 0.2);
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    // Separator adapts to theme
+    .navbar__sep {
+      background: rgba($gold, 0.25);
+    }
 
     .navbar__links a {
       color: var(--color-text);
@@ -57,34 +70,55 @@ $gold: #c8a96e;
   &__inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 80px;
+    gap: 0;
   }
 
+  // ════════════════════════════════════════════════════════
+  //  LOGO
+  //  FIX 1: wrapped in .navbar__logo-box — a frosted glass
+  //  container that creates a clear visual boundary between
+  //  the logo and BOTH the nav links and the hero image
+  // ════════════════════════════════════════════════════════
   &__logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
+    flex-shrink: 0;
+    margin-right: 0; // separator handles the gap now
     animation: logoEntrance 1s ease forwards;
+  }
+
+  // ── The glass box that separates the logo from the photo ─
+  &__logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 10px;
+
+    // Frosted glass effect — logo sits on a dark surface,
+    // not directly on the construction site photo
+    background: rgba(8, 14, 30, 0.55);
+    border: 1px solid rgba($gold, 0.3);
+    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
+    box-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba($gold, 0.12);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 
     img {
-      height: 52px;
+      height: 44px;
       width: auto;
+      display: block;
       animation:
         logoEntrance 1s ease forwards,
         logoFloat 4s ease-in-out 1s infinite,
         logoGlow 4s ease-in-out 1s infinite;
-      filter: drop-shadow(0 0 0px rgba(200, 169, 110, 0));
+      filter: drop-shadow(0 0 0px rgba($gold, 0));
       transform-origin: center;
-    }
-
-    .navbar__brand {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      animation: logoEntrance 1s ease 0.3s forwards;
-      opacity: 0;
     }
 
     &:hover img {
@@ -96,11 +130,37 @@ $gold: #c8a96e;
     }
   }
 
+  &__brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    animation: logoEntrance 1s ease 0.3s forwards;
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  // ════════════════════════════════════════════════════════
+  //  SEPARATOR
+  //  FIX 2: vertical rule between logo zone and nav links
+  //  Creates the visual split like the Sumou reference
+  // ════════════════════════════════════════════════════════
+  &__sep {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
+    margin: 0 24px;
+    border-radius: 1px;
+    transition: background 0.4s ease;
+  }
+
+  // ── Nav links ─────────────────────────────────────────────
   &__links {
     display: flex;
     align-items: center;
     gap: 4px;
     list-style: none;
+    flex: 1; // push actions to the right
 
     a {
       text-decoration: none;
@@ -109,7 +169,7 @@ $gold: #c8a96e;
       font-size: 0.95rem;
       transition: var(--transition);
       padding: 8px 14px;
-      border-radius: 8px; // ← was 6px; subtle match with card radius language
+      border-radius: 8px;
       border: 1px solid transparent;
       position: relative;
 
@@ -134,7 +194,7 @@ $gold: #c8a96e;
       &.active {
         color: var(--color-primary);
         background: rgba($gold, 0.12);
-        border-color: rgba($gold, 0.25); // ← matches srv-card active pill
+        border-color: rgba($gold, 0.25);
 
         &::after {
           transform: scaleX(1);
@@ -142,9 +202,9 @@ $gold: #c8a96e;
       }
     }
 
-    // Contact CTA — matches srv-cta / cta-btn gradient button style
+    // Contact CTA button
     .navbar__cta {
-      background: linear-gradient(135deg, $gold, #a8893e) !important; // ← was flat color
+      background: linear-gradient(135deg, $gold, $gold-dark) !important;
       color: #fff !important;
       padding: 10px 24px;
       border-radius: 8px;
@@ -153,22 +213,21 @@ $gold: #c8a96e;
       box-shadow: 0 4px 14px rgba($gold, 0.28);
       transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease !important;
+        box-shadow 0.3s ease !important;
 
       &::after {
         display: none;
       }
 
       &:hover {
-        background: linear-gradient(135deg, #a8893e, darken(#a8893e, 8%)) !important;
+        background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 8%)) !important;
         transform: translateY(-2px);
         box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
         color: #fff !important;
       }
 
       &.active {
-        background: linear-gradient(135deg, $gold, #a8893e) !important;
+        background: linear-gradient(135deg, $gold, $gold-dark) !important;
         border-color: transparent !important;
         transform: none;
       }
@@ -178,7 +237,8 @@ $gold: #c8a96e;
   &__actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
   &__toggle-btn {
@@ -189,7 +249,7 @@ $gold: #c8a96e;
     border: 1px solid rgba($gold, 0.25);
     color: rgba(255, 255, 255, 0.9);
     padding: 8px 14px;
-    border-radius: 8px; // ← was 6px
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 600;
@@ -212,29 +272,52 @@ $gold: #c8a96e;
   }
 }
 
-// ── Scrolled: light mode ─────────────────────────────────────────────────────
-// Updated border to use gold tint — matches projects/services gold line accents
+// ── Scrolled: light mode ──────────────────────────────────────────────────────
 [data-theme='light'] .navbar.scrolled {
   background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba($gold, 0.2); // ← was var(--color-border) plain gray
+  border-bottom: 1px solid rgba($gold, 0.2);
+
+  .navbar__logo-box {
+    background: rgba($gold, 0.06);
+    border-color: rgba($gold, 0.2);
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .navbar__sep {
+    background: rgba($gold, 0.3);
+  }
 }
 
-// ── Scrolled: dark mode ──────────────────────────────────────────────────────
+// ── Scrolled: dark mode ───────────────────────────────────────────────────────
 [data-theme='dark'] .navbar.scrolled {
   background: rgba(10, 15, 30, 0.92);
-  border-bottom: 1px solid rgba($gold, 0.1); // unchanged
+  border-bottom: 1px solid rgba($gold, 0.1);
+
+  .navbar__logo-box {
+    background: rgba($gold, 0.06);
+    border-color: rgba($gold, 0.15);
+    backdrop-filter: none;
+    box-shadow: none;
+  }
 }
 
-// ── Mobile ───────────────────────────────────────────────────────────────────
+// ── Mobile ────────────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
   .navbar {
+    &__sep {
+      display: none;
+    }
+
+    // hidden on mobile — not needed in stacked layout
+
     &__links {
       display: none;
       position: fixed;
       top: 80px;
       left: 0;
       right: 0;
-      background: rgba(15, 22, 40, 0.97);
+      background: rgba(8, 14, 30, 0.97);
       flex-direction: column;
       padding: 24px;
       gap: 8px;
@@ -245,7 +328,6 @@ $gold: #c8a96e;
         display: flex;
       }
 
-      // In mobile menu, all links should be light colored since bg is dark
       a {
         color: rgba(255, 255, 255, 0.85) !important;
 
@@ -265,11 +347,12 @@ $gold: #c8a96e;
   }
 }
 
+// ── Keyframes (unchanged) ─────────────────────────────────────────────────────
 @keyframes logoEntrance {
   0% {
     opacity: 0;
     transform: scale(0.5) rotate(-10deg);
-    filter: drop-shadow(0 0 0px rgba(200, 169, 110, 0));
+    filter: drop-shadow(0 0 0px rgba($gold, 0));
   }
 
   60% {
@@ -279,7 +362,7 @@ $gold: #c8a96e;
   100% {
     opacity: 1;
     transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 8px rgba(200, 169, 110, 0.4));
+    filter: drop-shadow(0 0 8px rgba($gold, 0.4));
   }
 }
 
@@ -299,11 +382,11 @@ $gold: #c8a96e;
 
   0%,
   100% {
-    filter: drop-shadow(0 0 6px rgba(200, 169, 110, 0.3));
+    filter: drop-shadow(0 0 6px rgba($gold, 0.3));
   }
 
   50% {
-    filter: drop-shadow(0 0 16px rgba(200, 169, 110, 0.7)) drop-shadow(0 0 30px rgba(200, 169, 110, 0.3));
+    filter: drop-shadow(0 0 16px rgba($gold, 0.7)) drop-shadow(0 0 30px rgba($gold, 0.3));
   }
 }
 

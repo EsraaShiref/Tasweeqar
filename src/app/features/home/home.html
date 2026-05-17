@@ -1,7 +1,18 @@
 <!-- Hero Section -->
+<!-- ═══════════════════════════
+  home.html — Hero section only
+  Add <div class="hero__nav-shadow"></div> as the 3rd child
+  inside <section class="hero">
+═══════════════════════════ -->
+
+<!-- Replace your existing <section class="hero"> with this: -->
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__overlay"></div>
+
+  <!-- ▼ NEW: dedicated dark band behind navbar / logo ▼ -->
+  <div class="hero__nav-shadow"></div>
+
   <div class="hero__particles">
     <span
       class="particle"
@@ -25,7 +36,6 @@
   </div>
 
   <div class="container hero__content">
-    <!-- Badge now matches services/projects/about hero badge -->
     <span class="hero__badge">
       <i class="fa-solid fa-building"></i>
       {{ langService.currentLang() === 'ar' ? 'مرحبا بك في تسويقار' : 'Welcome to Tasweeqar' }}
@@ -59,6 +69,8 @@
     <i class="fa-solid fa-chevron-down"></i>
   </div>
 </section>
+
+<!-- Rest of home.html continues unchanged below... -->
 
 <!-- ═══════════════════════════════════════════════════════════
      Services Categories Section

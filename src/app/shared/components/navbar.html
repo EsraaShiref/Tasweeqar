@@ -1,21 +1,56 @@
 <nav class="navbar" [class.scrolled]="scrolled">
   <div class="container navbar__inner">
-
+    <!-- ── Logo ─────────────────────────────────────────────────── -->
     <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
-      <img src="/images/logo.png" alt="Tasweeqar Logo" />
+      <div class="navbar__logo-box">
+        <img src="/images/logo.png" alt="Tasweeqar Logo" />
+      </div>
       <span class="navbar__brand">
         {{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}
       </span>
     </a>
 
+    <!-- ── Visual separator: logo ↔ links ───────────────────────── -->
+    <div class="navbar__sep" aria-hidden="true"></div>
+
+    <!-- ── Nav links ─────────────────────────────────────────────── -->
     <ul class="navbar__links" [class.open]="menuOpen">
-      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'nav.home' | translate }}</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projects' | translate }}</a></li>
-      <li><a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.services' | translate }}</a></li>
-      <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.about' | translate }}</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" class="navbar__cta" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+          >{{ 'nav.home' | translate }}</a
+        >
+      </li>
+      <li>
+        <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">{{
+          'nav.projects' | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">{{
+          'nav.services' | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{
+          'nav.about' | translate
+        }}</a>
+      </li>
+      <li>
+        <a
+          routerLink="/contact"
+          routerLinkActive="active"
+          class="navbar__cta"
+          (click)="closeMenu()"
+          >{{ 'nav.contact' | translate }}</a
+        >
+      </li>
     </ul>
 
+    <!-- ── Action buttons ────────────────────────────────────────── -->
     <div class="navbar__actions">
       <button class="navbar__toggle-btn" (click)="langService.toggle()">
         <i class="fa-solid fa-globe"></i>
@@ -29,6 +64,5 @@
         <i class="fa-solid fa-xmark" *ngIf="menuOpen"></i>
       </button>
     </div>
-
   </div>
 </nav>
