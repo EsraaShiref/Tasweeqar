@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink, TranslateModule],
   templateUrl: './footer.html',
-  styleUrl: './footer.scss',
+  styleUrl: './footer.scss'
 })
-export class Footer {}
+export class Footer {
+  constructor(public langService: LanguageService) { }
+}

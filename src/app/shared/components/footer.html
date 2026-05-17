@@ -1,1 +1,69 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__col footer__col--brand">
+        <a routerLink="/" class="footer__logo">
+          <img src="/images/logo.png" alt="Tasweeqar Logo" />
+          <span>{{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}</span>
+        </a>
+        <p class="footer__desc">{{ 'footer.desc' | translate }}</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="footer__social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ 'footer.quick_links' | translate }}</h4>
+        <ul>
+          <li><a routerLink="/">{{ 'nav.home' | translate }}</a></li>
+          <li><a routerLink="/projects">{{ 'nav.projects' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'nav.services' | translate }}</a></li>
+          <li><a routerLink="/about">{{ 'nav.about' | translate }}</a></li>
+          <li><a routerLink="/contact">{{ 'nav.contact' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ 'footer.services_title' | translate }}</h4>
+        <ul>
+          <li><a routerLink="/services">{{ 'footer.services_list.contracting' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'footer.services_list.maintenance' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'footer.services_list.building' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'footer.services_list.extensions' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ 'footer.contact_title' | translate }}</h4>
+        <ul class="footer__contact">
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:tasweeqar@gmail.com">tasweeqar@gmail.com</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <span>+966 XX XXX XXXX</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'المملكة العربية السعودية' : 'Saudi Arabia' }}</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-globe"></i>
+            <a href="https://tasweeqar.com">tasweeqar.com</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2026 {{ 'footer.rights' | translate }}</p>
+      <p class="footer__slogan">{{ 'footer.slogan' | translate }}</p>
+    </div>
+  </div>
+</footer>

@@ -408,11 +408,13 @@
         <span class="section-label">{{ 'why_choose_us.label' | translate }}</span>
         <h2 class="why-us__title">
           {{ 'why_choose_us.title' | translate }}
-          <span class="why-us__title--gradient">{{ 'why_choose_us.title_gradient' | translate }}</span>
+          <span class="why-us__title--gradient">{{
+            'why_choose_us.title_gradient' | translate
+          }}</span>
         </h2>
         <p class="why-us__desc">{{ 'why_choose_us.desc' | translate }}</p>
         <div class="why-us__features">
-          <div class="why-us__feature reveal" style="--delay:0.2s">
+          <div class="why-us__feature reveal" style="--delay: 0.2s">
             <div class="why-us__feature-icon">
               <i class="fa-solid fa-medal"></i>
             </div>
@@ -421,7 +423,7 @@
               <p>{{ 'why_choose_us.features.quality.desc' | translate }}</p>
             </div>
           </div>
-          <div class="why-us__feature reveal" style="--delay:0.4s">
+          <div class="why-us__feature reveal" style="--delay: 0.4s">
             <div class="why-us__feature-icon">
               <i class="fa-solid fa-briefcase"></i>
             </div>
@@ -430,7 +432,7 @@
               <p>{{ 'why_choose_us.features.experience.desc' | translate }}</p>
             </div>
           </div>
-          <div class="why-us__feature reveal" style="--delay:0.6s">
+          <div class="why-us__feature reveal" style="--delay: 0.6s">
             <div class="why-us__feature-icon">
               <i class="fa-solid fa-users-gear"></i>
             </div>
@@ -439,7 +441,7 @@
               <p>{{ 'why_choose_us.features.team.desc' | translate }}</p>
             </div>
           </div>
-          <div class="why-us__feature reveal" style="--delay:0.8s">
+          <div class="why-us__feature reveal" style="--delay: 0.8s">
             <div class="why-us__feature-icon">
               <i class="fa-solid fa-clock"></i>
             </div>
@@ -451,19 +453,47 @@
         </div>
       </div>
 
-      <div class="why-us__visual reveal" style="--delay:0.2s">
+      <div class="why-us__visual reveal" style="--delay: 0.2s">
         <div class="why-us__img-stack">
           <div class="why-us__img why-us__img--1">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Construction 1"/>
+            <img
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600"
+              alt="Construction 1"
+            />
           </div>
           <div class="why-us__img why-us__img--2">
-            <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600" alt="Construction 2"/>
+            <img
+              src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600"
+              alt="Construction 2"
+            />
           </div>
           <div class="why-us__badge-float">
             <i class="fa-solid fa-trophy"></i>
-            <span>{{ langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done' }}</span>
+            <span>{{
+              langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done'
+            }}</span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner__inner reveal">
+      <div class="cta-banner__content">
+        <h2>{{ 'cta.title' | translate }}</h2>
+        <p>{{ 'cta.desc' | translate }}</p>
+        <a routerLink="/contact" class="btn btn--cta">
+          {{ 'cta.btn' | translate }}
+          <i
+            class="fa-solid"
+            [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+            [class.fa-arrow-right]="langService.currentLang() === 'en'"
+          ></i>
+        </a>
       </div>
     </div>
   </div>

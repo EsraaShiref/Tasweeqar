@@ -94,8 +94,23 @@
     "years": "Years of Experience",
     "workers": "Specialized Staff"
   },
-  "footer": {
-    "slogan": "We Work With Excellence",
-    "rights": "All rights reserved to Tasweeqar General Contracting"
+  "cta": {
+  "title": "Ready to Build?",
+  "desc": "Contact us today and we'll be happy to provide the best contracting solutions for your project.",
+  "btn": "Contact Us Now"
+},
+"footer": {
+  "slogan": "We Work With Excellence",
+  "rights": "All rights reserved to Tasweeqar General Contracting",
+  "desc": "Tasweeqar General Contracting — delivering the best construction and contracting services with quality and commitment.",
+  "quick_links": "Quick Links",
+  "services_title": "Our Services",
+  "contact_title": "Contact Us",
+  "services_list": {
+    "contracting": "Contracting",
+    "maintenance": "Maintenance",
+    "building": "Building",
+    "extensions": "Extensions"
   }
+}
 }
