@@ -13,15 +13,29 @@
     "cta_about": "About Us"
   },
   "why_choose_us": {
-    "title": "Why Choose Us",
-    "subtitle": "We provide the best solutions in general contracting",
-    "cards": {
-      "quality": { "title": "High Quality", "desc": "We commit to the highest quality standards in every project" },
-      "experience": { "title": "Wide Experience", "desc": "Years of experience in general contracting" },
-      "team": { "title": "Specialized Team", "desc": "Qualified and trained professionals at the highest level" },
-      "time": { "title": "On-Time Delivery", "desc": "We deliver our projects on time without delay" }
+  "label": "Why Choose Us?",
+  "title": "We Work With",
+  "title_gradient": "Excellence",
+  "desc": "Tasweeqar General Contracting combines experience, quality and commitment to deliver exceptional projects that exceed your expectations.",
+  "features": {
+    "quality": {
+      "title": "High Quality Standards",
+      "desc": "We commit to the highest quality standards at every stage of execution."
+    },
+    "experience": {
+      "title": "10+ Years of Experience",
+      "desc": "Extensive experience executing all types of general contracting projects."
+    },
+    "team": {
+      "title": "Specialized & Qualified Team",
+      "desc": "Engineering and technical staff trained to the highest level of efficiency."
+    },
+    "delivery": {
+      "title": "On-Time Delivery",
+      "desc": "We deliver our projects on schedule while maintaining the highest quality standards."
     }
-  },
+  }
+},
   "services_categories": {
   "label": "Explore Our Services",
   "title": "Our Services",

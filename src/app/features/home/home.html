@@ -403,38 +403,67 @@
 <!-- Why Choose Us Section -->
 <section class="why-us">
   <div class="container">
-    <div class="section-header reveal">
-      <h2>{{ 'why_choose_us.title' | translate }}</h2>
-      <p>{{ 'why_choose_us.subtitle' | translate }}</p>
-    </div>
-    <div class="why-us__grid">
-      <div class="why-us__card">
-        <div class="why-us__icon">
-          <i class="fa-solid fa-medal"></i>
+    <div class="why-us__grid reveal">
+      <div class="why-us__content">
+        <span class="section-label">{{ 'why_choose_us.label' | translate }}</span>
+        <h2 class="why-us__title">
+          {{ 'why_choose_us.title' | translate }}
+          <span class="why-us__title--gradient">{{ 'why_choose_us.title_gradient' | translate }}</span>
+        </h2>
+        <p class="why-us__desc">{{ 'why_choose_us.desc' | translate }}</p>
+        <div class="why-us__features">
+          <div class="why-us__feature reveal" style="--delay:0.2s">
+            <div class="why-us__feature-icon">
+              <i class="fa-solid fa-medal"></i>
+            </div>
+            <div>
+              <h4>{{ 'why_choose_us.features.quality.title' | translate }}</h4>
+              <p>{{ 'why_choose_us.features.quality.desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="why-us__feature reveal" style="--delay:0.4s">
+            <div class="why-us__feature-icon">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div>
+              <h4>{{ 'why_choose_us.features.experience.title' | translate }}</h4>
+              <p>{{ 'why_choose_us.features.experience.desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="why-us__feature reveal" style="--delay:0.6s">
+            <div class="why-us__feature-icon">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div>
+              <h4>{{ 'why_choose_us.features.team.title' | translate }}</h4>
+              <p>{{ 'why_choose_us.features.team.desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="why-us__feature reveal" style="--delay:0.8s">
+            <div class="why-us__feature-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4>{{ 'why_choose_us.features.delivery.title' | translate }}</h4>
+              <p>{{ 'why_choose_us.features.delivery.desc' | translate }}</p>
+            </div>
+          </div>
         </div>
-        <h3>{{ 'why_choose_us.cards.quality.title' | translate }}</h3>
-        <p>{{ 'why_choose_us.cards.quality.desc' | translate }}</p>
       </div>
-      <div class="why-us__card">
-        <div class="why-us__icon">
-          <i class="fa-solid fa-briefcase"></i>
+
+      <div class="why-us__visual reveal" style="--delay:0.2s">
+        <div class="why-us__img-stack">
+          <div class="why-us__img why-us__img--1">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Construction 1"/>
+          </div>
+          <div class="why-us__img why-us__img--2">
+            <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600" alt="Construction 2"/>
+          </div>
+          <div class="why-us__badge-float">
+            <i class="fa-solid fa-trophy"></i>
+            <span>{{ langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done' }}</span>
+          </div>
         </div>
-        <h3>{{ 'why_choose_us.cards.experience.title' | translate }}</h3>
-        <p>{{ 'why_choose_us.cards.experience.desc' | translate }}</p>
-      </div>
-      <div class="why-us__card">
-        <div class="why-us__icon">
-          <i class="fa-solid fa-users"></i>
-        </div>
-        <h3>{{ 'why_choose_us.cards.team.title' | translate }}</h3>
-        <p>{{ 'why_choose_us.cards.team.desc' | translate }}</p>
-      </div>
-      <div class="why-us__card">
-        <div class="why-us__icon">
-          <i class="fa-solid fa-clock"></i>
-        </div>
-        <h3>{{ 'why_choose_us.cards.time.title' | translate }}</h3>
-        <p>{{ 'why_choose_us.cards.time.desc' | translate }}</p>
       </div>
     </div>
   </div>
