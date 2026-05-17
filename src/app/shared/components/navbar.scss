@@ -66,16 +66,33 @@ $gold: #c8a96e;
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    animation: logoEntrance 1s ease forwards;
 
     img {
       height: 52px;
       width: auto;
+      animation:
+        logoEntrance 1s ease forwards,
+        logoFloat 4s ease-in-out 1s infinite,
+        logoGlow 4s ease-in-out 1s infinite;
+      filter: drop-shadow(0 0 0px rgba(200, 169, 110, 0));
+      transform-origin: center;
     }
 
     .navbar__brand {
       font-size: 1.2rem;
       font-weight: 700;
       color: var(--color-primary);
+      animation: logoEntrance 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+
+    &:hover img {
+      animation:
+        logoEntrance 1s ease forwards,
+        logoFloat 4s ease-in-out 1s infinite,
+        logoGlow 4s ease-in-out 1s infinite,
+        logoHoverSpin 0.6s ease forwards;
     }
   }
 
@@ -245,5 +262,61 @@ $gold: #c8a96e;
     &__hamburger {
       display: block;
     }
+  }
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+    filter: drop-shadow(0 0 0px rgba(200, 169, 110, 0));
+  }
+
+  60% {
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 8px rgba(200, 169, 110, 0.4));
+  }
+}
+
+@keyframes logoFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes logoGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(200, 169, 110, 0.3));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 16px rgba(200, 169, 110, 0.7)) drop-shadow(0 0 30px rgba(200, 169, 110, 0.3));
+  }
+}
+
+@keyframes logoHoverSpin {
+  0% {
+    transform: translateY(-4px) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.1) rotate(8deg);
+  }
+
+  100% {
+    transform: translateY(-4px) scale(1) rotate(0deg);
   }
 }
