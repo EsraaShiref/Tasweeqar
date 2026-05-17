@@ -1,3 +1,11 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  navbar.component.scss
+//  Tasweeqar General Contracting
+//  Updated: scrolled-state border unified with projects/services/about gold theme
+// ─────────────────────────────────────────────────────────────────────────────
+
+$gold: #c8a96e;
+
 .navbar {
   position: fixed;
   top: 0;
@@ -8,7 +16,7 @@
   border-bottom: 1px solid transparent;
   transition: all 0.4s ease;
 
-  // ── Scrolled state ────────────────────────────
+  // ── Scrolled state ──────────────────────────────────────────────────────────
   &.scrolled {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -84,7 +92,7 @@
       font-size: 0.95rem;
       transition: var(--transition);
       padding: 8px 14px;
-      border-radius: 6px;
+      border-radius: 8px; // ← was 6px; subtle match with card radius language
       border: 1px solid transparent;
       position: relative;
 
@@ -103,13 +111,13 @@
 
       &:hover {
         color: var(--color-primary);
-        background: rgba(200, 169, 110, 0.08);
+        background: rgba($gold, 0.08);
       }
 
       &.active {
         color: var(--color-primary);
-        background: rgba(200, 169, 110, 0.12);
-        border-color: rgba(200, 169, 110, 0.25);
+        background: rgba($gold, 0.12);
+        border-color: rgba($gold, 0.25); // ← matches srv-card active pill
 
         &::after {
           transform: scaleX(1);
@@ -117,26 +125,35 @@
       }
     }
 
+    // Contact CTA — matches srv-cta / cta-btn gradient button style
     .navbar__cta {
-      background: var(--color-primary) !important;
+      background: linear-gradient(135deg, $gold, #a8893e) !important; // ← was flat color
       color: #fff !important;
       padding: 10px 24px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
-      border-color: var(--color-primary) !important;
+      border-color: transparent !important;
+      box-shadow: 0 4px 14px rgba($gold, 0.28);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease !important;
 
       &::after {
         display: none;
       }
 
       &:hover {
-        background: var(--color-primary-dark) !important;
-        border-color: var(--color-primary-dark) !important;
+        background: linear-gradient(135deg, #a8893e, darken(#a8893e, 8%)) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
+        color: #fff !important;
       }
 
       &.active {
-        background: var(--color-primary) !important;
-        border-color: var(--color-primary) !important;
+        background: linear-gradient(135deg, $gold, #a8893e) !important;
+        border-color: transparent !important;
+        transform: none;
       }
     }
   }
@@ -151,11 +168,11 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(200, 169, 110, 0.1);
-    border: 1px solid rgba(200, 169, 110, 0.25);
+    background: rgba($gold, 0.1);
+    border: 1px solid rgba($gold, 0.25);
     color: rgba(255, 255, 255, 0.9);
     padding: 8px 14px;
-    border-radius: 6px;
+    border-radius: 8px; // ← was 6px
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 600;
@@ -164,7 +181,7 @@
     &:hover {
       border-color: var(--color-primary);
       color: var(--color-primary);
-      background: rgba(200, 169, 110, 0.15);
+      background: rgba($gold, 0.15);
     }
   }
 
@@ -178,18 +195,20 @@
   }
 }
 
-// ── Scrolled light mode ───────────────────────────
+// ── Scrolled: light mode ─────────────────────────────────────────────────────
+// Updated border to use gold tint — matches projects/services gold line accents
 [data-theme='light'] .navbar.scrolled {
   background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba($gold, 0.2); // ← was var(--color-border) plain gray
 }
 
-// ── Scrolled dark mode ────────────────────────────
+// ── Scrolled: dark mode ──────────────────────────────────────────────────────
 [data-theme='dark'] .navbar.scrolled {
   background: rgba(10, 15, 30, 0.92);
-  border-bottom: 1px solid rgba(200, 169, 110, 0.1);
+  border-bottom: 1px solid rgba($gold, 0.1); // unchanged
 }
 
+// ── Mobile ───────────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
   .navbar {
     &__links {
@@ -202,10 +221,24 @@
       flex-direction: column;
       padding: 24px;
       gap: 8px;
-      border-bottom: 1px solid rgba(200, 169, 110, 0.15);
+      border-bottom: 1px solid rgba($gold, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
       &.open {
         display: flex;
+      }
+
+      // In mobile menu, all links should be light colored since bg is dark
+      a {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        &:hover {
+          color: $gold !important;
+        }
+
+        &.active {
+          color: $gold !important;
+        }
       }
     }
 
