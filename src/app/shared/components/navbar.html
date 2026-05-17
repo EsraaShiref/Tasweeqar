@@ -1,0 +1,34 @@
+<nav class="navbar">
+  <div class="container navbar__inner">
+
+    <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
+      <img src="/images/logo.png" alt="Tasweeqar Logo" />
+      <span class="navbar__brand">
+        {{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}
+      </span>
+    </a>
+
+    <ul class="navbar__links" [class.open]="menuOpen">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'nav.home' | translate }}</a></li>
+      <li><a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.projects' | translate }}</a></li>
+      <li><a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.services' | translate }}</a></li>
+      <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{ 'nav.about' | translate }}</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" class="navbar__cta" (click)="closeMenu()">{{ 'nav.contact' | translate }}</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <button class="navbar__toggle-btn" (click)="langService.toggle()">
+        <i class="fa-solid fa-globe"></i>
+        {{ langService.currentLang() === 'ar' ? 'EN' : 'AR' }}
+      </button>
+      <button class="navbar__toggle-btn" (click)="themeService.toggle()">
+        <i class="fa-solid" [ngClass]="themeService.isDark() ? 'fa-sun' : 'fa-moon'"></i>
+      </button>
+      <button class="navbar__hamburger" (click)="toggleMenu()">
+        <i class="fa-solid fa-bars" *ngIf="!menuOpen"></i>
+        <i class="fa-solid fa-xmark" *ngIf="menuOpen"></i>
+      </button>
+    </div>
+
+  </div>
+</nav>
