@@ -1,1 +1,221 @@
-<p>services works!</p>
+<div class="services-page" [dir]="isRtl ? 'rtl' : 'ltr'">
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="srv-hero">
+    <div class="srv-hero__grid"></div>
+    <div class="srv-hero__glow"></div>
+
+    <div class="container">
+      <div class="srv-hero__content">
+        <span class="hero-badge">
+          <i class="fas fa-hard-hat"></i>
+          {{ 'nav.services' | translate }}
+        </span>
+
+        <h1 class="srv-hero__title">
+          {{ currentLang === 'ar' ? 'اكتشف' : 'Explore Our' }}
+          <span class="gold-text">
+            {{ 'services_categories.title' | translate }}
+          </span>
+        </h1>
+
+        <p class="srv-hero__sub">
+          {{ 'services_categories.subtitle' | translate }}
+        </p>
+
+        <div class="hero-divider">
+          <span></span>
+          <i class="fas fa-circle"></i>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SERVICES GRID  (matches screenshot layout)
+  ══════════════════════════════════════════ -->
+  <section class="srv-grid-section">
+    <div class="container">
+
+      <div class="section-header" #animatedEl>
+        <span class="section-label">
+          <i class="fas fa-layer-group"></i>
+          {{ 'services_categories.label' | translate }}
+        </span>
+        <h2 class="section-title">
+          {{ 'services_categories.title' | translate }}
+        </h2>
+        <p class="section-sub">
+          {{ 'services_categories.subtitle' | translate }}
+        </p>
+      </div>
+
+      <div class="srv-grid">
+
+        <!-- Regular cards (6 in 3-col) -->
+        <ng-container *ngFor="let card of serviceCards; let i = index">
+          <a
+            routerLink="/services"
+            class="srv-card"
+            [class.srv-card--full]="card.full"
+            #animatedEl
+            [style.--delay]="(i % 3) * 0.1 + 's'"
+          >
+            <!-- Hover shimmer -->
+            <div class="srv-card__shimmer"></div>
+
+            <!-- Icon -->
+            <div class="srv-card__icon-wrap">
+              <div class="srv-card__icon-bg"></div>
+              <i class="fa-solid {{ card.icon }}"></i>
+            </div>
+
+            <!-- Title row -->
+            <div class="srv-card__title-row">
+              <h3>{{ 'services_categories.items.' + card.key + '.title' | translate }}</h3>
+              <span class="srv-card__arrow">
+                <i class="fa-solid"
+                   [class.fa-arrow-left]="isRtl"
+                   [class.fa-arrow-right]="!isRtl"></i>
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p>{{ 'services_categories.items.' + card.key + '.desc' | translate }}</p>
+
+            <!-- Bottom accent line -->
+            <div class="srv-card__accent"></div>
+          </a>
+        </ng-container>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       HOW WE WORK — process steps
+  ══════════════════════════════════════════ -->
+  <section class="process-section">
+    <div class="process-bg-dots"></div>
+    <div class="container">
+
+      <div class="section-header" #animatedEl>
+        <span class="section-label">
+          <i class="fas fa-cogs"></i>
+          {{ currentLang === 'ar' ? 'آلية العمل' : 'How We Work' }}
+        </span>
+        <h2 class="section-title">
+          {{ currentLang === 'ar' ? 'منهجيتنا في' : 'Our Methodology for' }}
+          <span class="gold-text">
+            {{ currentLang === 'ar' ? 'التنفيذ' : 'Execution' }}
+          </span>
+        </h2>
+        <p class="section-sub">
+          {{ currentLang === 'ar'
+            ? 'نتبع منهجية مدروسة في كل مشروع لضمان النتائج المثلى.'
+            : 'We follow a structured methodology on every project to ensure optimal results.' }}
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <div
+          class="process-card"
+          *ngFor="let step of processSteps; let i = index"
+          #animatedEl
+          [style.--delay]="i * 0.13 + 's'"
+        >
+          <!-- Step number -->
+          <div class="process-card__num">
+            <span>{{ step.step < 10 ? '0' + step.step : step.step }}</span>
+          </div>
+
+          <!-- Icon -->
+          <div class="process-card__icon">
+            <i class="fas {{ step.icon }}"></i>
+          </div>
+
+          <h4 class="process-card__title">
+            {{ currentLang === 'ar' ? step.titleAr : step.titleEn }}
+          </h4>
+          <p class="process-card__desc">
+            {{ currentLang === 'ar' ? step.descAr : step.descEn }}
+          </p>
+
+          <!-- connector line (hidden on last) -->
+          <div class="process-card__connector" *ngIf="i < processSteps.length - 1"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       WHY CHOOSE US — mini feature strip
+  ══════════════════════════════════════════ -->
+  <section class="why-strip">
+    <div class="container">
+      <div class="why-strip__inner" #animatedEl>
+
+        <div class="why-strip__item">
+          <i class="fas fa-medal"></i>
+          <div>
+            <strong>{{ 'why_choose_us.features.quality.title' | translate }}</strong>
+            <span>{{ 'why_choose_us.features.quality.desc' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="why-strip__divider"></div>
+
+        <div class="why-strip__item">
+          <i class="fas fa-users-cog"></i>
+          <div>
+            <strong>{{ 'why_choose_us.features.team.title' | translate }}</strong>
+            <span>{{ 'why_choose_us.features.team.desc' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="why-strip__divider"></div>
+
+        <div class="why-strip__item">
+          <i class="fas fa-flag-checkered"></i>
+          <div>
+            <strong>{{ 'why_choose_us.features.delivery.title' | translate }}</strong>
+            <span>{{ 'why_choose_us.features.delivery.desc' | translate }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════ -->
+  <section class="srv-cta">
+    <div class="srv-cta__lines"></div>
+    <div class="container">
+      <div class="srv-cta__content" #animatedEl>
+        <h2>{{ 'cta.title' | translate }}</h2>
+        <p>{{ 'cta.desc' | translate }}</p>
+        <a routerLink="/contact" class="cta-btn">
+          <span>{{ 'cta.btn' | translate }}</span>
+          <i class="fas"
+             [class.fa-arrow-left]="isRtl"
+             [class.fa-arrow-right]="!isRtl"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
