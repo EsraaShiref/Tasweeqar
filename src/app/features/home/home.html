@@ -9,7 +9,7 @@
     </span>
     <h1 class="hero__title">
       {{ langService.currentLang() === 'ar' ? 'نعمل ' : 'We work' }}
-      
+
       <span class="hero__title--gradient">
         {{ langService.currentLang() === 'ar' ? 'باقتدار' : 'efficiently' }}
       </span>
@@ -35,6 +35,137 @@
 
   <div class="hero__scroll">
     <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- Services Categories Section -->
+<section class="services-cat">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ 'services_categories.title' | translate }}</h2>
+      <span class="section-label">{{ 'services_categories.label' | translate }}</span>
+      <p>{{ 'services_categories.subtitle' | translate }}</p>
+    </div>
+    <div class="services-cat__grid">
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-helmet-safety"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.contracting.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.contracting.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.maintenance.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.maintenance.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.project_services.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.project_services.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-plug"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.extensions.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.extensions.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-truck-pickup"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.excavation.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.excavation.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.building.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.building.desc' | translate }}</p>
+      </a>
+
+      <a routerLink="/services" class="services-cat__card services-cat__card--full">
+        <div class="services-cat__icon">
+          <i class="fa-solid fa-city"></i>
+        </div>
+        <div class="services-cat__title-row">
+          <h3>{{ 'services_categories.items.all.title' | translate }}</h3>
+          <span class="services-cat__arrow">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+              [class.fa-arrow-right]="langService.currentLang() === 'en'"
+            ></i>
+          </span>
+        </div>
+        <p>{{ 'services_categories.items.all.desc' | translate }}</p>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -88,38 +219,75 @@
     <div class="featured-projects__grid">
       <div class="project-card">
         <div class="project-card__image">
-          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600" alt="Project 1" />
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600"
+            alt="Project 1"
+          />
           <div class="project-card__overlay">
             <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
           </div>
         </div>
         <div class="project-card__content">
-          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع المجمع السكني' : 'Residential Complex' }}</h3>
-          <p>{{ langService.currentLang() === 'ar' ? 'مشروع سكني متكامل في الرياض' : 'Integrated residential project in Riyadh' }}</p>
+          <h3>
+            {{ langService.currentLang() === 'ar' ? 'مشروع المجمع السكني' : 'Residential Complex' }}
+          </h3>
+          <p>
+            {{
+              langService.currentLang() === 'ar'
+                ? 'مشروع سكني متكامل في الرياض'
+                : 'Integrated residential project in Riyadh'
+            }}
+          </p>
         </div>
       </div>
       <div class="project-card">
         <div class="project-card__image">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Project 2" />
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600"
+            alt="Project 2"
+          />
           <div class="project-card__overlay">
             <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
           </div>
         </div>
         <div class="project-card__content">
-          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع البنية التحتية' : 'Infrastructure Project' }}</h3>
-          <p>{{ langService.currentLang() === 'ar' ? 'أعمال بنية تحتية متكاملة' : 'Complete infrastructure works' }}</p>
+          <h3>
+            {{
+              langService.currentLang() === 'ar' ? 'مشروع البنية التحتية' : 'Infrastructure Project'
+            }}
+          </h3>
+          <p>
+            {{
+              langService.currentLang() === 'ar'
+                ? 'أعمال بنية تحتية متكاملة'
+                : 'Complete infrastructure works'
+            }}
+          </p>
         </div>
       </div>
       <div class="project-card">
         <div class="project-card__image">
-          <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600" alt="Project 3" />
+          <img
+            src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600"
+            alt="Project 3"
+          />
           <div class="project-card__overlay">
             <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
           </div>
         </div>
         <div class="project-card__content">
-          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع المباني التجارية' : 'Commercial Buildings' }}</h3>
-          <p>{{ langService.currentLang() === 'ar' ? 'إنشاء مباني تجارية حديثة' : 'Modern commercial building construction' }}</p>
+          <h3>
+            {{
+              langService.currentLang() === 'ar' ? 'مشروع المباني التجارية' : 'Commercial Buildings'
+            }}
+          </h3>
+          <p>
+            {{
+              langService.currentLang() === 'ar'
+                ? 'إنشاء مباني تجارية حديثة'
+                : 'Modern commercial building construction'
+            }}
+          </p>
         </div>
       </div>
     </div>

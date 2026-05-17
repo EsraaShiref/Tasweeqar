@@ -22,6 +22,20 @@
       "time": { "title": "On-Time Delivery", "desc": "We deliver our projects on time without delay" }
     }
   },
+  "services_categories": {
+  "label": "Explore Our Services",
+  "title": "Our Services",
+  "subtitle": "Choose your service type and discover the perfect construction solution",
+  "items": {
+    "contracting": { "title": "Contracting", "desc": "General contracting and construction works" },
+    "maintenance": { "title": "Maintenance", "desc": "Building and facility maintenance" },
+    "project_services": { "title": "Project Services", "desc": "Full project management and execution" },
+    "extensions": { "title": "Extensions", "desc": "Electrical, plumbing and mechanical extensions" },
+    "excavation": { "title": "Excavation & Backfill", "desc": "Excavation, backfill and leveling works" },
+    "building": { "title": "Building", "desc": "Residential and commercial building construction" },
+    "all": { "title": "All Contracting Works", "desc": "We provide all contracting services under one roof" }
+  }
+},
   "featured_projects": {
     "title": "Featured Projects",
     "subtitle": "Samples from our completed work"
