@@ -1,48 +1,40 @@
 <!-- Hero Section -->
 <section class="hero">
-  <div class="hero__video-wrapper">
-    <video autoplay muted loop playsinline class="hero__video">
-<source src="/videos/hero-video.mp4" type="video/mp4">    </video>
-    <div class="hero__overlay"></div>
-  </div>
+  <div class="hero__bg"></div>
+  <div class="hero__overlay"></div>
 
   <div class="container hero__content">
-    <h1 class="hero__title">{{ 'hero.title' | translate }}</h1>
+    <span class="hero__badge">
+      {{ langService.currentLang() === 'ar' ? 'مرحبا بك في تسويقار' : 'Welcome to Tasweeqar' }}
+    </span>
+    <h1 class="hero__title">
+      {{ langService.currentLang() === 'ar' ? 'نعمل ' : 'We work' }}
+      
+      <span class="hero__title--gradient">
+        {{ langService.currentLang() === 'ar' ? 'باقتدار' : 'efficiently' }}
+      </span>
+    </h1>
     <p class="hero__subtitle">{{ 'hero.subtitle' | translate }}</p>
     <div class="hero__actions">
       <a routerLink="/projects" class="btn btn--primary">
+        <i class="fa-solid fa-building"></i>
         {{ 'hero.cta_projects' | translate }}
       </a>
       <a routerLink="/about" class="btn btn--outline">
+        <i class="fa-solid fa-play-circle"></i>
         {{ 'hero.cta_about' | translate }}
       </a>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat" *ngFor="let stat of stats; let i = index">
+        <strong>{{ displayValues[i] }}{{ stat.suffix }}</strong>
+        <span>{{ stat.label | translate }}</span>
+      </div>
     </div>
   </div>
 
   <div class="hero__scroll">
     <i class="fa-solid fa-chevron-down"></i>
-  </div>
-</section>
-
-<!-- Stats Section -->
-<section class="stats">
-  <div class="container stats__grid">
-    <div class="stats__item">
-      <span class="stats__number">150+</span>
-      <span class="stats__label">{{ 'stats.projects' | translate }}</span>
-    </div>
-    <div class="stats__item">
-      <span class="stats__number">200+</span>
-      <span class="stats__label">{{ 'stats.clients' | translate }}</span>
-    </div>
-    <div class="stats__item">
-      <span class="stats__number">10+</span>
-      <span class="stats__label">{{ 'stats.years' | translate }}</span>
-    </div>
-    <div class="stats__item">
-      <span class="stats__number">50+</span>
-      <span class="stats__label">{{ 'stats.workers' | translate }}</span>
-    </div>
   </div>
 </section>
 

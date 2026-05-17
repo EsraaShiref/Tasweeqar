@@ -8,49 +8,72 @@
     justify-content: center;
     overflow: hidden;
 
-    &__video-wrapper {
+    &__bg {
         position: absolute;
         inset: 0;
-        z-index: 0;
-    }
-
-    &__video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: scale(1.05);
+        animation: zoomOut 8s ease forwards;
     }
 
     &__overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom,
-                rgba(0, 0, 0, 0.6) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(0, 0, 0, 0.7) 100%);
+        background: linear-gradient(135deg,
+                rgba(0, 20, 60, 0.85) 0%,
+                rgba(0, 10, 30, 0.6) 50%,
+                rgba(0, 20, 60, 0.75) 100%);
+        z-index: 1;
     }
 
     &__content {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         text-align: center;
         color: #fff;
         padding-top: 80px;
     }
 
-    &__title {
-        font-size: clamp(2rem, 5vw, 4rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    &__badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid var(--color-primary);
+        border-radius: 50px;
+        color: var(--color-primary);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
         animation: fadeInUp 0.8s ease forwards;
     }
 
-    &__subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.5rem);
-        color: var(--color-primary);
-        margin-bottom: 40px;
-        font-weight: 500;
+    &__title {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         animation: fadeInUp 0.8s ease 0.2s forwards;
+        opacity: 0;
+
+        &--gradient {
+            color: var(--color-primary);
+        }
+    }
+
+    &__subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 40px;
+        font-weight: 400;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+        animation: fadeInUp 0.8s ease 0.4s forwards;
         opacity: 0;
     }
 
@@ -59,8 +82,38 @@
         gap: 16px;
         justify-content: center;
         flex-wrap: wrap;
-        animation: fadeInUp 0.8s ease 0.4s forwards;
+        animation: fadeInUp 0.8s ease 0.6s forwards;
         opacity: 0;
+        margin-bottom: 60px;
+    }
+
+    &__stats {
+        display: flex;
+        gap: 48px;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 0.8s ease 0.8s forwards;
+        opacity: 0;
+    }
+
+    &__stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        strong {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     }
 
     &__scroll {
@@ -68,7 +121,7 @@
         bottom: 32px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 1;
+        z-index: 2;
         color: #fff;
         font-size: 1.4rem;
         animation: bounce 2s infinite;
@@ -113,7 +166,7 @@
 // ── Stats ─────────────────────────────────────────
 .stats {
     background: var(--color-primary);
-    padding: 60px 0;
+    padding: 10px 0;
 
     &__grid {
         display: grid;
@@ -324,6 +377,16 @@
 
     50% {
         transform: translateX(-50%) translateY(10px);
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1);
     }
 }
 
