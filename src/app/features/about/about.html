@@ -1,1 +1,208 @@
-<p>about works!</p>
+<div class="about-page" [dir]="isRtl ? 'rtl' : 'ltr'">
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="about-hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fas fa-hard-hat"></i>
+          {{ 'nav.about' | translate }}
+        </span>
+        <h1 class="hero-title">
+          {{ 'why_choose_us.title' | translate }}
+          <span class="gradient-text">{{ 'why_choose_us.title_gradient' | translate }}</span>
+        </h1>
+        <p class="hero-subtitle">{{ 'why_choose_us.desc' | translate }}</p>
+        <div class="hero-divider">
+          <span></span><i class="fas fa-circle"></i><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ GLANCE ═══════════════════════════ -->
+  <section class="glance-section">
+    <div class="container">
+      <div class="glance-grid">
+
+        <!-- Text side -->
+        <div class="glance-text" #animatedEl>
+          <span class="section-label">
+            <i class="fas fa-info-circle"></i>
+            {{ 'why_choose_us.label' | translate }}
+          </span>
+          <h2 class="glance-heading">
+            {{ 'why_choose_us.title' | translate }}
+            <em>{{ 'why_choose_us.title_gradient' | translate }}</em>
+          </h2>
+          <p class="glance-desc">{{ 'why_choose_us.desc' | translate }}</p>
+
+          <!-- Stats row -->
+          <div class="stats-grid">
+            <div class="stat-card" *ngFor="let s of stats; let i = index"
+                 [style.animation-delay]="(i * 0.1) + 's'">
+              <div class="stat-icon">
+                <i class="fas {{ s.icon }}"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value">{{ s.value }}</span>
+                <span class="stat-label">{{ 'stats.' + s.key | translate }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo / image side -->
+        <div class="glance-visual" #animatedEl>
+          <div class="logo-stage">
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-mid"></div>
+            <div class="ring ring-inner"></div>
+            <div class="logo-particles">
+              <span *ngFor="let p of [1,2,3,4,5,6,7,8]" class="particle p{{p}}"></span>
+            </div>
+            <div class="logo-wrapper">
+              <img src="/images/logo.png"
+                   alt="Tasweeqar Logo"
+                   class="company-logo" />
+            </div>
+            <div class="logo-glow"></div>
+          </div>
+          <p class="logo-tagline">
+            <span>{{ currentLang === 'ar' ? 'تسويقار للمقاولات العامة' : 'Tasweeqar General Contracting' }}</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FEATURES ═══════════════════════════ -->
+  <section class="features-section">
+    <div class="section-bg-pattern"></div>
+    <div class="container">
+      <div class="section-header" #animatedEl>
+        <span class="section-label">
+          <i class="fas fa-star"></i>
+          {{ 'why_choose_us.label' | translate }}
+        </span>
+        <h2 class="section-title">
+          {{ currentLang === 'ar' ? 'لماذا تختار تسويقار؟' : 'Why Choose Tasweeqar?' }}
+        </h2>
+        <p class="section-subtitle">{{ 'why_choose_us.desc' | translate }}</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card"
+             *ngFor="let f of features; let i = index"
+             #animatedEl
+             [style.animation-delay]="(i * 0.12) + 's'">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon-bg"></div>
+            <i class="fas {{ f.icon }}"></i>
+          </div>
+          <div class="feature-body">
+            <h3 class="feature-title">{{ f.titleKey | translate }}</h3>
+            <p class="feature-desc">{{ f.descKey | translate }}</p>
+          </div>
+          <div class="card-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ TIMELINE / VALUES ═══════════════════════════ -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header" #animatedEl>
+        <span class="section-label">
+          <i class="fas fa-road"></i>
+          {{ currentLang === 'ar' ? 'رؤيتنا ومسيرتنا' : 'Our Vision & Journey' }}
+        </span>
+        <h2 class="section-title">
+          {{ currentLang === 'ar' ? 'بناء المستقبل بـ' : 'Building the Future with' }}
+          <span class="gradient-text">
+            {{ currentLang === 'ar' ? 'اقتدار' : 'Excellence' }}
+          </span>
+        </h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item left" #animatedEl>
+          <div class="timeline-dot">
+            <i class="fas fa-flag"></i>
+          </div>
+          <div class="timeline-card">
+            <span class="tl-year">2014</span>
+            <h4>{{ currentLang === 'ar' ? 'تأسيس الشركة' : 'Company Founded' }}</h4>
+            <p>{{ currentLang === 'ar'
+              ? 'انطلقت تسويقار للمقاولات العامة بفريق صغير وطموح كبير في سوق المقاولات السعودي.'
+              : 'Tasweeqar was founded with a small team and big ambitions in the Saudi contracting market.' }}</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" #animatedEl>
+          <div class="timeline-dot">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="timeline-card">
+            <span class="tl-year">2017</span>
+            <h4>{{ currentLang === 'ar' ? 'التوسع والنمو' : 'Growth & Expansion' }}</h4>
+            <p>{{ currentLang === 'ar'
+              ? 'توسعنا لنشمل مناطق متعددة في المملكة وأتممنا أكثر من 100 مشروع بنجاح.'
+              : 'We expanded across multiple regions of the Kingdom, completing over 100 successful projects.' }}</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" #animatedEl>
+          <div class="timeline-dot">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="timeline-card">
+            <span class="tl-year">2020</span>
+            <h4>{{ currentLang === 'ar' ? 'شهادات الجودة' : 'Quality Certifications' }}</h4>
+            <p>{{ currentLang === 'ar'
+              ? 'حصلنا على شهادات معايير الجودة الدولية وتوسعنا في قطاعات البنية التحتية.'
+              : 'Obtained international quality standard certifications and expanded into infrastructure sectors.' }}</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" #animatedEl>
+          <div class="timeline-dot">
+            <i class="fas fa-city"></i>
+          </div>
+          <div class="timeline-card">
+            <span class="tl-year">2024+</span>
+            <h4>{{ currentLang === 'ar' ? 'رؤية المستقبل' : 'Vision Ahead' }}</h4>
+            <p>{{ currentLang === 'ar'
+              ? 'نواصل مسيرة البناء بمعايير أعلى، مواكبين رؤية 2030 وطموحات المملكة.'
+              : 'We continue building with higher standards, aligned with Vision 2030 and the Kingdom\'s ambitions.' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-bg-lines"></div>
+    <div class="container">
+      <div class="cta-content" #animatedEl>
+        <h2 class="cta-title">{{ 'cta.title' | translate }}</h2>
+        <p class="cta-desc">{{ 'cta.desc' | translate }}</p>
+        <a href="#contact" class="cta-btn">
+          <span>{{ 'cta.btn' | translate }}</span>
+          <i class="fas" [class.fa-arrow-left]="isRtl" [class.fa-arrow-right]="!isRtl"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
