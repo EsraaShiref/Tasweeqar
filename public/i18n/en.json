@@ -13,81 +13,99 @@
     "cta_about": "About Us"
   },
   "why_choose_us": {
-  "label": "Why Choose Us?",
-  "title": "We Work With",
-  "title_gradient": "Excellence",
-  "desc": "Tasweeqar General Contracting combines experience, quality and commitment to deliver exceptional projects that exceed your expectations.",
-  "features": {
-    "quality": {
-      "title": "High Quality Standards",
-      "desc": "We commit to the highest quality standards at every stage of execution."
-    },
-    "experience": {
-      "title": "10+ Years of Experience",
-      "desc": "Extensive experience executing all types of general contracting projects."
-    },
-    "team": {
-      "title": "Specialized & Qualified Team",
-      "desc": "Engineering and technical staff trained to the highest level of efficiency."
-    },
-    "delivery": {
-      "title": "On-Time Delivery",
-      "desc": "We deliver our projects on schedule while maintaining the highest quality standards."
+    "label": "Why Choose Us?",
+    "title": "We Work With",
+    "title_gradient": "Excellence",
+    "desc": "Tasweeqar General Contracting combines experience, quality and commitment to deliver exceptional projects that exceed your expectations.",
+    "features": {
+      "quality": {
+        "title": "High Quality Standards",
+        "desc": "We commit to the highest quality standards at every stage of execution."
+      },
+      "experience": {
+        "title": "10+ Years of Experience",
+        "desc": "Extensive experience executing all types of general contracting projects."
+      },
+      "team": {
+        "title": "Specialized & Qualified Team",
+        "desc": "Engineering and technical staff trained to the highest level of efficiency."
+      },
+      "delivery": {
+        "title": "On-Time Delivery",
+        "desc": "We deliver our projects on schedule while maintaining the highest quality standards."
+      }
     }
-  }
-},
+  },
   "services_categories": {
-  "label": "Explore Our Services",
-  "title": "Our Services",
-  "subtitle": "Choose your service type and discover the perfect construction solution",
-  "items": {
-    "contracting": { "title": "Contracting", "desc": "General contracting and construction works" },
-    "maintenance": { "title": "Maintenance", "desc": "Building and facility maintenance" },
-    "project_services": { "title": "Project Services", "desc": "Full project management and execution" },
-    "extensions": { "title": "Extensions", "desc": "Electrical, plumbing and mechanical extensions" },
-    "excavation": { "title": "Excavation & Backfill", "desc": "Excavation, backfill and leveling works" },
-    "building": { "title": "Building", "desc": "Residential and commercial building construction" },
-    "all": { "title": "All Contracting Works", "desc": "We provide all contracting services under one roof" }
-  }
-},
-  "featured_projects": {
-  "label": "Must Visit",
-  "title": "Featured Projects",
-  "subtitle": "Handpicked projects that showcase the very best of Tasweeqar",
-  "view_all": "View All Projects",
-  "items": {
-    "p1": {
-      "title": "Residential Complex - Riyadh",
-      "region": "Riyadh Region",
-      "desc": "A complete residential complex with 40 units built to the highest quality and finishing standards."
-    },
-    "p2": {
-      "title": "Commercial Building - Jeddah",
-      "region": "Jeddah Region",
-      "desc": "A multi-story commercial building with modern design and complete infrastructure."
-    },
-    "p3": {
-      "title": "Infrastructure - Dammam",
-      "region": "Eastern Region",
-      "desc": "Comprehensive infrastructure works including drainage networks and internal roads."
-    },
-    "p4": {
-      "title": "Luxury Villa - Khobar",
-      "region": "Eastern Region",
-      "desc": "Construction of a luxury residential villa of 800 sqm with premium finishes."
-    },
-    "p5": {
-      "title": "Industrial Warehouses - Riyadh",
-      "region": "Riyadh Region",
-      "desc": "Construction of an industrial warehouse complex of 5000 sqm to high specifications."
-    },
-    "p6": {
-      "title": "Government School - Madinah",
-      "region": "Madinah Region",
-      "desc": "Construction and equipping of a government school with capacity for 500 students."
+    "label": "Explore Our Services",
+    "title": "Our Services",
+    "subtitle": "Choose your service type and discover the perfect construction solution",
+    "items": {
+      "contracting": {
+        "title": "Contracting",
+        "desc": "General contracting and construction works"
+      },
+      "maintenance": { "title": "Maintenance", "desc": "Building and facility maintenance" },
+      "project_services": {
+        "title": "Project Services",
+        "desc": "Full project management and execution"
+      },
+      "extensions": {
+        "title": "Extensions",
+        "desc": "Electrical, plumbing and mechanical extensions"
+      },
+      "excavation": {
+        "title": "Excavation & Backfill",
+        "desc": "Excavation, backfill and leveling works"
+      },
+      "building": {
+        "title": "Building",
+        "desc": "Residential and commercial building construction"
+      },
+      "all": {
+        "title": "All Contracting Works",
+        "desc": "We provide all contracting services under one roof"
+      }
     }
-  }
-},
+  },
+  "featured_projects": {
+    "label": "Must Visit",
+    "title": "Featured Projects",
+    "subtitle": "Handpicked projects that showcase the very best of Tasweeqar",
+    "view_all": "View All Projects",
+    "items": {
+      "p1": {
+        "title": "Residential Complex - Riyadh",
+        "region": "Riyadh Region",
+        "desc": "A complete residential complex with 40 units built to the highest quality and finishing standards."
+      },
+      "p2": {
+        "title": "Commercial Building - Jeddah",
+        "region": "Jeddah Region",
+        "desc": "A multi-story commercial building with modern design and complete infrastructure."
+      },
+      "p3": {
+        "title": "Infrastructure - Dammam",
+        "region": "Eastern Region",
+        "desc": "Comprehensive infrastructure works including drainage networks and internal roads."
+      },
+      "p4": {
+        "title": "Luxury Villa - Khobar",
+        "region": "Eastern Region",
+        "desc": "Construction of a luxury residential villa of 800 sqm with premium finishes."
+      },
+      "p5": {
+        "title": "Industrial Warehouses - Riyadh",
+        "region": "Riyadh Region",
+        "desc": "Construction of an industrial warehouse complex of 5000 sqm to high specifications."
+      },
+      "p6": {
+        "title": "Government School - Madinah",
+        "region": "Madinah Region",
+        "desc": "Construction and equipping of a government school with capacity for 500 students."
+      }
+    }
+  },
   "stats": {
     "projects": "Completed Projects",
     "clients": "Satisfied Clients",
@@ -95,22 +113,112 @@
     "workers": "Specialized Staff"
   },
   "cta": {
-  "title": "Ready to Build?",
-  "desc": "Contact us today and we'll be happy to provide the best contracting solutions for your project.",
-  "btn": "Contact Us Now"
-},
-"footer": {
-  "slogan": "We Work With Excellence",
-  "rights": "All rights reserved to Tasweeqar General Contracting",
-  "desc": "Tasweeqar General Contracting — delivering the best construction and contracting services with quality and commitment.",
-  "quick_links": "Quick Links",
-  "services_title": "Our Services",
-  "contact_title": "Contact Us",
-  "services_list": {
-    "contracting": "Contracting",
-    "maintenance": "Maintenance",
-    "building": "Building",
-    "extensions": "Extensions"
+    "title": "Ready to Build?",
+    "desc": "Contact us today and we'll be happy to provide the best contracting solutions for your project.",
+    "btn": "Contact Us Now"
+  },
+  "footer": {
+    "slogan": "We Work With Excellence",
+    "rights": "All rights reserved to Tasweeqar General Contracting",
+    "desc": "Tasweeqar General Contracting — delivering the best construction and contracting services with quality and commitment.",
+    "quick_links": "Quick Links",
+    "services_title": "Our Services",
+    "contact_title": "Contact Us",
+    "services_list": {
+      "contracting": "Contracting",
+      "maintenance": "Maintenance",
+      "building": "Building",
+      "extensions": "Extensions"
+    }
+  },
+  "projects_page": {
+    "hero_title": "Explore Our",
+    "hero_title_accent": "Projects",
+    "hero_subtitle": "Browse our featured completed and ongoing projects across Saudi Arabia",
+    "search_placeholder": "Search projects, cities, or service type...",
+    "search_btn": "Search",
+    "filter_all": "All",
+    "showing": "Showing",
+    "projects_count": "projects",
+    "status_done": "Completed",
+    "status_progress": "In Progress",
+    "featured_badge": "Featured",
+    "explore": "Explore",
+    "no_results": "No projects match your search",
+    "no_results_sub": "Try a different keyword or select another category",
+    "categories": {
+      "all": "All",
+      "contracting": "General Contracting",
+      "maintenance": "Maintenance",
+      "mep": "MEP Extensions",
+      "excavation": "Excavation",
+      "construction": "Construction",
+      "services": "Project Services"
+    },
+    "items": {
+      "p1": {
+        "title": "Riyadh Commercial Tower",
+        "city": "Riyadh",
+        "region": "Riyadh, Central Region",
+        "category": "General Contracting",
+        "desc": "Construction of a 15-floor commercial tower with offices and retail space in central Riyadh to the highest quality standards."
+      },
+      "p2": {
+        "title": "Jeddah Residential Complex",
+        "city": "Jeddah",
+        "region": "Jeddah, Western Region",
+        "category": "Construction",
+        "desc": "A luxury residential complex with 120 diverse housing units and full amenities spanning 8,000 sqm."
+      },
+      "p3": {
+        "title": "Dammam Industrial Facility",
+        "city": "Dammam",
+        "region": "Dammam, Eastern Region",
+        "category": "MEP Extensions",
+        "desc": "Complete electrical, mechanical, and plumbing installation for a major industrial facility with high production capacity."
+      },
+      "p4": {
+        "title": "Khobar Office Building",
+        "city": "Khobar",
+        "region": "Khobar, Eastern Region",
+        "category": "General Contracting",
+        "desc": "Modern 8-floor administrative building with multi-level parking and premium interior finishes."
+      },
+      "p5": {
+        "title": "Riyadh Infrastructure Project",
+        "city": "Riyadh",
+        "region": "Riyadh, Central Region",
+        "category": "Excavation",
+        "desc": "Excavation and backfilling for a massive infrastructure project covering roads and tunnels over 200,000 sqm."
+      },
+      "p6": {
+        "title": "Madinah Educational Center",
+        "city": "Madinah",
+        "region": "Madinah, Western Region",
+        "category": "Construction",
+        "desc": "An integrated educational complex housing primary, middle, and secondary schools with a capacity of 2,000 students."
+      },
+      "p7": {
+        "title": "Makkah Hotel Renovation",
+        "city": "Makkah",
+        "region": "Makkah, Western Region",
+        "category": "Maintenance",
+        "desc": "Comprehensive maintenance and full renovation of a 5-star hotel with 350 rooms and updated electrical and mechanical systems."
+      },
+      "p8": {
+        "title": "Tabuk Villa Complex",
+        "city": "Tabuk",
+        "region": "Tabuk, Northwestern Region",
+        "category": "Construction",
+        "desc": "Construction of 45 luxury villas with private pools, gardens, and full community amenities per latest building standards."
+      },
+      "p9": {
+        "title": "Abha Government Building",
+        "city": "Abha",
+        "region": "Abha, Asir Region",
+        "category": "Project Services",
+        "desc": "Management and execution of a major government complex housing 20 departments with full logistical and administrative services."
+      }
+    }
   }
-}
 }

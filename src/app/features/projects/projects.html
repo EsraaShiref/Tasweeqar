@@ -1,1 +1,171 @@
-<p>projects works!</p>
+<!-- ── Hero Banner ─────────────────────────────────────── -->
+<section class="projects-hero">
+  <div class="container">
+    <h1 class="projects-hero__title">
+      {{ 'projects_page.hero_title' | translate }}
+      <span class="accent">{{ 'projects_page.hero_title_accent' | translate }}</span>
+    </h1>
+    <p class="projects-hero__subtitle">
+      {{ 'projects_page.hero_subtitle' | translate }}
+    </p>
+  </div>
+</section>
+
+<!-- ── Search + Filter + Grid ─────────────────────────── -->
+<section class="projects-main">
+  <div class="container">
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="search-bar__input-wrap">
+        <i class="fa-solid fa-magnifying-glass search-bar__icon" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="search-bar__input"
+          [placeholder]="'projects_page.search_placeholder' | translate"
+          [ngModel]="searchQuery()"
+          (ngModelChange)="onSearch($event)"
+        />
+      </div>
+      <button class="search-bar__btn">
+        {{ 'projects_page.search_btn' | translate }}
+      </button>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="filter-pills" role="group">
+      @for (cat of categories; track cat) {
+        <button
+          class="filter-pills__pill"
+          [class.filter-pills__pill--active]="activeFilter() === cat"
+          (click)="setFilter(cat)"
+        >
+          @if (cat === 'all') {
+            <i class="fa-solid fa-border-all" aria-hidden="true"></i>
+          } @else if (cat === 'contracting') {
+            <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
+          } @else if (cat === 'construction') {
+            <i class="fa-solid fa-building" aria-hidden="true"></i>
+          } @else if (cat === 'mep') {
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+          } @else if (cat === 'excavation') {
+            <i class="fa-solid fa-trowel" aria-hidden="true"></i>
+          } @else if (cat === 'maintenance') {
+            <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+          } @else {
+            <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+          }
+          {{ 'projects_page.categories.' + cat | translate }}
+        </button>
+      }
+    </div>
+
+    <!-- Results Count -->
+    <p class="results-count">
+      {{ 'projects_page.showing' | translate }}
+      <strong>{{ filteredProjects().length }}</strong>
+      {{ 'projects_page.projects_count' | translate }}
+    </p>
+
+    <!-- Cards Grid -->
+    @if (filteredProjects().length > 0) {
+      <div class="projects-grid">
+        @for (project of filteredProjects(); track project.id; let i = $index) {
+          <div
+            #revealEl
+            class="project-card reveal"
+            [style.--delay]="(i * 0.08) + 's'"
+          >
+            <!-- Image Area -->
+            <div class="project-card__image">
+              <img
+                [src]="project.image"
+                [alt]="'projects_page.items.' + project.key + '.title' | translate"
+                loading="lazy"
+              />
+
+              <!-- City Badge top-left -->
+              <div class="project-card__city">
+                {{ 'projects_page.items.' + project.key + '.city' | translate }}
+              </div>
+
+              <!-- Featured Badge top-right -->
+              @if (project.featured) {
+                <div class="project-card__featured">
+                  <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  {{ 'projects_page.featured_badge' | translate }}
+                </div>
+              }
+            </div>
+
+            <!-- Content -->
+            <div class="project-card__body">
+
+              <!-- Category Label -->
+              <span class="project-card__category">
+                {{ 'projects_page.categories.' + project.categoryKey | translate }}
+              </span>
+
+              <!-- Title -->
+              <h3 class="project-card__title">
+                {{ 'projects_page.items.' + project.key + '.title' | translate }}
+              </h3>
+
+              <!-- Location -->
+              <p class="project-card__location">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                {{ 'projects_page.items.' + project.key + '.region' | translate }}
+              </p>
+
+              <!-- Description -->
+              <p class="project-card__desc">
+                {{ 'projects_page.items.' + project.key + '.desc' | translate }}
+              </p>
+
+              <!-- Footer -->
+              <div class="project-card__footer">
+                <span
+                  class="project-card__status"
+                  [class.project-card__status--done]="project.status === 'done'"
+                  [class.project-card__status--progress]="project.status === 'progress'"
+                >
+                  <i
+                    class="fa-solid"
+                    [class.fa-circle-check]="project.status === 'done'"
+                    [class.fa-spinner]="project.status === 'progress'"
+                    aria-hidden="true"
+                  ></i>
+                  @if (project.status === 'done') {
+                    {{ 'projects_page.status_done' | translate }}
+                  } @else {
+                    {{ 'projects_page.status_progress' | translate }}
+                  }
+                </span>
+
+                <a routerLink="/projects" class="project-card__link">
+                  {{ 'projects_page.explore' | translate }}
+                  <i
+                    class="fa-solid"
+                    [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                    [class.fa-arrow-right]="langService.currentLang() === 'en'"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        }
+      </div>
+
+    } @else {
+      <!-- No Results -->
+      <div class="no-results">
+        <i class="fa-solid fa-folder-open no-results__icon" aria-hidden="true"></i>
+        <h3>{{ 'projects_page.no_results' | translate }}</h3>
+        <p>{{ 'projects_page.no_results_sub' | translate }}</p>
+      </div>
+    }
+
+  </div>
+</section>
