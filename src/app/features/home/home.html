@@ -41,12 +41,12 @@
 <!-- Services Categories Section -->
 <section class="services-cat">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>{{ 'services_categories.title' | translate }}</h2>
       <span class="section-label">{{ 'services_categories.label' | translate }}</span>
       <p>{{ 'services_categories.subtitle' | translate }}</p>
     </div>
-    <div class="services-cat__grid">
+    <div class="services-cat__grid reveal" style="--delay: 0s">
       <a routerLink="/services" class="services-cat__card">
         <div class="services-cat__icon">
           <i class="fa-solid fa-helmet-safety"></i>
@@ -65,7 +65,7 @@
       </a>
 
       <a routerLink="/services" class="services-cat__card">
-        <div class="services-cat__icon">
+        <div class="services-cat__icon reveal" style="--delay: 0.1s">
           <i class="fa-solid fa-screwdriver-wrench"></i>
         </div>
         <div class="services-cat__title-row">
@@ -85,7 +85,7 @@
         <div class="services-cat__icon">
           <i class="fa-solid fa-diagram-project"></i>
         </div>
-        <div class="services-cat__title-row">
+        <div class="services-cat__title-row reveal" style="--delay: 0.2s">
           <h3>{{ 'services_categories.items.project_services.title' | translate }}</h3>
           <span class="services-cat__arrow">
             <i
@@ -102,7 +102,7 @@
         <div class="services-cat__icon">
           <i class="fa-solid fa-plug"></i>
         </div>
-        <div class="services-cat__title-row">
+        <div class="services-cat__title-row reveal" style="--delay: 0.3s">
           <h3>{{ 'services_categories.items.extensions.title' | translate }}</h3>
           <span class="services-cat__arrow">
             <i
@@ -119,7 +119,7 @@
         <div class="services-cat__icon">
           <i class="fa-solid fa-truck-pickup"></i>
         </div>
-        <div class="services-cat__title-row">
+        <div class="services-cat__title-row reveal" style="--delay: 0.4s">
           <h3>{{ 'services_categories.items.excavation.title' | translate }}</h3>
           <span class="services-cat__arrow">
             <i
@@ -136,7 +136,7 @@
         <div class="services-cat__icon">
           <i class="fa-solid fa-building"></i>
         </div>
-        <div class="services-cat__title-row">
+        <div class="services-cat__title-row reveal" style="--delay: 0.5s">
           <h3>{{ 'services_categories.items.building.title' | translate }}</h3>
           <span class="services-cat__arrow">
             <i
@@ -149,11 +149,15 @@
         <p>{{ 'services_categories.items.building.desc' | translate }}</p>
       </a>
 
-      <a routerLink="/services" class="services-cat__card services-cat__card--full">
+      <a
+        routerLink="/services"
+        class="services-cat__card reveal services-cat__card--full"
+        style="--delay: 0s"
+      >
         <div class="services-cat__icon">
           <i class="fa-solid fa-city"></i>
         </div>
-        <div class="services-cat__title-row">
+        <div class="services-cat__title-row reveal" style="--delay: 0.6s">
           <h3>{{ 'services_categories.items.all.title' | translate }}</h3>
           <span class="services-cat__arrow">
             <i
@@ -169,10 +173,237 @@
   </div>
 </section>
 
+<!-- Featured Projects Section -->
+<section class="featured-projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">{{ 'featured_projects.label' | translate }}</span>
+      <h2>{{ 'featured_projects.title' | translate }}</h2>
+      <p>{{ 'featured_projects.subtitle' | translate }}</p>
+    </div>
+    <div class="featured-projects__grid">
+      <div class="project-card reveal" style="--delay: 0s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800"
+            alt="Project 1"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'الرياض' : 'Riyadh' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p1.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p1.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p1.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--done">
+              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.1s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+            alt="Project 2"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'جدة' : 'Jeddah' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p2.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p2.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p2.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--done">
+              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.2s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800"
+            alt="Project 3"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'الدمام' : 'Dammam' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p3.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p3.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p3.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--progress">
+              {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.3s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800"
+            alt="Project 4"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'الخبر' : 'Khobar' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p4.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p4.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p4.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--done">
+              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.4s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800"
+            alt="Project 5"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'الرياض' : 'Riyadh' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p5.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p5.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p5.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--progress">
+              {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.5s">
+        <div class="project-card__image">
+          <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800"
+            alt="Project 6"
+            loading="lazy"
+          />
+          <div class="project-card__badge">
+            {{ langService.currentLang() === 'ar' ? 'المدينة' : 'Madinah' }}
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ 'featured_projects.items.p6.title' | translate }}</h3>
+          <p class="project-card__region">
+            <i class="fa-solid fa-location-dot"></i>
+            {{ 'featured_projects.items.p6.region' | translate }}
+          </p>
+          <p class="project-card__desc">{{ 'featured_projects.items.p6.desc' | translate }}</p>
+          <div class="project-card__footer">
+            <div class="project-card__status project-card__status--done">
+              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
+            </div>
+            <a routerLink="/projects" class="project-card__link">
+              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
+              <i
+                class="fa-solid"
+                [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+                [class.fa-arrow-right]="langService.currentLang() === 'en'"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="featured-projects__cta">
+      <a routerLink="/projects" class="btn btn--primary">
+        {{ 'featured_projects.view_all' | translate }}
+        <i
+          class="fa-solid"
+          [class.fa-arrow-left]="langService.currentLang() === 'ar'"
+          [class.fa-arrow-right]="langService.currentLang() === 'en'"
+        >
+        </i>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Why Choose Us Section -->
 <section class="why-us">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>{{ 'why_choose_us.title' | translate }}</h2>
       <p>{{ 'why_choose_us.subtitle' | translate }}</p>
     </div>
@@ -204,91 +435,6 @@
         </div>
         <h3>{{ 'why_choose_us.cards.time.title' | translate }}</h3>
         <p>{{ 'why_choose_us.cards.time.desc' | translate }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Featured Projects Section -->
-<section class="featured-projects">
-  <div class="container">
-    <div class="section-header">
-      <h2>{{ 'featured_projects.title' | translate }}</h2>
-      <p>{{ 'featured_projects.subtitle' | translate }}</p>
-    </div>
-    <div class="featured-projects__grid">
-      <div class="project-card">
-        <div class="project-card__image">
-          <img
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600"
-            alt="Project 1"
-          />
-          <div class="project-card__overlay">
-            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>
-            {{ langService.currentLang() === 'ar' ? 'مشروع المجمع السكني' : 'Residential Complex' }}
-          </h3>
-          <p>
-            {{
-              langService.currentLang() === 'ar'
-                ? 'مشروع سكني متكامل في الرياض'
-                : 'Integrated residential project in Riyadh'
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-card__image">
-          <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600"
-            alt="Project 2"
-          />
-          <div class="project-card__overlay">
-            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>
-            {{
-              langService.currentLang() === 'ar' ? 'مشروع البنية التحتية' : 'Infrastructure Project'
-            }}
-          </h3>
-          <p>
-            {{
-              langService.currentLang() === 'ar'
-                ? 'أعمال بنية تحتية متكاملة'
-                : 'Complete infrastructure works'
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-card__image">
-          <img
-            src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600"
-            alt="Project 3"
-          />
-          <div class="project-card__overlay">
-            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>
-            {{
-              langService.currentLang() === 'ar' ? 'مشروع المباني التجارية' : 'Commercial Buildings'
-            }}
-          </h3>
-          <p>
-            {{
-              langService.currentLang() === 'ar'
-                ? 'إنشاء مباني تجارية حديثة'
-                : 'Modern commercial building construction'
-            }}
-          </p>
-        </div>
       </div>
     </div>
   </div>

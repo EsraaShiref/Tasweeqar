@@ -37,9 +37,43 @@
   }
 },
   "featured_projects": {
-    "title": "Featured Projects",
-    "subtitle": "Samples from our completed work"
-  },
+  "label": "Must Visit",
+  "title": "Featured Projects",
+  "subtitle": "Handpicked projects that showcase the very best of Tasweeqar",
+  "view_all": "View All Projects",
+  "items": {
+    "p1": {
+      "title": "Residential Complex - Riyadh",
+      "region": "Riyadh Region",
+      "desc": "A complete residential complex with 40 units built to the highest quality and finishing standards."
+    },
+    "p2": {
+      "title": "Commercial Building - Jeddah",
+      "region": "Jeddah Region",
+      "desc": "A multi-story commercial building with modern design and complete infrastructure."
+    },
+    "p3": {
+      "title": "Infrastructure - Dammam",
+      "region": "Eastern Region",
+      "desc": "Comprehensive infrastructure works including drainage networks and internal roads."
+    },
+    "p4": {
+      "title": "Luxury Villa - Khobar",
+      "region": "Eastern Region",
+      "desc": "Construction of a luxury residential villa of 800 sqm with premium finishes."
+    },
+    "p5": {
+      "title": "Industrial Warehouses - Riyadh",
+      "region": "Riyadh Region",
+      "desc": "Construction of an industrial warehouse complex of 5000 sqm to high specifications."
+    },
+    "p6": {
+      "title": "Government School - Madinah",
+      "region": "Madinah Region",
+      "desc": "Construction and equipping of a government school with capacity for 500 students."
+    }
+  }
+},
   "stats": {
     "projects": "Completed Projects",
     "clients": "Satisfied Clients",

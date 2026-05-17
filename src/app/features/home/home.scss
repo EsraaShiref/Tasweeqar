@@ -1,3 +1,4 @@
+// ── Keyframes ─────────────────────────────────────
 @keyframes zoomOut {
     from {
         transform: scale(1.05);
@@ -32,6 +33,16 @@
     }
 }
 
+@keyframes shimmer {
+    0% {
+        left: -75%;
+    }
+
+    100% {
+        left: 125%;
+    }
+}
+
 // ── Hero ──────────────────────────────────────────
 .hero {
     position: relative;
@@ -51,6 +62,7 @@
         background-repeat: no-repeat;
         transform: scale(1.05);
         animation: zoomOut 8s ease forwards;
+        transition: transform 0.1s linear;
     }
 
     &__overlay {
@@ -245,6 +257,56 @@
     text-align: center;
 }
 
+// ── Scroll Reveal ─────────────────────────────────
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease var(--delay, 0s),
+        transform 0.7s ease var(--delay, 0s);
+
+    &.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.services-cat__card.reveal,
+.project-card.reveal {
+    transform: translateY(40px) scale(0.97);
+
+    &.animate-in {
+        transform: translateY(0) scale(1);
+    }
+}
+
+// ── Card Shine Effect ─────────────────────────────
+.services-cat__card,
+.project-card {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -75%;
+        width: 50%;
+        height: 200%;
+        background: linear-gradient(120deg,
+                transparent,
+                rgba(200, 169, 110, 0.08),
+                transparent);
+        transform: skewX(-20deg);
+        transition: left 0.6s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    &:hover::before {
+        left: 125%;
+    }
+}
+
 // ── Services Categories ───────────────────────────
 .services-cat {
     background: var(--color-bg);
@@ -327,17 +389,6 @@
     }
 }
 
-// Arrow direction per language
-[dir='rtl'] .services-cat__arrow i.fa-arrow-right {
-    display: inline-block;
-    transform: scaleX(1);
-}
-
-[dir='ltr'] .services-cat__arrow i.fa-arrow-right {
-    display: inline-block;
-    transform: scaleX(1);
-}
-
 // ── Featured Projects ─────────────────────────────
 .featured-projects {
     background: var(--color-surface);
@@ -347,6 +398,11 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
     }
+
+    &__cta {
+        text-align: center;
+        margin-top: 48px;
+    }
 }
 
 .project-card {
@@ -355,6 +411,8 @@
     overflow: hidden;
     border: 1px solid var(--color-border);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         transform: translateY(-6px);
@@ -365,6 +423,7 @@
         position: relative;
         overflow: hidden;
         height: 220px;
+        flex-shrink: 0;
 
         img {
             width: 100%;
@@ -378,35 +437,94 @@
         }
     }
 
-    &__overlay {
+    &__badge {
         position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: var(--transition);
-
-        .project-card__image:hover & {
-            opacity: 1;
-        }
+        top: 12px;
+        right: 12px;
+        background: #fff;
+        color: #1a1a1a;
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 600;
     }
 
     &__content {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
 
         h3 {
             font-size: 1.05rem;
             font-weight: 700;
             color: var(--color-text);
-            margin-bottom: 8px;
+            margin: 0;
+        }
+    }
+
+    &__region {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        margin: 0;
+
+        i {
+            color: var(--color-primary);
+        }
+    }
+
+    &__desc {
+        color: var(--color-text-muted);
+        font-size: 0.88rem;
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+    }
+
+    &__footer {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__status {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 600;
+
+        &--done {
+            background: rgba(34, 197, 94, 0.15);
+            color: #16a34a;
         }
 
-        p {
-            color: var(--color-text-muted);
-            font-size: 0.88rem;
-            line-height: 1.6;
+        &--progress {
+            background: rgba(200, 169, 110, 0.2);
+            color: var(--color-primary);
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--color-primary);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+
+        &:hover {
+            gap: 10px;
         }
     }
 }
