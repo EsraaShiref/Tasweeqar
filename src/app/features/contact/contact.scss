@@ -1,0 +1,578 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  contact.component.scss
+//  Tasweeqar General Contracting — Contact Page
+//  Layout: Screenshot reference (SaudiTourism) · Design: Tasweeqar gold system
+//  Themes : dark / light  |  Languages : AR (rtl) / EN (ltr)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Gold palette (shared across all pages) ────────────────────────────────────
+$gold: #c8a96e;
+$gold-dark: #a8893e;
+$gold-light: #f5e098;
+
+// ── Keyframes (shared with other pages) ──────────────────────────────────────
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes scroll-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: .55;
+    }
+
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        transform: scale(.85) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+// ── Scroll-reveal (matches services / about pattern) ─────────────────────────
+[data-animated],
+.contact-info,
+.contact-form-wrap {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .65s ease, transform .65s ease;
+
+    &.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-form-wrap {
+    transition-delay: .15s;
+}
+
+// ── Layout wrapper ────────────────────────────────────────────────────────────
+.contact-page {
+    font-family: var(--font-en);
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+
+    [dir='rtl'] & {
+        font-family: var(--font-ar);
+    }
+}
+
+.container {
+    max-width: var(--container-max, 1200px);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+// ── Shared helpers (same as services / projects / about) ─────────────────────
+.gold-text {
+    background: linear-gradient(135deg, $gold 0%, $gold-light 50%, $gold-dark 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    font-size: clamp(2.3rem, 5.8vw, 4rem);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  1 · HERO  — identical to About / Services / Projects hero
+// ══════════════════════════════════════════════════════════════════════════════
+.contact-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    background: #0b1628;
+    overflow: hidden;
+    padding: 110px 0 85px;
+
+    [data-theme='dark'] & {
+        background: #07101e;
+    }
+
+    // Fine gold grid overlay
+    &__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba($gold, .055) 1px, transparent 1px),
+            linear-gradient(90deg, rgba($gold, .055) 1px, transparent 1px);
+        background-size: 44px 44px;
+        pointer-events: none;
+    }
+
+    // Central radial glow
+    &__glow {
+        position: absolute;
+        width: 720px;
+        height: 720px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba($gold, .15) 0%, transparent 62%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__content {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto;
+        animation: slide-up .85s ease both;
+    }
+
+    // Gold pill badge
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba($gold, .11);
+        border: 1px solid rgba($gold, .33);
+        color: $gold;
+        font-size: .78rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 7px 18px;
+        border-radius: 100px;
+        margin-bottom: 22px;
+        animation: hero-float 3s ease-in-out infinite;
+    }
+
+    &__title {
+        font-size: clamp(2rem, 5vw, 3.3rem);
+        font-weight: 800;
+        color: #f0ece3;
+        line-height: 1.22;
+        margin-bottom: 18px;
+    }
+
+    &__subtitle {
+        font-size: clamp(.93rem, 2vw, 1.1rem);
+        color: rgba(240, 236, 227, .62);
+        line-height: 1.8;
+        max-width: 540px;
+        margin: 0 auto 30px;
+    }
+
+    // Decorative divider
+    .hero-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: rgba($gold, .5);
+
+        span {
+            display: block;
+            width: 56px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba($gold, .5));
+
+            &:last-child {
+                background: linear-gradient(270deg, transparent, rgba($gold, .5));
+            }
+        }
+
+        i {
+            font-size: .42rem;
+            color: $gold;
+        }
+    }
+
+    // Scroll cue
+    .hero-scroll-cue {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba($gold, .5);
+        font-size: .75rem;
+        animation: scroll-bob 1.9s ease-in-out infinite;
+        z-index: 2;
+    }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  2 · MAIN SECTION
+// ══════════════════════════════════════════════════════════════════════════════
+.contact-main {
+    background: var(--color-bg);
+    padding: 100px 0;
+
+    @media (max-width: 640px) {
+        padding: 64px 0;
+    }
+}
+
+// Two-column grid — matches screenshot split
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; // info slightly narrower, form wider (matches screenshot)
+    gap: 64px;
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  3 · LEFT COLUMN — Info
+// ══════════════════════════════════════════════════════════════════════════════
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    &__heading {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: 1.25;
+        margin: 0;
+    }
+
+    &__desc {
+        font-size: 1rem;
+        color: var(--color-text-muted);
+        line-height: 1.75;
+        margin: -16px 0 0; // pull up slightly to close gap after heading
+    }
+}
+
+// Contact cards column
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+// Individual card — mirrors screenshot card style
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        border-color: rgba($gold, .4);
+        box-shadow: 0 8px 28px rgba($gold, .1);
+        transform: translateX(4px);
+
+        [dir='rtl'] & {
+            transform: translateX(-4px);
+        }
+
+        .contact-card__icon {
+            background: linear-gradient(135deg, $gold, $gold-dark);
+            border-color: transparent;
+
+            i {
+                color: #fff;
+            }
+        }
+    }
+
+    // Icon box — matches screenshot's teal icon box, using gold gradient
+    &__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba($gold, .1);
+        border: 1px solid rgba($gold, .22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background .3s, border-color .3s;
+
+        i {
+            font-size: 1.2rem;
+            color: $gold;
+            transition: color .3s;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    &__label {
+        font-size: .8rem;
+        font-weight: 700;
+        color: var(--color-text);
+        letter-spacing: .02em;
+    }
+
+    &__value {
+        font-size: .9rem;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color .3s;
+
+        &:hover {
+            color: $gold;
+        }
+    }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  4 · RIGHT COLUMN — Form card
+// ══════════════════════════════════════════════════════════════════════════════
+.contact-form-wrap {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 40px 36px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .06);
+
+    [data-theme='dark'] & {
+        background: var(--color-surface);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, .2);
+    }
+
+    @media (max-width: 480px) {
+        padding: 28px 20px;
+    }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+// Form field wrapper
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+// Label — matches screenshot label style
+.form-label {
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.form-required {
+    color: $gold;
+    font-size: .9rem;
+}
+
+// Input & textarea — matches screenshot clean input style
+.form-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    color: var(--color-text);
+    font-size: .9rem;
+    font-family: inherit;
+    transition: border-color .3s, box-shadow .3s;
+    outline: none;
+    appearance: none;
+
+    &::placeholder {
+        color: var(--color-text-muted);
+    }
+
+    &:focus {
+        border-color: $gold;
+        box-shadow: 0 0 0 3px rgba($gold, .12);
+    }
+
+    [data-theme='dark'] & {
+        background: rgba(255, 255, 255, .04);
+    }
+}
+
+// Textarea override
+.form-textarea {
+    height: auto;
+    padding: 14px 16px;
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+// Submit button — full width, gold gradient, matches screenshot teal CTA button
+.form-submit {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, $gold, $gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba($gold, .28);
+    transition: transform .3s ease, box-shadow .3s ease, opacity .2s ease;
+    margin-top: 4px;
+
+    i {
+        font-size: .95rem;
+    }
+
+    &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($gold, .42);
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(.98);
+    }
+
+    &--sending,
+    &:disabled {
+        opacity: .75;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  5 · SUCCESS STATE
+// ══════════════════════════════════════════════════════════════════════════════
+.form-success {
+    text-align: center;
+    padding: 32px 16px;
+    animation: pop-in .5s ease both;
+
+    &__icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: rgba($gold, .1);
+        border: 1px solid rgba($gold, .25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+
+        i {
+            font-size: 2rem;
+            color: $gold;
+        }
+    }
+
+    h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: .95rem;
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        margin-bottom: 28px;
+    }
+}
+
+.btn-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1.5px solid rgba($gold, .45);
+    color: $gold;
+    border-radius: 10px;
+    padding: 11px 28px;
+    font-size: .9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .3s, color .3s, border-color .3s;
+
+    &:hover {
+        background: rgba($gold, .08);
+        border-color: $gold;
+    }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  RTL
+// ══════════════════════════════════════════════════════════════════════════════
+[dir='rtl'] {
+    .contact-card:hover {
+        transform: translateX(-4px);
+    }
+}

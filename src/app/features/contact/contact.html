@@ -1,1 +1,227 @@
-<p>contact works!</p>
+<div class="contact-page" [dir]="isRtl ? 'rtl' : 'ltr'">
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO  — identical structure to About / Services / Projects hero
+  ════════════════════════════════════════════════════════ -->
+  <section class="contact-hero">
+    <div class="contact-hero__grid"></div>
+    <div class="contact-hero__glow"></div>
+
+    <div class="container">
+      <div class="contact-hero__content">
+
+        <span class="hero-badge">
+          <i class="fas fa-envelope"></i>
+          {{ currentLang === 'ar' ? 'تواصل معنا' : 'Contact Us' }}
+        </span>
+
+        <h1 class="contact-hero__title">
+          {{ currentLang === 'ar' ? 'نحن هنا' : 'We Are Here' }}
+          <span class="gold-text">
+            {{ currentLang === 'ar' ? 'لمساعدتك' : 'To Help You' }}
+          </span>
+        </h1>
+
+        <p class="contact-hero__subtitle">
+          {{
+            currentLang === 'ar'
+              ? 'لديك سؤال أو مشروع تريد مناقشته؟ فريقنا جاهز للإجابة على جميع استفساراتك.'
+              : 'Have a question or a project in mind? Our team is ready to answer all your inquiries.'
+          }}
+        </p>
+
+        <div class="hero-divider">
+          <span></span>
+          <i class="fas fa-circle"></i>
+          <span></span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       MAIN  — two-column: info left · form right
+  ════════════════════════════════════════════════════════ -->
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- ── Left column: Get in Touch ──────────────────── -->
+        <div class="contact-info" #animatedEl>
+
+          <h2 class="contact-info__heading">
+            {{ currentLang === 'ar' ? 'تواصل معنا' : 'Get in Touch' }}
+          </h2>
+          <p class="contact-info__desc">
+            {{
+              currentLang === 'ar'
+                ? 'سواء كنت بحاجة إلى استشارة، أو شراكة، أو لديك ملاحظات، نحن هنا دائماً.'
+                : 'Whether you need advice, partnership opportunities, or have feedback, we\'re here to help.'
+            }}
+          </p>
+
+          <!-- Contact cards -->
+          <div class="contact-cards">
+
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-card__body">
+                <span class="contact-card__label">
+                  {{ currentLang === 'ar' ? 'راسلنا' : 'Email Us' }}
+                </span>
+                <a href="mailto:info@tasweeqar.com" class="contact-card__value">
+                  info@tasweeqar.com
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-card__body">
+                <span class="contact-card__label">
+                  {{ currentLang === 'ar' ? 'اتصل بنا' : 'Call Us' }}
+                </span>
+                <a href="tel:+966XXXXXXXXX" class="contact-card__value">
+                  +966 11 XXX XXXX
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <div class="contact-card__body">
+                <span class="contact-card__label">
+                  {{ currentLang === 'ar' ? 'موقعنا' : 'Visit Us' }}
+                </span>
+                <span class="contact-card__value">
+                  {{ currentLang === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia' }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ── Right column: Form card ────────────────────── -->
+        <div class="contact-form-wrap" #animatedEl>
+
+          <!-- Success state -->
+          <div class="form-success" *ngIf="submitted">
+            <div class="form-success__icon">
+              <i class="fas fa-circle-check"></i>
+            </div>
+            <h3>{{ currentLang === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!' }}</h3>
+            <p>
+              {{
+                currentLang === 'ar'
+                  ? 'شكراً لتواصلك معنا. سنرد عليك في أقرب وقت ممكن.'
+                  : 'Thank you for reaching out. We\'ll get back to you as soon as possible.'
+              }}
+            </p>
+            <button class="btn-reset" (click)="resetForm()">
+              {{ currentLang === 'ar' ? 'إرسال رسالة أخرى' : 'Send Another Message' }}
+            </button>
+          </div>
+
+          <!-- Form -->
+          <form class="contact-form" (ngSubmit)="onSubmit()" *ngIf="!submitted">
+
+            <div class="form-field">
+              <label class="form-label" for="cf-name">
+                {{ currentLang === 'ar' ? 'الاسم الكامل' : 'Your Name' }}
+                <span class="form-required">*</span>
+              </label>
+              <input
+                id="cf-name"
+                class="form-input"
+                type="text"
+                [(ngModel)]="form.name"
+                name="name"
+                [placeholder]="currentLang === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your name'"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="cf-email">
+                {{ currentLang === 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}
+                <span class="form-required">*</span>
+              </label>
+              <input
+                id="cf-email"
+                class="form-input"
+                type="email"
+                [(ngModel)]="form.email"
+                name="email"
+                [placeholder]="currentLang === 'ar' ? 'your@email.com' : 'your@email.com'"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="cf-subject">
+                {{ currentLang === 'ar' ? 'الموضوع' : 'Subject' }}
+              </label>
+              <input
+                id="cf-subject"
+                class="form-input"
+                type="text"
+                [(ngModel)]="form.subject"
+                name="subject"
+                [placeholder]="currentLang === 'ar' ? 'عم يدور الحديث؟' : 'What\'s this about?'"
+              />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="cf-message">
+                {{ currentLang === 'ar' ? 'الرسالة' : 'Message' }}
+                <span class="form-required">*</span>
+              </label>
+              <textarea
+                id="cf-message"
+                class="form-input form-textarea"
+                [(ngModel)]="form.message"
+                name="message"
+                rows="5"
+                [placeholder]="currentLang === 'ar' ? 'أخبرنا كيف يمكننا مساعدتك...' : 'Tell us what you need help with...'"
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="form-submit"
+              [class.form-submit--sending]="sending"
+              [disabled]="sending"
+            >
+              <ng-container *ngIf="!sending">
+                <i class="fas fa-paper-plane"></i>
+                {{ currentLang === 'ar' ? 'إرسال الرسالة' : 'Send Message' }}
+              </ng-container>
+              <ng-container *ngIf="sending">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                {{ currentLang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...' }}
+              </ng-container>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
