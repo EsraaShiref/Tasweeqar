@@ -1,1 +1,135 @@
-<p>home works!</p>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero__video-wrapper">
+    <video autoplay muted loop playsinline class="hero__video">
+<source src="/videos/hero-video.mp4" type="video/mp4">    </video>
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="container hero__content">
+    <h1 class="hero__title">{{ 'hero.title' | translate }}</h1>
+    <p class="hero__subtitle">{{ 'hero.subtitle' | translate }}</p>
+    <div class="hero__actions">
+      <a routerLink="/projects" class="btn btn--primary">
+        {{ 'hero.cta_projects' | translate }}
+      </a>
+      <a routerLink="/about" class="btn btn--outline">
+        {{ 'hero.cta_about' | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__scroll">
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stats__item">
+      <span class="stats__number">150+</span>
+      <span class="stats__label">{{ 'stats.projects' | translate }}</span>
+    </div>
+    <div class="stats__item">
+      <span class="stats__number">200+</span>
+      <span class="stats__label">{{ 'stats.clients' | translate }}</span>
+    </div>
+    <div class="stats__item">
+      <span class="stats__number">10+</span>
+      <span class="stats__label">{{ 'stats.years' | translate }}</span>
+    </div>
+    <div class="stats__item">
+      <span class="stats__number">50+</span>
+      <span class="stats__label">{{ 'stats.workers' | translate }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-us">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ 'why_choose_us.title' | translate }}</h2>
+      <p>{{ 'why_choose_us.subtitle' | translate }}</p>
+    </div>
+    <div class="why-us__grid">
+      <div class="why-us__card">
+        <div class="why-us__icon">
+          <i class="fa-solid fa-medal"></i>
+        </div>
+        <h3>{{ 'why_choose_us.cards.quality.title' | translate }}</h3>
+        <p>{{ 'why_choose_us.cards.quality.desc' | translate }}</p>
+      </div>
+      <div class="why-us__card">
+        <div class="why-us__icon">
+          <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <h3>{{ 'why_choose_us.cards.experience.title' | translate }}</h3>
+        <p>{{ 'why_choose_us.cards.experience.desc' | translate }}</p>
+      </div>
+      <div class="why-us__card">
+        <div class="why-us__icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <h3>{{ 'why_choose_us.cards.team.title' | translate }}</h3>
+        <p>{{ 'why_choose_us.cards.team.desc' | translate }}</p>
+      </div>
+      <div class="why-us__card">
+        <div class="why-us__icon">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <h3>{{ 'why_choose_us.cards.time.title' | translate }}</h3>
+        <p>{{ 'why_choose_us.cards.time.desc' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="featured-projects">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ 'featured_projects.title' | translate }}</h2>
+      <p>{{ 'featured_projects.subtitle' | translate }}</p>
+    </div>
+    <div class="featured-projects__grid">
+      <div class="project-card">
+        <div class="project-card__image">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600" alt="Project 1" />
+          <div class="project-card__overlay">
+            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع المجمع السكني' : 'Residential Complex' }}</h3>
+          <p>{{ langService.currentLang() === 'ar' ? 'مشروع سكني متكامل في الرياض' : 'Integrated residential project in Riyadh' }}</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card__image">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Project 2" />
+          <div class="project-card__overlay">
+            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع البنية التحتية' : 'Infrastructure Project' }}</h3>
+          <p>{{ langService.currentLang() === 'ar' ? 'أعمال بنية تحتية متكاملة' : 'Complete infrastructure works' }}</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card__image">
+          <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600" alt="Project 3" />
+          <div class="project-card__overlay">
+            <a routerLink="/projects" class="btn btn--primary">{{ 'nav.projects' | translate }}</a>
+          </div>
+        </div>
+        <div class="project-card__content">
+          <h3>{{ langService.currentLang() === 'ar' ? 'مشروع المباني التجارية' : 'Commercial Buildings' }}</h3>
+          <p>{{ langService.currentLang() === 'ar' ? 'إنشاء مباني تجارية حديثة' : 'Modern commercial building construction' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

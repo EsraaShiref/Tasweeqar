@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,7 @@ import { LanguageService } from '../../core/services/language';
 })
 export class Navbar implements OnInit {
   menuOpen = false;
+  scrolled = false;
 
   constructor(
     public themeService: ThemeService,
@@ -21,6 +22,11 @@ export class Navbar implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.scrolled = window.scrollY > 50;
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
