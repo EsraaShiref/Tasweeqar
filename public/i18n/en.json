@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Welcome to Tasweeqar",
+    "subtitle": "We Work With Excellence",
+    "cta_projects": "Explore Our Projects",
+    "cta_about": "About Us"
+  },
+  "why_choose_us": {
+    "title": "Why Choose Us",
+    "subtitle": "We provide the best solutions in general contracting",
+    "cards": {
+      "quality": { "title": "High Quality", "desc": "We commit to the highest quality standards in every project" },
+      "experience": { "title": "Wide Experience", "desc": "Years of experience in general contracting" },
+      "team": { "title": "Specialized Team", "desc": "Qualified and trained professionals at the highest level" },
+      "time": { "title": "On-Time Delivery", "desc": "We deliver our projects on time without delay" }
+    }
+  },
+  "featured_projects": {
+    "title": "Featured Projects",
+    "subtitle": "Samples from our completed work"
+  },
+  "stats": {
+    "projects": "Completed Projects",
+    "clients": "Satisfied Clients",
+    "years": "Years of Experience",
+    "workers": "Specialized Staff"
+  },
+  "footer": {
+    "slogan": "We Work With Excellence",
+    "rights": "All rights reserved to Tasweeqar General Contracting"
+  }
+}
