@@ -2,6 +2,27 @@
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__overlay"></div>
+  <div class="hero__particles">
+    <span
+      class="particle"
+      *ngFor="let p of particles; let i = index"
+      [style.left]="p.x + '%'"
+      [style.top]="p.y + '%'"
+      [style.width]="p.size + 'px'"
+      [style.height]="p.size + 'px'"
+      [style.animation-duration]="p.duration + 's'"
+      [style.animation-delay]="p.delay + 's'"
+      [style.opacity]="p.opacity"
+    >
+    </span>
+  </div>
+  <div class="hero__shapes">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="shape shape--5"></div>
+  </div>
 
   <div class="container hero__content">
     <!-- Badge now matches services/projects/about hero badge -->
@@ -39,14 +60,12 @@
   </div>
 </section>
 
-
 <!-- ═══════════════════════════════════════════════════════════
      Services Categories Section
      Structure matches srv-grid-section from services.html
 ═══════════════════════════════════════════════════════════ -->
 <section class="services-cat">
   <div class="container">
-
     <!-- Section header: pill label + title, matches services/about pattern -->
     <div class="section-header reveal">
       <span class="section-label">
@@ -58,7 +77,6 @@
     </div>
 
     <div class="services-cat__grid">
-
       <!-- Card 1 -->
       <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0s">
         <!-- Shimmer — matches srv-card__shimmer -->
@@ -162,7 +180,7 @@
       </a>
 
       <!-- Card 6 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.40s">
+      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.4s">
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-building"></i>
@@ -204,11 +222,9 @@
         <p>{{ 'services_categories.items.all.desc' | translate }}</p>
         <span class="services-cat__accent"></span>
       </a>
-
     </div>
   </div>
 </section>
-
 
 <!-- ═══════════════════════════════════════════════════════════
      Featured Projects Section
@@ -216,7 +232,6 @@
 ═══════════════════════════════════════════════════════════ -->
 <section class="featured-projects">
   <div class="container">
-
     <div class="section-header reveal">
       <span class="section-label">
         <i class="fa-solid fa-star"></i>
@@ -227,7 +242,6 @@
     </div>
 
     <div class="featured-projects__grid">
-
       <!-- Project 1 -->
       <div class="project-card reveal" style="--delay: 0s">
         <!-- Shimmer — matches project-card__shimmer from projects.scss -->
@@ -458,7 +472,6 @@
         </div>
         <span class="project-card__accent"></span>
       </div>
-
     </div>
 
     <div class="featured-projects__cta">
@@ -474,7 +487,6 @@
   </div>
 </section>
 
-
 <!-- Why Choose Us Section — unchanged structure, CSS handles styling -->
 <section class="why-us">
   <div class="container">
@@ -486,7 +498,9 @@
         </span>
         <h2 class="why-us__title">
           {{ 'why_choose_us.title' | translate }}
-          <span class="why-us__title--gradient">{{ 'why_choose_us.title_gradient' | translate }}</span>
+          <span class="why-us__title--gradient">{{
+            'why_choose_us.title_gradient' | translate
+          }}</span>
         </h2>
         <p class="why-us__desc">{{ 'why_choose_us.desc' | translate }}</p>
         <div class="why-us__features">
@@ -524,21 +538,28 @@
       <div class="why-us__visual reveal" style="--delay: 0.2s">
         <div class="why-us__img-stack">
           <div class="why-us__img why-us__img--1">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600" alt="Construction 1" />
+            <img
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600"
+              alt="Construction 1"
+            />
           </div>
           <div class="why-us__img why-us__img--2">
-            <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600" alt="Construction 2" />
+            <img
+              src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600"
+              alt="Construction 2"
+            />
           </div>
           <div class="why-us__badge-float">
             <i class="fa-solid fa-trophy"></i>
-            <span>{{ langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done' }}</span>
+            <span>{{
+              langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done'
+            }}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ═══════════════════════════════════════════════════════════
      CTA Section

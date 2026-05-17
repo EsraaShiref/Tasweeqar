@@ -9,23 +9,31 @@ import { LanguageService } from '../../core/services/language';
   standalone: true,
   imports: [TranslateModule, RouterLink, NgFor],
   templateUrl: './home.html',
-  styleUrl: './home.scss'
+  styleUrl: './home.scss',
 })
 export class Home implements OnInit {
   stats = [
     { target: 150, suffix: '+', label: 'stats.projects' },
     { target: 200, suffix: '+', label: 'stats.clients' },
     { target: 10, suffix: '+', label: 'stats.years' },
-    { target: 50, suffix: '+', label: 'stats.workers' }
+    { target: 50, suffix: '+', label: 'stats.workers' },
   ];
+  particles = Array.from({ length: 30 }, () => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 4 + 2,
+    duration: Math.random() * 10 + 8,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.4 + 0.1,
+  }));
 
   displayValues: number[] = [0, 0, 0, 0];
   animated = false;
 
   constructor(
     public langService: LanguageService,
-    private ngZone: NgZone
-  ) { }
+    private ngZone: NgZone,
+  ) {}
 
   ngOnInit() {
     this.observeStats();
@@ -33,14 +41,17 @@ export class Home implements OnInit {
   }
 
   observeStats() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.animated) {
-          this.animated = true;
-          this.ngZone.run(() => this.startCountUp());
-        }
-      });
-    }, { threshold: 0.3 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !this.animated) {
+            this.animated = true;
+            this.ngZone.run(() => this.startCountUp());
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
 
     setTimeout(() => {
       const statsSection = document.querySelector('.hero__stats');
@@ -49,17 +60,20 @@ export class Home implements OnInit {
   }
 
   observeElements() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
     setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     }, 300);
   }
 
