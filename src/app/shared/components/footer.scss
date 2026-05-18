@@ -189,53 +189,74 @@ $gold: #c8a96e;
   }
 }
 
-@include respond-to('mobile') {
-  .footer {
-    padding: 40px 16px 0;
-
-    &__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding-bottom: 40px;
-    }
-
-    &__col--brand {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(201,168,76,.2);
-    }
-
-    &__col:last-child {
-      grid-column: 1 / -1;
-      padding-top: 16px;
-      border-top: 1px solid rgba(201,168,76,.2);
-    }
-
-    &__social {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    &__col h4 {
-      color: #c9a84c;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-
-    &__col ul li a,
-    &__col ul li span {
-      font-size: 13px;
-      line-height: 2.2;
-    }
-
-    &__bottom {
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-      padding: 20px 0;
-    }
+@media(max-width:767px){
+  .footer-grid {
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .footer-brand,
+  .footer-links,
+  .footer-contact {
+    width:100%;
+    padding:24px 0;
+    border-bottom:1px solid rgba(201,168,76,0.15);
+    text-align:right;
+  }
+  .footer-brand { text-align:center }
+  .footer-brand .social-row {
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-top:16px;
+  }
+  .footer-links h4,
+  .footer-contact h4 {
+    color:#c9a84c;
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:14px;
+    font-family:'Cairo',sans-serif;
+  }
+  .footer-links a {
+    display:block;
+    color:rgba(255,255,255,0.7);
+    font-size:14px;
+    line-height:2.4;
+    text-decoration:none;
+  }
+  .footer-links a:hover { color:#c9a84c }
+  .footer-contact .contact-item {
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    color:rgba(255,255,255,0.7);
+    font-size:14px;
+    margin-bottom:14px;
+    flex-direction:row;
+  }
+  .footer-contact .contact-item i {
+    color:#c9a84c;
+    font-size:18px;
+    flex-shrink:0;
+  }
+  .footer-contact a[href^="mailto"] {
+    color:rgba(255,255,255,0.7);
+    text-decoration:none;
+  }
+  .footer-contact a[href^="mailto"]:hover { color:#c9a84c }
+  .footer-bottom {
+    text-align:center;
+    padding:20px 0;
+    color:rgba(255,255,255,0.4);
+    font-size:12px;
+    border-bottom:1px solid rgba(201,168,76,0.15);
+  }
+  .footer-bottom span {
+    display:block;
+    color:#c9a84c;
+    margin-top:4px;
+    font-size:13px;
   }
 }

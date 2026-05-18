@@ -424,12 +424,21 @@ $gold-dark: #a8893e;
     border-top: 1px solid rgba($gold, 0.2);
 
     a {
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: transparent !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 0;
+      color: rgba(255,255,255,0.85);
       font-size: 16px;
       font-family: 'Cairo', sans-serif;
       border-radius: 0;
-      background: transparent !important;
+
+      &:hover {
+        color: #c9a84c;
+        padding-right: 8px;
+        transition: all 0.2s ease;
+      }
+
+      &:last-of-type { border-bottom: none; }
     }
 
     .navbar__cta {
@@ -499,4 +508,5 @@ $gold-dark: #a8893e;
     transform: translateY(-4px) scale(1) rotate(0deg);
   }
 }
+
 

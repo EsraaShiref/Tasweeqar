@@ -16,7 +16,7 @@
     <div class="navbar__sep" aria-hidden="true"></div>
 
     <!-- ── Nav links ─────────────────────────────────────────────── -->
-    <ul class="navbar__links" [class.open]="menuOpen()">
+    <ul class="navbar__links mobile-menu" [class.open]="menuOpen()">
       <li class="mobile-only-lang">
         <button class="lang-btn-menu" (click)="langService.toggle()">
           <i class="fa-solid fa-globe"></i>
@@ -64,18 +64,18 @@
         <i class="fa-solid fa-globe"></i>
         {{ langService.currentLang() === 'ar' ? 'EN' : 'AR' }}
       </button>
-      <button class="navbar__toggle-btn mode-toggle" (click)="themeService.toggle()">
-        @if (themeService.isDark()) {
-          <i class="fa-solid fa-sun"></i>
-        } @else {
-          <i class="fa-solid fa-moon"></i>
-        }
-      </button>
       <button class="navbar__hamburger" (click)="toggleMenu()">
         @if (!menuOpen()) {
           <i class="fa-solid fa-bars"></i>
         } @else {
           <i class="fa-solid fa-xmark"></i>
+        }
+      </button>
+      <button class="navbar__toggle-btn mode-toggle" (click)="themeService.toggle()">
+        @if (themeService.isDark()) {
+          <i class="fa-solid fa-sun"></i>
+        } @else {
+          <i class="fa-solid fa-moon"></i>
         }
       </button>
     </div>
