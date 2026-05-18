@@ -80,8 +80,8 @@
                 <span class="contact-card__label">
                   {{ currentLang === 'ar' ? 'راسلنا' : 'Email Us' }}
                 </span>
-                <a href="mailto:info@tasweeqar.com" class="contact-card__value">
-                  info@tasweeqar.com
+                <a href="mailto:Israashiref@gmail.com" class="contact-card__value">
+                  Israashiref@gmail.com
                 </a>
               </div>
             </div>
@@ -122,30 +122,32 @@
         <div class="contact-form-wrap" #animatedEl>
 
           <!-- Success state -->
-          <div class="form-success" *ngIf="submitted">
-            <div class="form-success__icon">
-              <i class="fas fa-circle-check"></i>
+          @if (submitted) {
+            <div class="form-success">
+              <div class="form-success__icon">
+                <i class="fas fa-circle-check"></i>
+              </div>
+              <h3>{{ currentLang === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!' }}</h3>
+              <p>
+                {{
+                  currentLang === 'ar'
+                    ? 'شكراً لتواصلك معنا. سنرد عليك في أقرب وقت ممكن.'
+                    : 'Thank you for reaching out. We\'ll get back to you as soon as possible.'
+                }}
+              </p>
+              <button class="btn-reset" (click)="resetForm()">
+                {{ currentLang === 'ar' ? 'إرسال رسالة أخرى' : 'Send Another Message' }}
+              </button>
             </div>
-            <h3>{{ currentLang === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!' }}</h3>
-            <p>
-              {{
-                currentLang === 'ar'
-                  ? 'شكراً لتواصلك معنا. سنرد عليك في أقرب وقت ممكن.'
-                  : 'Thank you for reaching out. We\'ll get back to you as soon as possible.'
-              }}
-            </p>
-            <button class="btn-reset" (click)="resetForm()">
-              {{ currentLang === 'ar' ? 'إرسال رسالة أخرى' : 'Send Another Message' }}
-            </button>
-          </div>
+          }
 
           <!-- Form -->
-          <form 
-            class="contact-form" 
-            (ngSubmit)="onSubmit()"
-            *ngIf="!submitted"
-            #contactForm="ngForm"
-          >
+          @if (!submitted) {
+            <form 
+              class="contact-form" 
+              (ngSubmit)="onSubmit()"
+              #contactForm="ngForm"
+            >
             <div class="form-field">
               <label class="form-label" for="cf-name">
                 {{ currentLang === 'ar' ? 'الاسم الكامل' : 'Your Name' }}
@@ -163,10 +165,16 @@
                 minlength="3"
                 [class.invalid]="nameRef.invalid && (nameRef.dirty || nameRef.touched)"
               />
-              <div class="form-error" *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)">
-                <small *ngIf="nameRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
-                <small *ngIf="nameRef.errors?.['minlength']">{{ currentLang === 'ar' ? 'الاسم يجب أن يكون 3 أحرف على الأقل.' : 'Name must be at least 3 characters.' }}</small>
-              </div>
+              @if (nameRef.invalid && (nameRef.dirty || nameRef.touched)) {
+                <div class="form-error">
+                  @if (nameRef.errors?.['required']) {
+                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                  }
+                  @if (nameRef.errors?.['minlength']) {
+                    <small>{{ currentLang === 'ar' ? 'الاسم يجب أن يكون 3 أحرف على الأقل.' : 'Name must be at least 3 characters.' }}</small>
+                  }
+                </div>
+              }
             </div>
 
             <div class="form-field">
@@ -186,10 +194,16 @@
                 email
                 [class.invalid]="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
               />
-              <div class="form-error" *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)">
-                <small *ngIf="emailRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
-                <small *ngIf="emailRef.errors?.['email']">{{ currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.' }}</small>
-              </div>
+              @if (emailRef.invalid && (emailRef.dirty || emailRef.touched)) {
+                <div class="form-error">
+                  @if (emailRef.errors?.['required']) {
+                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                  }
+                  @if (emailRef.errors?.['email']) {
+                    <small>{{ currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.' }}</small>
+                  }
+                </div>
+              }
             </div>
 
             <div class="form-field">
@@ -230,10 +244,16 @@
                 maxlength="500"
                 [class.invalid]="messageRef.invalid && (messageRef.dirty || messageRef.touched)"
               ></textarea>
-              <div class="form-error" *ngIf="messageRef.invalid && (messageRef.dirty || messageRef.touched)">
-                <small *ngIf="messageRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
-                <small *ngIf="messageRef.errors?.['minlength']">{{ currentLang === 'ar' ? 'يجب أن تحتوي الرسالة على 20 حرفاً على الأقل.' : 'Message must be at least 20 characters.' }}</small>
-              </div>
+              @if (messageRef.invalid && (messageRef.dirty || messageRef.touched)) {
+                <div class="form-error">
+                  @if (messageRef.errors?.['required']) {
+                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                  }
+                  @if (messageRef.errors?.['minlength']) {
+                    <small>{{ currentLang === 'ar' ? 'يجب أن تحتوي الرسالة على 20 حرفاً على الأقل.' : 'Message must be at least 20 characters.' }}</small>
+                  }
+                </div>
+              }
             </div>
 
             <button
@@ -242,17 +262,22 @@
               [class.form-submit--sending]="sending"
               [disabled]="sending || contactForm.invalid"
             >
-              <ng-container *ngIf="!sending">
-                <i class="fas fa-paper-plane"></i>
-                {{ currentLang === 'ar' ? 'إرسال الرسالة' : 'Send Message' }}
-              </ng-container>
-              <ng-container *ngIf="sending">
-                <i class="fas fa-circle-notch fa-spin"></i>
-                {{ currentLang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...' }}
-              </ng-container>
+              @if (!sending) {
+                <ng-container>
+                  <i class="fas fa-paper-plane"></i>
+                  {{ currentLang === 'ar' ? 'إرسال الرسالة' : 'Send Message' }}
+                </ng-container>
+              }
+              @if (sending) {
+                <ng-container>
+                  <i class="fas fa-circle-notch fa-spin"></i>
+                  {{ currentLang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...' }}
+                </ng-container>
+              }
             </button>
 
           </form>
+          }
         </div>
 
       </div>

@@ -6,6 +6,7 @@ import {
   QueryList,
   ViewChildren,
   ElementRef,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -92,7 +93,8 @@ export class Services implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  constructor(private translate: TranslateService) { }
+  private translate = inject(TranslateService);
+
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang || 'ar';

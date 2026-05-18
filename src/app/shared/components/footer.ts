@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language';
@@ -11,5 +11,5 @@ import { LanguageService } from '../../core/services/language';
   styleUrl: './footer.scss'
 })
 export class Footer {
-  constructor(public langService: LanguageService) { }
+  protected langService = inject(LanguageService);
 }

@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
@@ -17,7 +16,7 @@ const EJS_PUBLIC_KEY = environment.emailjs.publicKey;
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, NgIf, FormsModule, TranslateModule, Breadcrumb],
+  imports: [CommonModule, FormsModule, TranslateModule, Breadcrumb],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
 })
@@ -42,7 +41,8 @@ export class Contact implements OnInit, AfterViewInit {
   hasError = false;   // shows error message
 
   // ─────────────────────────────────────────────────────────────────────────
-  constructor(private translate: TranslateService) { }
+  private translate = inject(TranslateService);
+
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang || 'ar';
@@ -82,8 +82,7 @@ export class Contact implements OnInit, AfterViewInit {
         this.submitted = true;          // show success panel
         this.form = { name: '', email: '', subject: '', message: '' };
       })
-      .catch(err => {
-        console.error('EmailJS error:', err);
+      .catch(() => {
         this.hasError = true;
       })
       .finally(() => {

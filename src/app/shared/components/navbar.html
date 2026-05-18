@@ -1,20 +1,28 @@
 <nav class="navbar" [class.scrolled]="scrolled">
   <div class="container navbar__inner">
-    <!-- ── Logo ─────────────────────────────────────────────────── -->
-    <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
-      <div class="navbar__logo-box">
-        <img src="/images/logo.png" alt="Tasweeqar Logo" />
-      </div>
-      <span class="navbar__brand">
-        {{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}
-      </span>
-    </a>
+    <!-- RIGHT SIDE (on mobile) -->
+    <div class="nav-right">
+      <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
+        <div class="navbar__logo-box">
+          <img src="/images/logo.png" alt="Tasweeqar Logo" />
+        </div>
+        <span class="navbar__brand">
+          {{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}
+        </span>
+      </a>
+    </div>
 
     <!-- ── Visual separator: logo ↔ links ───────────────────────── -->
     <div class="navbar__sep" aria-hidden="true"></div>
 
     <!-- ── Nav links ─────────────────────────────────────────────── -->
-    <ul class="navbar__links" [class.open]="menuOpen">
+    <ul class="navbar__links" [class.open]="menuOpen()">
+      <li class="mobile-only-lang">
+        <button class="lang-btn-menu" (click)="langService.toggle()">
+          <i class="fa-solid fa-globe"></i>
+          {{ langService.currentLang() === 'ar' ? 'EN / English' : 'العربية / AR' }}
+        </button>
+      </li>
       <li>
         <a
           routerLink="/"
@@ -50,18 +58,25 @@
       </li>
     </ul>
 
-    <!-- ── Action buttons ────────────────────────────────────────── -->
-    <div class="navbar__actions">
-      <button class="navbar__toggle-btn" (click)="langService.toggle()">
+    <!-- LEFT SIDE (on mobile) -->
+    <div class="nav-left navbar__actions">
+      <button class="navbar__toggle-btn lang-btn" (click)="langService.toggle()">
         <i class="fa-solid fa-globe"></i>
         {{ langService.currentLang() === 'ar' ? 'EN' : 'AR' }}
       </button>
-      <button class="navbar__toggle-btn" (click)="themeService.toggle()">
-        <i class="fa-solid" [ngClass]="themeService.isDark() ? 'fa-sun' : 'fa-moon'"></i>
+      <button class="navbar__toggle-btn mode-toggle" (click)="themeService.toggle()">
+        @if (themeService.isDark()) {
+          <i class="fa-solid fa-sun"></i>
+        } @else {
+          <i class="fa-solid fa-moon"></i>
+        }
       </button>
       <button class="navbar__hamburger" (click)="toggleMenu()">
-        <i class="fa-solid fa-bars" *ngIf="!menuOpen"></i>
-        <i class="fa-solid fa-xmark" *ngIf="menuOpen"></i>
+        @if (!menuOpen()) {
+          <i class="fa-solid fa-bars"></i>
+        } @else {
+          <i class="fa-solid fa-xmark"></i>
+        }
       </button>
     </div>
   </div>

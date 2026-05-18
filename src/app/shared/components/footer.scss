@@ -168,18 +168,23 @@ $gold: #c8a96e;
 }
 
 @include respond-to('laptop') {
-  .footer__grid {
-    gap: 40px;
-  }
+  .footer__grid { gap: 40px; }
 }
 
 @include respond-to('tablet') {
   .footer {
     padding: 60px 24px 0;
-    
+
     &__grid {
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 32px;
+    }
+
+    &__col--brand {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,.2);
     }
   }
 }
@@ -189,9 +194,41 @@ $gold: #c8a96e;
     padding: 40px 16px 0;
 
     &__grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
       padding-bottom: 40px;
+    }
+
+    &__col--brand {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,.2);
+    }
+
+    &__col:last-child {
+      grid-column: 1 / -1;
+      padding-top: 16px;
+      border-top: 1px solid rgba(201,168,76,.2);
+    }
+
+    &__social {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    &__col h4 {
+      color: #c9a84c;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    &__col ul li a,
+    &__col ul li span {
+      font-size: 13px;
+      line-height: 2.2;
     }
 
     &__bottom {
@@ -202,4 +239,3 @@ $gold: #c8a96e;
     }
   }
 }
-

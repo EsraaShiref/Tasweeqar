@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -53,7 +53,8 @@ export class About implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private translate: TranslateService) { }
+  private translate = inject(TranslateService);
+
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang || 'ar';

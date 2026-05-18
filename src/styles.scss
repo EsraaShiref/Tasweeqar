@@ -2,6 +2,13 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 :root {
+  /* Brand tokens */
+  --navy: #1a2744;
+  --gold: #c9a84c;
+  --off: #f7f5f0;
+  --r: 12px;
+  --shadow: 0 2px 12px rgba(26,39,68,.08);
+
   /* Primary Brand Colors — from TRO logo */
   --color-primary: #B8973A;        /* Rich Gold — logo main accent */
   --color-primary-light: #D4AF5A;  /* Light Gold — hover states */
@@ -160,5 +167,134 @@ section {
   }
   &:hover::after {
     transform: translateX(100%);
+  }
+}
+
+// ── Language-specific fonts ────────────────────────────────────────────────────
+[lang="ar"] { font-family: 'Cairo', sans-serif; line-height: 1.85; }
+[lang="en"] { font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+// ── Shared hero layout helpers (replaces repeated inline styles) ──────────────
+.hero__container-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.hero__breadcrumb-wrap {
+  margin-bottom: auto;
+  margin-top: 8rem;
+}
+
+.hero__content-wrap {
+  margin-bottom: auto;
+}
+
+// ── Design-system card & button tokens ───────────────────────────────────────
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(26,39,68,.08);
+  background: #fff;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26,39,68,.15);
+}
+
+.btn-primary {
+  background: #c9a84c;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+.btn-primary:hover {
+  opacity: .85;
+}
+
+nav a {
+  transition: color .2s ease;
+}
+nav a:hover {
+  color: #c9a84c;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: 'Cairo', sans-serif;
+  color: #1a2744;
+}
+
+// ── Hero typography ────────────────────────────────────────────────────────────
+.hero h1, .hero h2,
+.hero__title, .about-hero h1, .srv-hero__title, .projects-hero__title {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+}
+
+// ── Hero overlay ──────────────────────────────────────────────────────────────
+.hero {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26, 39, 68, 0.65), rgba(26, 39, 68, 0.35));
+    pointer-events: none;
+  }
+}
+
+// ── Card images ───────────────────────────────────────────────────────────────
+.card-img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+}
+
+// ── Services / Projects grids ─────────────────────────────────────────────────
+.services-grid, .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+// ── Section padding ───────────────────────────────────────────────────────────
+section { padding-block: 80px; }
+
+// ── Tablet (768–1023) ─────────────────────────────────────────────────────────
+@media (max-width: 1023px) {
+  .services-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  section { padding-block: 48px; }
+  h2 { font-size: 1.75rem; }
+}
+
+// ── Mobile (≤767px) ───────────────────────────────────────────────────────────
+@media (max-width: 767px) {
+  .services-grid, .projects-grid { grid-template-columns: 1fr; }
+  section { padding-block: 32px; }
+  h2 { font-size: 1.5rem; }
+
+  .filter-tabs {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+
+    &::-webkit-scrollbar { display: none; }
   }
 }

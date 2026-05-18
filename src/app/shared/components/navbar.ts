@@ -1,27 +1,22 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, signal, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../core/services/theme';
 import { LanguageService } from '../../core/services/language';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, TranslateModule, CommonModule],
+  imports: [RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
-export class Navbar implements OnInit {
-  menuOpen = false;
+export class Navbar {
+  protected themeService = inject(ThemeService);
+  protected langService = inject(LanguageService);
+
+  menuOpen = signal(false);
   scrolled = false;
-
-  constructor(
-    public themeService: ThemeService,
-    public langService: LanguageService
-  ) { }
-
-  ngOnInit() { }
 
   @HostListener('window:scroll')
   onScroll() {
@@ -29,10 +24,10 @@ export class Navbar implements OnInit {
   }
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+    this.menuOpen.update(v => !v);
   }
 
   closeMenu() {
-    this.menuOpen = false;
+    this.menuOpen.set(false);
   }
 }

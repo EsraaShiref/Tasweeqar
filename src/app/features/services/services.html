@@ -7,11 +7,11 @@
     <div class="srv-hero__grid"></div>
     <div class="srv-hero__glow"></div>
 
-    <div class="container" style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-      <div style="margin-bottom: auto; margin-top: 8rem;">
+    <div class="container hero__container-inner">
+      <div class="hero__breadcrumb-wrap">
         <app-breadcrumb [items]="[{ label: 'nav.services' | translate, path: '/services' }]"></app-breadcrumb>
       </div>
-      <div class="srv-hero__content" style="margin-bottom: auto;">
+      <div class="srv-hero__content hero__content-wrap">
         <span class="hero-badge">
           <i class="fas fa-hard-hat"></i>
           {{ 'nav.services' | translate }}
@@ -62,9 +62,7 @@
       </div>
 
       <div class="srv-grid">
-
-        <!-- Regular cards (6 in 3-col) -->
-        <ng-container *ngFor="let card of serviceCards; let i = index">
+        @for (card of serviceCards; track card.key; let i = $index) {
           <a
             routerLink="/services"
             class="srv-card"
@@ -98,8 +96,7 @@
             <!-- Bottom accent line -->
             <div class="srv-card__accent"></div>
           </a>
-        </ng-container>
-
+        }
       </div>
     </div>
   </section>
@@ -131,32 +128,35 @@
       </div>
 
       <div class="process-grid">
-        <div
-          class="process-card"
-          *ngFor="let step of processSteps; let i = index"
-          #animatedEl
-          [style.--delay]="i * 0.13 + 's'"
-        >
-          <!-- Step number -->
-          <div class="process-card__num">
-            <span>{{ step.step < 10 ? '0' + step.step : step.step }}</span>
+        @for (step of processSteps; track step.step; let i = $index) {
+          <div
+            class="process-card"
+            #animatedEl
+            [style.--delay]="i * 0.13 + 's'"
+          >
+            <!-- Step number -->
+            <div class="process-card__num">
+              <span>{{ step.step < 10 ? '0' + step.step : step.step }}</span>
+            </div>
+
+            <!-- Icon -->
+            <div class="process-card__icon">
+              <i class="fas {{ step.icon }}"></i>
+            </div>
+
+            <h4 class="process-card__title">
+              {{ currentLang === 'ar' ? step.titleAr : step.titleEn }}
+            </h4>
+            <p class="process-card__desc">
+              {{ currentLang === 'ar' ? step.descAr : step.descEn }}
+            </p>
+
+            <!-- connector line (hidden on last) -->
+            @if (i < processSteps.length - 1) {
+              <div class="process-card__connector"></div>
+            }
           </div>
-
-          <!-- Icon -->
-          <div class="process-card__icon">
-            <i class="fas {{ step.icon }}"></i>
-          </div>
-
-          <h4 class="process-card__title">
-            {{ currentLang === 'ar' ? step.titleAr : step.titleEn }}
-          </h4>
-          <p class="process-card__desc">
-            {{ currentLang === 'ar' ? step.descAr : step.descEn }}
-          </p>
-
-          <!-- connector line (hidden on last) -->
-          <div class="process-card__connector" *ngIf="i < processSteps.length - 1"></div>
-        </div>
+        }
       </div>
 
     </div>
@@ -212,7 +212,8 @@
       <div class="srv-cta__content" #animatedEl>
         <h2>{{ 'cta.title' | translate }}</h2>
         <p>{{ 'cta.desc' | translate }}</p>
-        <a routerLink="/contact" class="cta-btn">
+        <a class="cta-btn"
+           href="mailto:Israashiref@gmail.com?subject=استفسار من موقع تسويقار&body=السلام عليكم،%0A%0Aأود الاستفسار عن...">
           <span>{{ 'cta.btn' | translate }}</span>
           <i class="fas"
              [class.fa-arrow-left]="isRtl"

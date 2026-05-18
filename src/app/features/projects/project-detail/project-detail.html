@@ -1,4 +1,4 @@
-<ng-container *ngIf="langService.currentLang() === 'ar'; else enContent">
+@if (langService.currentLang() === 'ar') {
   <!-- ARABIC CONTENT -->
   <section class="project-hero" [style.backgroundImage]="'url(' + project.image + ')'">
     <div class="overlay"></div>
@@ -67,9 +67,7 @@
   </section>
 
   <!-- CTA section would go here, maybe reuse existing one if available -->
-</ng-container>
-
-<ng-template #enContent>
+} @else {
   <!-- ENGLISH CONTENT -->
   <section class="project-hero" [style.backgroundImage]="'url(' + project.image + ')'">
     <div class="overlay"></div>
@@ -136,4 +134,4 @@
       </div>
     </div>
   </section>
-</ng-template>
+}

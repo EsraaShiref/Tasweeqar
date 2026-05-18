@@ -1,14 +1,12 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../core/services/language';
-import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TranslateModule, RouterLink, CommonModule],
+  imports: [TranslateModule, RouterLink],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
@@ -31,10 +29,9 @@ export class Home implements OnInit {
   displayValues: number[] = [0, 0, 0, 0];
   animated = false;
 
-  constructor(
-    public langService: LanguageService,
-    private ngZone: NgZone,
-  ) {}
+  protected langService = inject(LanguageService);
+  private ngZone = inject(NgZone);
+
 
   ngOnInit() {
     this.observeStats();

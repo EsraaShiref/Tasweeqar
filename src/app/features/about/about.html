@@ -4,11 +4,11 @@
   <section class="about-hero">
     <div class="hero-bg-grid"></div>
     <div class="hero-bg-glow"></div>
-    <div class="container" style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-      <div style="margin-bottom: auto; margin-top: 8rem;">
+    <div class="container hero__container-inner">
+      <div class="hero__breadcrumb-wrap">
         <app-breadcrumb [items]="[{ label: 'nav.about' | translate, path: '/about' }]"></app-breadcrumb>
       </div>
-      <div class="hero-content" style="margin-bottom: auto;">
+      <div class="hero-content hero__content-wrap">
         <span class="hero-badge">
           <i class="fas fa-hard-hat"></i>
           {{ 'nav.about' | translate }}
@@ -47,16 +47,17 @@
 
           <!-- Stats row -->
           <div class="stats-grid">
-            <div class="stat-card" *ngFor="let s of stats; let i = index"
-                 [style.animation-delay]="(i * 0.1) + 's'">
-              <div class="stat-icon">
-                <i class="fas {{ s.icon }}"></i>
+            @for (s of stats; track s.key; let i = $index) {
+              <div class="stat-card" [style.animation-delay]="(i * 0.1) + 's'">
+                <div class="stat-icon">
+                  <i class="fas {{ s.icon }}"></i>
+                </div>
+                <div class="stat-body">
+                  <span class="stat-value">{{ s.value }}</span>
+                  <span class="stat-label">{{ 'stats.' + s.key | translate }}</span>
+                </div>
               </div>
-              <div class="stat-body">
-                <span class="stat-value">{{ s.value }}</span>
-                <span class="stat-label">{{ 'stats.' + s.key | translate }}</span>
-              </div>
-            </div>
+            }
           </div>
         </div>
 
@@ -67,7 +68,9 @@
             <div class="ring ring-mid"></div>
             <div class="ring ring-inner"></div>
             <div class="logo-particles">
-              <span *ngFor="let p of [1,2,3,4,5,6,7,8]" class="particle p{{p}}"></span>
+              @for (p of [1,2,3,4,5,6,7,8]; track p) {
+                <span class="particle p{{p}}"></span>
+              }
             </div>
             <div class="logo-wrapper">
               <img src="/images/logo.png"
@@ -103,21 +106,22 @@
       </div>
 
       <div class="features-grid">
-        <div class="feature-card"
-             *ngFor="let f of features; let i = index"
-             #animatedEl
-             [style.animation-delay]="(i * 0.12) + 's'"
-             appTilt>
-          <div class="feature-icon-wrap">
-            <div class="feature-icon-bg"></div>
-            <i class="fas {{ f.icon }}"></i>
+        @for (f of features; track f.icon; let i = $index) {
+          <div class="feature-card"
+               #animatedEl
+               [style.animation-delay]="(i * 0.12) + 's'"
+               appTilt>
+            <div class="feature-icon-wrap">
+              <div class="feature-icon-bg"></div>
+              <i class="fas {{ f.icon }}"></i>
+            </div>
+            <div class="feature-body">
+              <h3 class="feature-title">{{ f.titleKey | translate }}</h3>
+              <p class="feature-desc">{{ f.descKey | translate }}</p>
+            </div>
+            <div class="card-accent"></div>
           </div>
-          <div class="feature-body">
-            <h3 class="feature-title">{{ f.titleKey | translate }}</h3>
-            <p class="feature-desc">{{ f.descKey | translate }}</p>
-          </div>
-          <div class="card-accent"></div>
-        </div>
+        }
       </div>
     </div>
   </section>
@@ -203,7 +207,8 @@
       <div class="cta-content" #animatedEl>
         <h2 class="cta-title">{{ 'cta.title' | translate }}</h2>
         <p class="cta-desc">{{ 'cta.desc' | translate }}</p>
-        <a href="#contact" class="cta-btn">
+        <a class="cta-btn"
+           href="mailto:Israashiref@gmail.com?subject=استفسار من موقع تسويقار&body=السلام عليكم،%0A%0Aأود الاستفسار عن...">
           <span>{{ 'cta.btn' | translate }}</span>
           <i class="fas" [class.fa-arrow-left]="isRtl" [class.fa-arrow-right]="!isRtl"></i>
         </a>
