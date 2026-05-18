@@ -1,10 +1,4 @@
 <!-- Hero Section -->
-<!-- ═══════════════════════════
-  home.html — Hero section only
-  Add <div class="hero__nav-shadow"></div> as the 3rd child
-  inside <section class="hero">
-═══════════════════════════ -->
-
 <!-- Replace your existing <section class="hero"> with this: -->
 <section class="hero">
   <div class="hero__bg"></div>
@@ -56,12 +50,6 @@
         <i class="fa-solid fa-play-circle"></i>
         {{ 'hero.cta_about' | translate }}
       </a>
-    </div>
-    <div class="hero__stats">
-      <div class="hero__stat" *ngFor="let stat of stats; let i = index">
-        <strong>{{ displayValues[i] }}{{ stat.suffix }}</strong>
-        <span>{{ stat.label | translate }}</span>
-      </div>
     </div>
   </div>
 
