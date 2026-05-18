@@ -1,0 +1,139 @@
+<ng-container *ngIf="langService.currentLang() === 'ar'; else enContent">
+  <!-- ARABIC CONTENT -->
+  <section class="project-hero" [style.backgroundImage]="'url(' + project.image + ')'">
+    <div class="overlay"></div>
+    <div class="container hero-content" appReveal="fade">
+      <h1 class="display-title">{{ project.name }}</h1>
+      <div class="badges">
+        <span class="badge city-badge"><i class="fas fa-map-marker-alt"></i> {{ project.city }}</span>
+        <span class="badge service-badge"><i class="fas fa-hard-hat"></i> {{ project.serviceType }}</span>
+        <span class="badge" [ngClass]="project.statusClass">{{ project.status }}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+  </div>
+
+  <section class="project-overview container">
+    <div class="overview-grid">
+      <div class="overview-content" appReveal="slide-right">
+        <h2>نظرة عامة على المشروع</h2>
+        <p>{{ project.description }}</p>
+      </div>
+      <div class="overview-sidebar" appReveal="slide-left" [delay]="200">
+        <div class="specs-card">
+          <h3>بطاقة المشروع</h3>
+          <ul>
+            <li><strong><i class="fas fa-map-marker-alt"></i> الموقع:</strong> {{ project.city }}</li>
+            <li><strong><i class="fas fa-hard-hat"></i> نوع الخدمة:</strong> {{ project.serviceType }}</li>
+            <li><strong><i class="fas fa-calendar-alt"></i> سنة التنفيذ:</strong> {{ project.year }}</li>
+            <li><strong><i class="fas fa-vector-square"></i> المساحة:</strong> {{ project.area }}</li>
+            <li><strong><i class="fas fa-check-circle"></i> الحالة:</strong> <span [ngClass]="project.statusClass">{{ project.status }}</span></li>
+            <li><strong><i class="fas fa-building"></i> العميل:</strong> {{ project.client }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tasweeqar-role">
+    <div class="container" appReveal="fade">
+      <h2>دور تسويقار في هذا المشروع</h2>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-search-plus"></i></div>
+          <h4>الإشراف الهندسي الكامل</h4>
+          <p>تولّت الشركة الإشراف الهندسي الميداني على جميع مراحل التنفيذ بما يضمن الالتزام بالمواصفات الفنية المعتمدة.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-tasks"></i></div>
+          <h4>إدارة المشروع</h4>
+          <p>أدارت فِرَق تسويقار المتخصصة جدول الأعمال والموارد والتنسيق بين جميع الجهات المشاركة.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-truck-loading"></i></div>
+          <h4>توريد المواد والتنفيذ</h4>
+          <p>اضطلعت الشركة بتوريد جميع المواد والمعدات اللازمة وفق أعلى معايير الجودة المعتمدة.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-check-double"></i></div>
+          <h4>ضبط الجودة والتسليم</h4>
+          <p>طبّقت الشركة نظام ضبط جودة صارماً في كل مرحلة، وأتمّت التسليم في الموعد المحدد.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section would go here, maybe reuse existing one if available -->
+</ng-container>
+
+<ng-template #enContent>
+  <!-- ENGLISH CONTENT -->
+  <section class="project-hero" [style.backgroundImage]="'url(' + project.image + ')'">
+    <div class="overlay"></div>
+    <div class="container hero-content" appReveal="fade">
+      <h1 class="display-title">{{ project.nameEn }}</h1>
+      <div class="badges">
+        <span class="badge city-badge"><i class="fas fa-map-marker-alt"></i> {{ project.cityEn }}</span>
+        <span class="badge service-badge"><i class="fas fa-hard-hat"></i> {{ project.serviceTypeEn }}</span>
+        <span class="badge" [ngClass]="project.statusClass">{{ project.statusEn }}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+  </div>
+
+  <section class="project-overview container">
+    <div class="overview-grid" dir="ltr">
+      <div class="overview-content" appReveal="slide-left">
+        <h2>Project Overview</h2>
+        <p>{{ project.descriptionEn }}</p>
+      </div>
+      <div class="overview-sidebar" appReveal="slide-right" [delay]="200">
+        <div class="specs-card">
+          <h3>Project Specifications</h3>
+          <ul>
+            <li><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> {{ project.cityEn }}</li>
+            <li><strong><i class="fas fa-hard-hat"></i> Service Type:</strong> {{ project.serviceTypeEn }}</li>
+            <li><strong><i class="fas fa-calendar-alt"></i> Year:</strong> {{ project.year }}</li>
+            <li><strong><i class="fas fa-vector-square"></i> Area:</strong> {{ project.areaEn }}</li>
+            <li><strong><i class="fas fa-check-circle"></i> Status:</strong> <span [ngClass]="project.statusClass">{{ project.statusEn }}</span></li>
+            <li><strong><i class="fas fa-building"></i> Client:</strong> {{ project.clientEn }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tasweeqar-role" dir="ltr">
+    <div class="container" appReveal="fade">
+      <h2>Tasweeqar's Role</h2>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-search-plus"></i></div>
+          <h4>Full Engineering Supervision</h4>
+          <p>Tasweeqar provided on-site engineering oversight across all execution phases, ensuring adherence to approved technical specifications.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-tasks"></i></div>
+          <h4>Project Management</h4>
+          <p>Our specialized teams managed the schedule, resources, and coordination among all stakeholders.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-truck-loading"></i></div>
+          <h4>Material Supply & Execution</h4>
+          <p>The company supplied all required materials and equipment to the highest certified quality standards.</p>
+        </div>
+        <div class="role-card">
+          <div class="icon"><i class="fas fa-check-double"></i></div>
+          <h4>Quality Control & Handover</h4>
+          <p>A rigorous QC system was applied at every phase, culminating in on-schedule project handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

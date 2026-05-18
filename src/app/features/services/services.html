@@ -7,8 +7,11 @@
     <div class="srv-hero__grid"></div>
     <div class="srv-hero__glow"></div>
 
-    <div class="container">
-      <div class="srv-hero__content">
+    <div class="container" style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+      <div style="margin-bottom: auto; margin-top: 8rem;">
+        <app-breadcrumb [items]="[{ label: 'nav.services' | translate, path: '/services' }]"></app-breadcrumb>
+      </div>
+      <div class="srv-hero__content" style="margin-bottom: auto;">
         <span class="hero-badge">
           <i class="fas fa-hard-hat"></i>
           {{ 'nav.services' | translate }}
@@ -68,6 +71,7 @@
             [class.srv-card--full]="card.full"
             #animatedEl
             [style.--delay]="(i % 3) * 0.1 + 's'"
+            appTilt
           >
             <!-- Hover shimmer -->
             <div class="srv-card__shimmer"></div>

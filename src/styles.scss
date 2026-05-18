@@ -1,68 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Urbanist:wght@300;400;500;600;700;800&display=swap');
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 :root {
-    // Colors
-    --color-primary: #c8a96e;
-    --color-primary-dark: #a8893e;
-    --color-bg: #ffffff;
-    --color-surface: #f5f5f5;
-    --color-text: #1a1a1a;
-    --color-text-muted: #666666;
-    --color-border: #e0e0e0;
-    --color-navbar: #ffffff;
-    --color-footer-bg: #0f1a33;
-    --color-footer-text: #ffffff;
+  /* Primary Brand Colors — from TRO logo */
+  --color-primary: #B8973A;        /* Rich Gold — logo main accent */
+  --color-primary-light: #D4AF5A;  /* Light Gold — hover states */
+  --color-primary-dark: #8B6E1F;   /* Deep Gold — pressed states */
+  --color-primary-muted: #F5EDD6;  /* Cream Gold — backgrounds, cards */
 
-    // Typography
-    --font-ar: 'Cairo', sans-serif;
-    --font-en: 'Poppins', sans-serif;
+  /* Neutral Base */
+  --color-navy: #0D1B3E;           /* Deep Navy — NOT pure black */
+  --color-navy-mid: #162040;       /* Mid Navy — dark sections */
+  --color-navy-light: #1E2D52;     /* Light Navy — cards on dark */
+  --color-navy-surface: #243360;   /* Surface Navy — elevated elements */
 
-    // Spacing
-    --section-padding: 80px 0;
-    --container-max: 1200px;
+  /* Light Theme */
+  --color-bg: #FAFAF8;             /* Warm White — main background */
+  --color-surface: #FFFFFF;        /* Pure White — cards */
+  --color-surface-alt: #F7F4EE;    /* Warm Gray — alternating sections */
+  --color-border: #E8E2D4;         /* Warm Border */
+  --color-text-primary: #1A1A2E;   /* Deep Text */
+  --color-text-secondary: #5C5C7A; /* Muted Text */
+  --color-text-muted: #9494A8;     /* Placeholder Text */
+  --color-text: var(--color-text-primary);
 
-    // Transitions
-    --transition: all 0.3s ease;
+  /* Semantic */
+  --color-success: #2E9E6B;
+  --color-warning: #D4AF5A;
+  --color-error: #C0392B;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(184, 151, 58, 0.08);
+  --shadow-md: 0 4px 20px rgba(184, 151, 58, 0.12);
+  --shadow-lg: 0 8px 40px rgba(13, 27, 62, 0.16);
+  --shadow-gold: 0 4px 24px rgba(184, 151, 58, 0.25);
+
+  --color-navbar: var(--color-surface);
+  --color-footer-bg: var(--color-navy);
+  --color-footer-text: var(--color-bg);
+
+  /* Typography */
+  --font-ar: 'Tajawal', sans-serif;
+  --font-en: 'Urbanist', sans-serif;
+
+  /* Spacing */
+  --section-padding: 80px 0;
+  --container-max: 1200px;
+
+  /* Transitions */
+  --transition: all 0.3s ease;
 }
 
 [data-theme='dark'] {
-    --color-bg: #0f0f0f;
-    --color-surface: #1a1a1a;
-    --color-text: #f0f0f0;
-    --color-text-muted: #aaaaaa;
-    --color-border: #2a2a2a;
-    --color-navbar: #111111;
-    --color-footer-bg: #050505;
-    --color-footer-text: #f0f0f0;
+  --color-bg: #0D1B3E;          // Deep navy, NOT #000
+  --color-surface: #162040;     // Cards
+  --color-surface-alt: #1E2D52; // Alt sections
+  --color-border: #2A3F6E;      // Borders
+  
+  --color-text-primary: #F0EBE0;   // Warm white
+  --color-text-secondary: #B8C5DB; // Muted blue-white
+  --color-text-muted: #7A90B0;
+  --color-text: var(--color-text-primary);
+  
+  --color-primary: #B8973A;
+  --color-primary-light: #D4AF5A;
+  --color-primary-muted: rgba(184, 151, 58, 0.12);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 4px 24px rgba(184, 151, 58, 0.2);
+
+  --color-navbar: #0D1B3E;
+  --color-footer-bg: #0A1530;
+  --color-footer-text: #F0EBE0;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    transition: var(--transition);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: var(--transition);
+  -webkit-tap-highlight-color: transparent;
 }
 
 [dir='rtl'] body {
-    font-family: var(--font-ar);
+  font-family: var(--font-ar);
 }
 
 [dir='ltr'] body {
-    font-family: var(--font-en);
+  font-family: var(--font-en);
 }
 
 .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 24px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 section {
-    padding: var(--section-padding);
+  padding: var(--section-padding);
+}
+
+[appReveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.whatsapp-fab {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse-green 2s ease-in-out infinite;
+  text-decoration: none;
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 4px 32px rgba(37, 211, 102, 0.7); }
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  &:hover::after {
+    transform: translateX(100%);
+  }
 }

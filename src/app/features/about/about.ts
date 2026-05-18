@@ -1,12 +1,15 @@
-import { Component, OnInit, OnDestroy, HostListener, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
+import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, RouterModule, TranslateModule, Breadcrumb, TiltDirective],
   templateUrl: './about.html',
   styleUrls: ['./about.scss']
 })

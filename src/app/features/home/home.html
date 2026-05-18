@@ -57,16 +57,9 @@
     <i class="fa-solid fa-chevron-down"></i>
   </div>
 </section>
-
-<!-- Rest of home.html continues unchanged below... -->
-
-<!-- ═══════════════════════════════════════════════════════════
-     Services Categories Section
-     Structure matches srv-grid-section from services.html
-═══════════════════════════════════════════════════════════ -->
+<!-- Services Categories Section -->
 <section class="services-cat">
   <div class="container">
-    <!-- Section header: pill label + title, matches services/about pattern -->
     <div class="section-header reveal">
       <span class="section-label">
         <i class="fa-solid fa-layer-group"></i>
@@ -78,8 +71,7 @@
 
     <div class="services-cat__grid">
       <!-- Card 1 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0s">
-        <!-- Shimmer — matches srv-card__shimmer -->
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'contracting' }" class="services-cat__card reveal" style="--delay: 0s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-helmet-safety"></i>
@@ -87,20 +79,15 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.contracting.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.contracting.desc' | translate }}</p>
-        <!-- Bottom accent bar — matches srv-card__accent -->
         <span class="services-cat__accent"></span>
       </a>
 
       <!-- Card 2 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.08s">
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'maintenance' }" class="services-cat__card reveal" style="--delay: 0.08s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -108,11 +95,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.maintenance.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.maintenance.desc' | translate }}</p>
@@ -120,7 +103,7 @@
       </a>
 
       <!-- Card 3 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.16s">
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'services' }" class="services-cat__card reveal" style="--delay: 0.16s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-diagram-project"></i>
@@ -128,11 +111,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.project_services.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.project_services.desc' | translate }}</p>
@@ -140,7 +119,7 @@
       </a>
 
       <!-- Card 4 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.24s">
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'mep' }" class="services-cat__card reveal" style="--delay: 0.24s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-plug"></i>
@@ -148,11 +127,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.extensions.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.extensions.desc' | translate }}</p>
@@ -160,7 +135,7 @@
       </a>
 
       <!-- Card 5 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.32s">
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'excavation' }" class="services-cat__card reveal" style="--delay: 0.32s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-truck-pickup"></i>
@@ -168,11 +143,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.excavation.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.excavation.desc' | translate }}</p>
@@ -180,7 +151,7 @@
       </a>
 
       <!-- Card 6 -->
-      <a routerLink="/services" class="services-cat__card reveal" style="--delay: 0.4s">
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'construction' }" class="services-cat__card reveal" style="--delay: 0.4s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-building"></i>
@@ -188,11 +159,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.building.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.building.desc' | translate }}</p>
@@ -200,11 +167,7 @@
       </a>
 
       <!-- Card 7 — full width -->
-      <a
-        routerLink="/services"
-        class="services-cat__card services-cat__card--full reveal"
-        style="--delay: 0.48s"
-      >
+      <a [routerLink]="['/projects']" [queryParams]="{ filter: 'all' }" class="services-cat__card services-cat__card--full reveal" style="--delay: 0.48s" appTilt>
         <span class="services-cat__shimmer"></span>
         <div class="services-cat__icon">
           <i class="fa-solid fa-city"></i>
@@ -212,11 +175,7 @@
         <div class="services-cat__title-row">
           <h3>{{ 'services_categories.items.all.title' | translate }}</h3>
           <span class="services-cat__arrow">
-            <i
-              class="fa-solid"
-              [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-              [class.fa-arrow-right]="langService.currentLang() === 'en'"
-            ></i>
+            <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'" [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
           </span>
         </div>
         <p>{{ 'services_categories.items.all.desc' | translate }}</p>
@@ -269,7 +228,7 @@
             <div class="project-card__status project-card__status--done">
               {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p1']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -308,7 +267,7 @@
             <div class="project-card__status project-card__status--done">
               {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p2']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -346,7 +305,7 @@
             <div class="project-card__status project-card__status--progress">
               {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p3']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -384,7 +343,7 @@
             <div class="project-card__status project-card__status--done">
               {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p4']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -422,7 +381,7 @@
             <div class="project-card__status project-card__status--progress">
               {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p5']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -460,7 +419,7 @@
             <div class="project-card__status project-card__status--done">
               {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
             </div>
-            <a routerLink="/projects" class="project-card__link">
+            <a [routerLink]="['/projects', 'p6']" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i
                 class="fa-solid"
@@ -483,80 +442,6 @@
           [class.fa-arrow-right]="langService.currentLang() === 'en'"
         ></i>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- Why Choose Us Section — unchanged structure, CSS handles styling -->
-<section class="why-us">
-  <div class="container">
-    <div class="why-us__grid reveal">
-      <div class="why-us__content">
-        <span class="section-label">
-          <i class="fa-solid fa-medal"></i>
-          {{ 'why_choose_us.label' | translate }}
-        </span>
-        <h2 class="why-us__title">
-          {{ 'why_choose_us.title' | translate }}
-          <span class="why-us__title--gradient">{{
-            'why_choose_us.title_gradient' | translate
-          }}</span>
-        </h2>
-        <p class="why-us__desc">{{ 'why_choose_us.desc' | translate }}</p>
-        <div class="why-us__features">
-          <div class="why-us__feature reveal" style="--delay: 0.2s">
-            <div class="why-us__feature-icon"><i class="fa-solid fa-medal"></i></div>
-            <div>
-              <h4>{{ 'why_choose_us.features.quality.title' | translate }}</h4>
-              <p>{{ 'why_choose_us.features.quality.desc' | translate }}</p>
-            </div>
-          </div>
-          <div class="why-us__feature reveal" style="--delay: 0.4s">
-            <div class="why-us__feature-icon"><i class="fa-solid fa-briefcase"></i></div>
-            <div>
-              <h4>{{ 'why_choose_us.features.experience.title' | translate }}</h4>
-              <p>{{ 'why_choose_us.features.experience.desc' | translate }}</p>
-            </div>
-          </div>
-          <div class="why-us__feature reveal" style="--delay: 0.6s">
-            <div class="why-us__feature-icon"><i class="fa-solid fa-users-gear"></i></div>
-            <div>
-              <h4>{{ 'why_choose_us.features.team.title' | translate }}</h4>
-              <p>{{ 'why_choose_us.features.team.desc' | translate }}</p>
-            </div>
-          </div>
-          <div class="why-us__feature reveal" style="--delay: 0.8s">
-            <div class="why-us__feature-icon"><i class="fa-solid fa-clock"></i></div>
-            <div>
-              <h4>{{ 'why_choose_us.features.delivery.title' | translate }}</h4>
-              <p>{{ 'why_choose_us.features.delivery.desc' | translate }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="why-us__visual reveal" style="--delay: 0.2s">
-        <div class="why-us__img-stack">
-          <div class="why-us__img why-us__img--1">
-            <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600"
-              alt="Construction 1"
-            />
-          </div>
-          <div class="why-us__img why-us__img--2">
-            <img
-              src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600"
-              alt="Construction 2"
-            />
-          </div>
-          <div class="why-us__badge-float">
-            <i class="fa-solid fa-trophy"></i>
-            <span>{{
-              langService.currentLang() === 'ar' ? '+150 مشروع منجز' : '150+ Projects Done'
-            }}</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>

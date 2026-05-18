@@ -1,3 +1,14 @@
 <app-navbar />
-<router-outlet />
+<main [@routeAnimations]="getRouteAnimationData()">
+  <router-outlet />
+</main>
 <app-footer />
+
+<a 
+  href="https://wa.me/966000000000?text=مرحباً، أود الاستفسار عن خدمات تسويقار للمقاولات"
+  class="whatsapp-fab"
+  target="_blank"
+  aria-label="تواصل عبر واتساب"
+>
+  <i class="fab fa-whatsapp" style="font-size: 28px; color: white;"></i>
+</a>

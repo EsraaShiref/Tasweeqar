@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
+import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 export interface ServiceCard {
   key: string;
@@ -30,7 +32,7 @@ export interface ProcessStep {
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule],
+  imports: [CommonModule, RouterModule, TranslateModule, Breadcrumb, TiltDirective],
   templateUrl: './services.html',
   styleUrls: ['./services.scss'],
 })

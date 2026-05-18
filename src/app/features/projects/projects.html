@@ -6,8 +6,11 @@
   <div class="projects-hero__grid"></div>
   <div class="projects-hero__glow"></div>
 
-  <div class="container">
-    <div class="projects-hero__content">
+  <div class="container" style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+    <div style="margin-bottom: auto; margin-top: 8rem;">
+      <app-breadcrumb [items]="[{ label: 'nav.projects' | translate, path: '/projects' }]"></app-breadcrumb>
+    </div>
+    <div class="projects-hero__content" style="margin-bottom: auto;">
 
       <!-- Gold pill badge -->
       <span class="hero-badge">
@@ -193,7 +196,7 @@
                   }
                 </span>
 
-                <a routerLink="/projects" class="project-card__link">
+                <a [routerLink]="['/projects', project.id]" class="project-card__link">
                   {{ 'projects_page.explore' | translate }}
                   <i
                     class="fa-solid"

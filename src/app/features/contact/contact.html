@@ -7,8 +7,11 @@
     <div class="contact-hero__grid"></div>
     <div class="contact-hero__glow"></div>
 
-    <div class="container">
-      <div class="contact-hero__content">
+    <div class="container" style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+      <div style="margin-bottom: auto; margin-top: 8rem;">
+        <app-breadcrumb [items]="[{ label: 'nav.contact' | translate, path: '/contact' }]"></app-breadcrumb>
+      </div>
+      <div class="contact-hero__content" style="margin-bottom: auto;">
 
         <span class="hero-badge">
           <i class="fas fa-envelope"></i>
@@ -137,8 +140,12 @@
           </div>
 
           <!-- Form -->
-          <form class="contact-form" (ngSubmit)="onSubmit()" *ngIf="!submitted">
-
+          <form 
+            class="contact-form" 
+            (ngSubmit)="onSubmit()"
+            *ngIf="!submitted"
+            #contactForm="ngForm"
+          >
             <div class="form-field">
               <label class="form-label" for="cf-name">
                 {{ currentLang === 'ar' ? 'الاسم الكامل' : 'Your Name' }}
@@ -150,9 +157,16 @@
                 type="text"
                 [(ngModel)]="form.name"
                 name="name"
+                #nameRef="ngModel"
                 [placeholder]="currentLang === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your name'"
                 required
+                minlength="3"
+                [class.invalid]="nameRef.invalid && (nameRef.dirty || nameRef.touched)"
               />
+              <div class="form-error" *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)">
+                <small *ngIf="nameRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                <small *ngIf="nameRef.errors?.['minlength']">{{ currentLang === 'ar' ? 'الاسم يجب أن يكون 3 أحرف على الأقل.' : 'Name must be at least 3 characters.' }}</small>
+              </div>
             </div>
 
             <div class="form-field">
@@ -166,9 +180,16 @@
                 type="email"
                 [(ngModel)]="form.email"
                 name="email"
+                #emailRef="ngModel"
                 [placeholder]="currentLang === 'ar' ? 'your@email.com' : 'your@email.com'"
                 required
+                email
+                [class.invalid]="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
               />
+              <div class="form-error" *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)">
+                <small *ngIf="emailRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                <small *ngIf="emailRef.errors?.['email']">{{ currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.' }}</small>
+              </div>
             </div>
 
             <div class="form-field">
@@ -186,26 +207,40 @@
             </div>
 
             <div class="form-field">
-              <label class="form-label" for="cf-message">
-                {{ currentLang === 'ar' ? 'الرسالة' : 'Message' }}
-                <span class="form-required">*</span>
-              </label>
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <label class="form-label" for="cf-message">
+                  {{ currentLang === 'ar' ? 'الرسالة' : 'Message' }}
+                  <span class="form-required">*</span>
+                </label>
+                <!-- Fixed RTL issue with character counter -->
+                <small class="char-counter" [class.max-reached]="(messageRef.value?.length || 0) >= 500" dir="ltr">
+                  {{ messageRef.value?.length || 0 }} / 500
+                </small>
+              </div>
               <textarea
                 id="cf-message"
                 class="form-input form-textarea"
                 [(ngModel)]="form.message"
                 name="message"
+                #messageRef="ngModel"
                 rows="5"
                 [placeholder]="currentLang === 'ar' ? 'أخبرنا كيف يمكننا مساعدتك...' : 'Tell us what you need help with...'"
                 required
+                minlength="20"
+                maxlength="500"
+                [class.invalid]="messageRef.invalid && (messageRef.dirty || messageRef.touched)"
               ></textarea>
+              <div class="form-error" *ngIf="messageRef.invalid && (messageRef.dirty || messageRef.touched)">
+                <small *ngIf="messageRef.errors?.['required']">{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                <small *ngIf="messageRef.errors?.['minlength']">{{ currentLang === 'ar' ? 'يجب أن تحتوي الرسالة على 20 حرفاً على الأقل.' : 'Message must be at least 20 characters.' }}</small>
+              </div>
             </div>
 
             <button
               type="submit"
               class="form-submit"
               [class.form-submit--sending]="sending"
-              [disabled]="sending"
+              [disabled]="sending || contactForm.invalid"
             >
               <ng-container *ngIf="!sending">
                 <i class="fas fa-paper-plane"></i>
