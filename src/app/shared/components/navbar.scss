@@ -44,12 +44,8 @@ $gold-dark: #a8893e;
         color: var(--color-primary);
       }
 
-      &.active {
-        color: var(--color-primary);
-
-        &::after {
-          transform: scaleX(1);
-        }
+      &.nav-active {
+        color: #c9a84c !important;
       }
     }
 
@@ -193,14 +189,8 @@ $gold-dark: #a8893e;
         background: rgba($gold, 0.08);
       }
 
-      &.active {
-        color: var(--color-primary);
-        background: rgba($gold, 0.12);
-        border-color: rgba($gold, 0.25);
-
-        &::after {
-          transform: scaleX(1);
-        }
+      &.nav-active {
+        color: #c9a84c !important;
       }
     }
 
@@ -228,10 +218,8 @@ $gold-dark: #a8893e;
         color: #fff !important;
       }
 
-      &.active {
-        background: linear-gradient(135deg, $gold, $gold-dark) !important;
-        border-color: transparent !important;
-        transform: none;
+      &.nav-active {
+        color: #c9a84c !important;
       }
     }
   }
@@ -334,9 +322,11 @@ $gold-dark: #a8893e;
         width: 100%;
         text-align: start;
 
-        &:hover, &.active {
+        &:hover {
           color: $gold !important;
-          background: rgba($gold, 0.1) !important;
+        }
+        &.nav-active {
+          color: #c9a84c !important;
         }
       }
       
@@ -423,22 +413,36 @@ $gold-dark: #a8893e;
     padding: 16px;
     border-top: 1px solid rgba($gold, 0.2);
 
-    a {
+    &.mobile-menu a,
+    &.mobile-menu a.active,
+    &.mobile-menu a:active,
+    &.mobile-menu a.router-link-active,
+    &.mobile-menu a.router-link-exact-active,
+    &.mobile-menu a.nav-active {
       background: transparent !important;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
       padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.85);
-      font-size: 16px;
+      font-size: 18px;
       font-family: 'Cairo', sans-serif;
-      border-radius: 0;
+      font-weight: 400;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
 
-      &:hover {
-        color: #c9a84c;
-        padding-right: 8px;
-        transition: all 0.2s ease;
-      }
+    &.mobile-menu a.router-link-exact-active,
+    &.mobile-menu a.nav-active {
+      color: #c9a84c !important;
+      border-bottom: 1px solid #c9a84c !important;
+    }
 
-      &:last-of-type { border-bottom: none; }
+    &.mobile-menu a:hover {
+      color: #c9a84c;
+      transition: color 0.2s ease;
     }
 
     .navbar__cta {
@@ -508,5 +512,7 @@ $gold-dark: #a8893e;
     transform: translateY(-4px) scale(1) rotate(0deg);
   }
 }
+
+
 
 

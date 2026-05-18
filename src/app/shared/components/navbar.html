@@ -3,12 +3,12 @@
     <!-- RIGHT SIDE (on mobile) -->
     <div class="nav-right">
       <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
-        <div class="navbar__logo-box">
-          <img src="/images/logo.png" alt="Tasweeqar Logo" />
-        </div>
         <span class="navbar__brand">
           {{ langService.currentLang() === 'ar' ? 'تسويقار' : 'Tasweeqar' }}
         </span>
+        <div class="navbar__logo-box">
+          <img src="/images/logo.png" alt="Tasweeqar Logo" />
+        </div>
       </a>
     </div>
 
@@ -26,31 +26,31 @@
       <li>
         <a
           routerLink="/"
-          routerLinkActive="active"
+          routerLinkActive="nav-active"
           [routerLinkActiveOptions]="{ exact: true }"
           (click)="closeMenu()"
           >{{ 'nav.home' | translate }}</a
         >
       </li>
       <li>
-        <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">{{
+        <a routerLink="/projects" routerLinkActive="nav-active" (click)="closeMenu()">{{
           'nav.projects' | translate
         }}</a>
       </li>
       <li>
-        <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">{{
+        <a routerLink="/services" routerLinkActive="nav-active" (click)="closeMenu()">{{
           'nav.services' | translate
         }}</a>
       </li>
       <li>
-        <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{
+        <a routerLink="/about" routerLinkActive="nav-active" (click)="closeMenu()">{{
           'nav.about' | translate
         }}</a>
       </li>
       <li>
         <a
           routerLink="/contact"
-          routerLinkActive="active"
+          routerLinkActive="nav-active"
           class="navbar__cta"
           (click)="closeMenu()"
           >{{ 'nav.contact' | translate }}</a
