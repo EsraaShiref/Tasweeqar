@@ -1,4 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
+@use '../../../mixins' as *;
 //  services.component.scss
 //  Tasweeqar General Contracting — Services Page
 //  Themes : dark / light   |   Languages : AR (rtl) / EN (ltr)
@@ -311,11 +312,11 @@ $gold-light: #f5e098;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 
-  @media (max-width: 860px) {
+  @include respond-to('tablet') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 560px) {
+  @include respond-to('mobile') {
     grid-template-columns: 1fr;
   }
 }
@@ -354,7 +355,7 @@ $gold-light: #f5e098;
       min-width: 240px;
     }
 
-    @media (max-width: 560px) {
+    @include respond-to('mobile') {
       flex-direction: column;
 
       .srv-card__title-row {
@@ -542,11 +543,11 @@ $gold-light: #f5e098;
   gap: 0;
   position: relative;
 
-  @media (max-width: 900px) {
+  @include respond-to('tablet') {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 520px) {
+  @include respond-to('mobile') {
     grid-template-columns: 1fr;
   }
 }
@@ -582,7 +583,7 @@ $gold-light: #f5e098;
     }
   }
 
-  @media (max-width: 900px) {
+  @include respond-to('tablet') {
     &:first-child {
       border-radius: 20px 0 0 0;
     }
@@ -600,7 +601,7 @@ $gold-light: #f5e098;
     }
   }
 
-  @media (max-width: 520px) {
+  @include respond-to('mobile') {
     border-radius: 0 !important;
 
     &:first-child {
@@ -717,7 +718,10 @@ $gold-light: #f5e098;
       }
     }
 
-    @media (max-width: 900px) {
+    @include respond-to('tablet') {
+      display: none;
+    }
+    @include respond-to('mobile') {
       display: none;
     }
   }
@@ -739,7 +743,7 @@ $gold-light: #f5e098;
   justify-content: center;
   gap: 0;
 
-  @media (max-width: 768px) {
+  @include respond-to('mobile') {
     flex-direction: column;
     gap: 28px;
   }
@@ -752,7 +756,7 @@ $gold-light: #f5e098;
   flex-shrink: 0;
   align-self: stretch;
 
-  @media (max-width: 768px) {
+  @include respond-to('mobile') {
     width: 100%;
     height: 1px;
     margin: 0;
@@ -766,7 +770,7 @@ $gold-light: #f5e098;
   max-width: 300px;
   flex: 1;
 
-  @media (max-width: 768px) {
+  @include respond-to('mobile') {
     max-width: 100%;
   }
 
@@ -889,7 +893,7 @@ $gold-light: #f5e098;
 // ══════════════════════════════════════════════════════════════════════════════
 //  Responsive
 // ══════════════════════════════════════════════════════════════════════════════
-@media (max-width: 640px) {
+@include respond-to('mobile') {
 
   .srv-grid-section,
   .process-section,

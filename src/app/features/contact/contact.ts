@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environments';
+
 
 // ─── EmailJS credentials ────────────────────────────────────────────────────
 const EJS_SERVICE_ID = environment.emailjs.serviceId;
@@ -15,11 +17,12 @@ const EJS_PUBLIC_KEY = environment.emailjs.publicKey;
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, Breadcrumb],
+  imports: [CommonModule, NgIf, FormsModule, TranslateModule, Breadcrumb],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
 })
-export class Contact implements OnInit {
+export class Contact implements OnInit, AfterViewInit {
+  @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
   // ── Language ──────────────────────────────────────────────────────────────
   currentLang = 'ar';
@@ -44,6 +47,21 @@ export class Contact implements OnInit {
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang || 'ar';
     this.translate.onLangChange.subscribe(e => this.currentLang = e.lang);
+  }
+
+  ngAfterViewInit(): void {
+    this.observeElements();
+  }
+
+  private observeElements(): void {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('in-view');
+        }),
+      { threshold: 0.12 },
+    );
+    this.animatedElements.forEach((el) => observer.observe(el.nativeElement));
   }
 
   // ── Submit ────────────────────────────────────────────────────────────────

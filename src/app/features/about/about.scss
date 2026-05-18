@@ -1,4 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
+@use '../../../mixins' as *;
 //  about.component.scss
 //  Tasweeqar General Contracting — About Us Page
 //  Supports: dark/light themes · ar/en (rtl/ltr)
@@ -402,9 +403,14 @@ $gold-700: #8a6a2e;
     gap: 72px;
     align-items: center;
 
-    @media (max-width: 900px) {
+    @include respond-to('tablet') {
         grid-template-columns: 1fr;
         gap: 52px;
+    }
+
+    @include respond-to('mobile') {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 }
 
@@ -457,7 +463,7 @@ $gold-700: #8a6a2e;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 
-    @media (max-width: 460px) {
+    @include respond-to('mobile') {
         grid-template-columns: 1fr;
     }
 }
@@ -559,7 +565,7 @@ $gold-700: #8a6a2e;
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 480px) {
+    @include respond-to('mobile') {
         width: 240px;
         height: 240px;
     }
@@ -700,7 +706,11 @@ $gold-700: #8a6a2e;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 
-    @media (max-width: 768px) {
+    @include respond-to('mobile') {
+        grid-template-columns: 1fr;
+    }
+
+    @include respond-to('tablet') {
         grid-template-columns: 1fr;
     }
 }
@@ -840,7 +850,7 @@ $gold-700: #8a6a2e;
     width: 2px;
     background: linear-gradient(to bottom, transparent, rgba(200, 169, 110, .4) 10%, rgba(200, 169, 110, .4) 90%, transparent);
 
-    @media (max-width: 640px) {
+    @include respond-to('mobile') {
         left: 24px;
     }
 }
@@ -882,7 +892,7 @@ $gold-700: #8a6a2e;
         }
     }
 
-    @media (max-width: 640px) {
+    @include respond-to('mobile') {
         flex-direction: row !important;
         padding: 0 0 0 60px !important;
 
@@ -912,7 +922,7 @@ $gold-700: #8a6a2e;
         font-size: .9rem;
     }
 
-    @media (max-width: 640px) {
+    @include respond-to('mobile') {
         left: 24px;
         transform: translateX(-50%);
         width: 36px;
@@ -959,7 +969,7 @@ $gold-700: #8a6a2e;
         line-height: 1.65;
     }
 
-    @media (max-width: 640px) {
+    @include respond-to('mobile') {
         max-width: 100%;
     }
 }
@@ -1066,7 +1076,7 @@ $gold-700: #8a6a2e;
 // ══════════════════════════════════════════════════════════════════════════════
 //  Responsive tweaks
 // ══════════════════════════════════════════════════════════════════════════════
-@media (max-width: 640px) {
+@include respond-to('mobile') {
 
     .glance-section,
     .features-section,
@@ -1076,7 +1086,7 @@ $gold-700: #8a6a2e;
     }
 
     .stats-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 12px;
     }
 }

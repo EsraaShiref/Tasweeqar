@@ -1,4 +1,6 @@
+@use 'sass:color';
 // ─────────────────────────────────────────────────────────────────────────────
+@use '../../../mixins' as *;
 //  projects.scss  —  Tasweeqar General Contracting
 //  Updated to match About & Services page design system
 //  Themes : dark / light  |  Languages : AR (rtl) / EN (ltr)
@@ -335,7 +337,7 @@ $gold-light: #f5e098;
         }
     }
 
-    @media (max-width: 480px) {
+    @include respond-to('mobile') {
         flex-direction: column;
 
         &__btn {
@@ -388,7 +390,7 @@ $gold-light: #f5e098;
             box-shadow: 0 4px 14px rgba($gold, .3);
 
             &:hover {
-                background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 6%));
+                background: linear-gradient(135deg, $gold-dark, color.adjust($gold-dark, $lightness: -6%));
                 color: #fff;
             }
         }
@@ -419,11 +421,11 @@ $gold-light: #f5e098;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 
-    @media (max-width: 1024px) {
+    @include respond-to('tablet') {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 600px) {
+    @include respond-to('mobile') {
         grid-template-columns: 1fr;
     }
 }
@@ -799,8 +801,10 @@ $gold-light: #f5e098;
 // ══════════════════════════════════════════════════════════════════════════════
 //  Responsive
 // ══════════════════════════════════════════════════════════════════════════════
-@media (max-width: 640px) {
+@include respond-to('mobile') {
     .projects-main {
         padding-block: 40px 72px;
     }
 }
+
+

@@ -1,3 +1,5 @@
+@use 'sass:color';
+@use '../../../mixins' as *;
 // ─────────────────────────────────────────────────────────────────────────────
 //  navbar.component.scss — Tasweeqar General Contracting
 //  Fix: logo visually separated from nav links AND from hero background image
@@ -302,14 +304,13 @@ $gold-dark: #a8893e;
   }
 }
 
-// ── Mobile ────────────────────────────────────────────────────────────────────
-@media (max-width: 768px) {
+
+// ── Mobile & Tablet Responsive ───────────────────────────────────────────────
+@mixin navbar-mobile-tablet {
   .navbar {
     &__sep {
       display: none;
     }
-
-    // hidden on mobile — not needed in stacked layout
 
     &__links {
       display: none;
@@ -330,14 +331,18 @@ $gold-dark: #a8893e;
 
       a {
         color: rgba(255, 255, 255, 0.85) !important;
+        width: 100%;
+        text-align: start;
 
-        &:hover {
+        &:hover, &.active {
           color: $gold !important;
+          background: rgba($gold, 0.1) !important;
         }
-
-        &.active {
-          color: $gold !important;
-        }
+      }
+      
+      .navbar__cta {
+        margin-top: 10px;
+        text-align: center;
       }
     }
 
@@ -347,6 +352,13 @@ $gold-dark: #a8893e;
   }
 }
 
+@include respond-to('mobile') {
+  @include navbar-mobile-tablet;
+}
+
+@include respond-to('tablet') {
+  @include navbar-mobile-tablet;
+}
 // ── Keyframes (unchanged) ─────────────────────────────────────────────────────
 @keyframes logoEntrance {
   0% {
@@ -403,3 +415,4 @@ $gold-dark: #a8893e;
     transform: translateY(-4px) scale(1) rotate(0deg);
   }
 }
+

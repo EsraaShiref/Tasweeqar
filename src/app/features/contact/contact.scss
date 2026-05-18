@@ -1,4 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
+@use '../../../mixins' as *;
 //  contact.component.scss
 //  Tasweeqar General Contracting — Contact Page
 //  Layout: Screenshot reference (SaudiTourism) · Design: Tasweeqar gold system
@@ -246,7 +247,7 @@ $gold-light: #f5e098;
     background: var(--color-bg);
     padding: 100px 0;
 
-    @media (max-width: 640px) {
+    @include respond-to('mobile') {
         padding: 64px 0;
     }
 }
@@ -258,9 +259,14 @@ $gold-light: #f5e098;
     gap: 64px;
     align-items: start;
 
-    @media (max-width: 900px) {
+    @include respond-to('tablet') {
         grid-template-columns: 1fr;
         gap: 48px;
+    }
+
+    @include respond-to('mobile') {
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
 }
 
@@ -393,7 +399,7 @@ $gold-light: #f5e098;
         box-shadow: 0 8px 40px rgba(0, 0, 0, .2);
     }
 
-    @media (max-width: 480px) {
+    @include respond-to('mobile') {
         padding: 28px 20px;
     }
 }
