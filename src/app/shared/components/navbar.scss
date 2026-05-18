@@ -9,7 +9,8 @@ $gold: #c8a96e;
 $gold-dark: #a8893e;
 
 .navbar {
-  position: fixed;
+  position: sticky;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -302,8 +303,9 @@ $gold-dark: #a8893e;
 
     &__links {
       display: none;
-      position: fixed;
-      top: 80px;
+      position: absolute;
+      top: 100%;
+      z-index: 999;
       left: 0;
       right: 0;
       background: rgba(8, 14, 30, 0.97);
@@ -513,6 +515,20 @@ $gold-dark: #a8893e;
   }
 }
 
-
+@media(max-width:767px){
+  .hamburger, .navbar__hamburger {
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    width:40px; height:40px;
+    background:transparent;
+    border:1px solid rgba(201,168,76,0.4);
+    border-radius:8px;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+}
 
 

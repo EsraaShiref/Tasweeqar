@@ -64,7 +64,7 @@
         <i class="fa-solid fa-globe"></i>
         {{ langService.currentLang() === 'ar' ? 'EN' : 'AR' }}
       </button>
-      <button class="navbar__hamburger" (click)="toggleMenu()">
+      <button class="navbar__hamburger hamburger" (click)="toggleMenu()">
         @if (!menuOpen()) {
           <i class="fa-solid fa-bars"></i>
         } @else {
