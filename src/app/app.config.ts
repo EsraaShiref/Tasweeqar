@@ -17,12 +17,20 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes, withViewTransitions(), withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    provideRouter(
+      routes,
+      withViewTransitions({
+        onViewTransitionCreated: ({ transition }) => {
+          transition.ready.catch(() => { }); // silence aborted-transition errors
+        }
+      }),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    ),
     provideHttpClient(),
     provideAnimationsAsync(),
     importProvidersFrom(
       TranslateModule.forRoot({
-        defaultLanguage: 'ar',
+        fallbackLang: 'ar',        // ✅ replaces defaultLanguage
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,

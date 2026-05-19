@@ -208,7 +208,7 @@ $gold-dark: #a8893e;
 
     // Contact CTA button
     .navbar__cta {
-      background: linear-gradient(135deg, $gold, $gold-dark) !important;
+      background: linear-gradient(135deg, $gold-dark, color.adjust($gold-dark, $lightness: -8%)) !important;
       color: #fff !important;
       padding: 10px 24px;
       border-radius: 8px;
@@ -224,7 +224,7 @@ $gold-dark: #a8893e;
       }
 
       &:hover {
-        background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 8%)) !important;
+        background: linear-gradient(135deg, $gold-dark, color.adjust($gold-dark, $lightness: -8%)) !important;
         transform: translateY(-2px);
         box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
         color: #fff !important;
