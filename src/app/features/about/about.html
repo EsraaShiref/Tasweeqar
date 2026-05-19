@@ -25,6 +25,50 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════ CEO MESSAGE ═══════════════════════════ -->
+  <section class="ceo-section" [dir]="isRtl ? 'rtl' : 'ltr'">
+    <div class="container">
+      <div class="ceo-grid">
+        
+        <!-- Text Side -->
+        <div class="ceo-text" #animatedEl>
+          <span class="section-label">
+            <i class="fas fa-quote-right"></i>
+            {{ 'ceo_message.title' | translate }}
+          </span>
+          
+          <div class="ceo-quote-container">
+            <h3 class="ceo-opening">{{ 'ceo_message.opening' | translate }}</h3>
+            
+            <div class="ceo-body">
+              <p>{{ 'ceo_message.p1' | translate }}</p>
+              <p>{{ 'ceo_message.p2' | translate }}</p>
+              <p>{{ 'ceo_message.p3' | translate }}</p>
+              <p>{{ 'ceo_message.p4' | translate }}</p>
+              <p>{{ 'ceo_message.p5' | translate }}</p>
+              <p>{{ 'ceo_message.p6' | translate }}</p>
+            </div>
+            
+            <div class="ceo-signature">
+              <h4>{{ 'ceo_message.name' | translate }}</h4>
+              <span>{{ 'ceo_message.role' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Visual Side -->
+        <div class="ceo-visual" #animatedEl>
+          <div class="ceo-image-bg-glow"></div>
+          <div class="ceo-image-border-decor"></div>
+          <div class="ceo-image-wrapper">
+            <img src="/images/SEO-image.jpg" [alt]="'ceo_message.name' | translate" />
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════ GLANCE ═══════════════════════════ -->
   <section class="glance-section">
     <div class="container">
