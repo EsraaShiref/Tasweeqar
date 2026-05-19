@@ -1,33 +1,36 @@
-import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  AfterViewInit,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language';
-import emailjs from '@emailjs/browser';
-import { environment } from '../../../environments/environments';
-
-
-// ─── EmailJS credentials ────────────────────────────────────────────────────
-const EJS_SERVICE_ID = environment.emailjs.serviceId;
-const EJS_TEMPLATE_ID = environment.emailjs.templateId;
-const EJS_PUBLIC_KEY = environment.emailjs.publicKey;
-// ────────────────────────────────────────────────────────────────────────────
+import { EmailService } from '../../core/services/emailjs.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  // CommonModule removed — NgIf / NgFor not used; @if/@for built-in control flow is used instead
+  imports: [FormsModule, TranslateModule],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Contact implements AfterViewInit {
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
-  // ── Language ──────────────────────────────────────────────────────────────
+  // ── Services ──────────────────────────────────────────────────────────────
   protected langService = inject(LanguageService);
+  private emailService = inject(EmailService);
+
   get isRtl() { return this.langService.currentLang() === 'ar'; }
 
-  // ── Form model (matches [(ngModel)]="form.xxx" in the HTML) ───────────────
+  // ── Form model ────────────────────────────────────────────────────────────
   form = {
     name: '',
     email: '',
@@ -35,16 +38,12 @@ export class Contact implements AfterViewInit {
     message: '',
   };
 
-  // ── UI state (matches *ngIf names used in the HTML) ───────────────────────
-  sending = false;   // spinner on button
-  submitted = false;   // shows success panel
-  hasError = false;   // shows error message
+  // ── UI state ──────────────────────────────────────────────────────────────
+  sending = false;
+  submitted = false;
+  hasError = false;
 
-  // ─────────────────────────────────────────────────────────────────────────
-
-
-
-
+  // ── Lifecycle ─────────────────────────────────────────────────────────────
   ngAfterViewInit(): void {
     this.observeElements();
   }
@@ -60,22 +59,20 @@ export class Contact implements AfterViewInit {
     this.animatedElements.forEach((el) => observer.observe(el.nativeElement));
   }
 
-  // ── Submit ────────────────────────────────────────────────────────────────
+  // ── Submit — delegates to EmailService ────────────────────────────────────
   onSubmit(): void {
     this.sending = true;
     this.hasError = false;
 
-    const templateParams = {
-      from_name: this.form.name,
-      reply_to: this.form.email,
-      subject: this.form.subject || '(no subject)',
-      message: this.form.message,
-    };
-
-    emailjs
-      .send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, templateParams, EJS_PUBLIC_KEY)
+    this.emailService
+      .sendContactEmail({
+        name: this.form.name,
+        email: this.form.email,
+        phone: this.form.subject, // subject used as extra field; service maps it via templateParams
+        message: this.form.message,
+      })
       .then(() => {
-        this.submitted = true;          // show success panel
+        this.submitted = true;
         this.form = { name: '', email: '', subject: '', message: '' };
       })
       .catch(() => {
@@ -86,7 +83,7 @@ export class Contact implements AfterViewInit {
       });
   }
 
-  // ── Reset (back to empty form) ────────────────────────────────────────────
+  // ── Reset ─────────────────────────────────────────────────────────────────
   resetForm(): void {
     this.submitted = false;
     this.hasError = false;

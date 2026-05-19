@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import emailjs from '@emailjs/browser';
+import { environment } from '../../../environments/environments';
 
 export interface ContactForm {
   name: string;
@@ -13,9 +14,9 @@ export interface ContactForm {
 })
 export class EmailService {
 
-  private SERVICE_ID = 'YOUR_SERVICE_ID';      // ← حطها هنا
-  private TEMPLATE_ID = 'YOUR_TEMPLATE_ID';    // ← حطها هنا
-  private PUBLIC_KEY = 'YOUR_PUBLIC_KEY';      // ← حطها هنا
+  private readonly SERVICE_ID = environment.emailjs.serviceId;
+  private readonly TEMPLATE_ID = environment.emailjs.templateId;
+  private readonly PUBLIC_KEY = environment.emailjs.publicKey;
 
   sendContactEmail(formData: ContactForm): Promise<void> {
     const templateParams = {
@@ -28,10 +29,9 @@ export class EmailService {
     return emailjs
       .send(this.SERVICE_ID, this.TEMPLATE_ID, templateParams, this.PUBLIC_KEY)
       .then(() => {
-        console.log('✅ Email sent successfully');
+        // success — no console output in production
       })
       .catch((error) => {
-        console.error('❌ Email failed:', error);
         throw error;
       });
   }

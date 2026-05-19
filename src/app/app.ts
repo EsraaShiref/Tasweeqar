@@ -15,14 +15,12 @@ import { routeAnimations } from './core/animations/route-animations';
   animations: [routeAnimations]
 })
 export class App implements OnInit {
+  // ── All dependencies via inject() — no constructor ──
   private contexts = inject(ChildrenOutletContexts);
+  private themeService = inject(ThemeService);
+  private langService = inject(LanguageService);
 
-  constructor(
-    private themeService: ThemeService,
-    private langService: LanguageService
-  ) { }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.themeService.init();
     this.langService.init();
   }
