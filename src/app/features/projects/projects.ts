@@ -16,6 +16,7 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { LanguageService } from '../../core/services/language';
 import { PROJECTS, Project } from '../../core/data/projects.data';
 
@@ -31,13 +32,19 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   langService = inject(LanguageService);
   private platformId = inject(PLATFORM_ID);
+  private translate = inject(TranslateService);
+  private route = inject(ActivatedRoute);
+
   private observer!: IntersectionObserver;
+  private revealSub!: Subscription;
+  private langSub!: Subscription;
 
   @ViewChildren('revealEl') revealEls!: QueryList<ElementRef>;
 
   // ── Search & Filter State ──────────────────────────────
   searchQuery = signal('');
   activeFilter = signal('all');
+  private currentLang = signal(this.translate.currentLang);
 
   readonly categories = ['all', 'contracting', 'maintenance', 'mep', 'excavation', 'construction', 'services'];
 
@@ -46,6 +53,7 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Computed Filtered List ─────────────────────────────
   readonly filteredProjects = computed(() => {
+    this.currentLang(); // track language changes for reactivity
     const q = this.searchQuery().toLowerCase().trim();
     const cat = this.activeFilter();
     return this.allProjects.filter(p => {
@@ -58,9 +66,11 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
     });
   });
 
-  // ── Inject TranslateService for sync translation ───────
-  private translate = inject(TranslateService);
-  private route = inject(ActivatedRoute);
+  constructor() {
+    this.langSub = this.translate.onLangChange.subscribe(e => {
+      this.currentLang.set(e.lang);
+    });
+  }
 
   private getTranslation(key: string): string {
     return this.translate.instant(key) || '';
@@ -85,6 +95,7 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(e => {
@@ -96,13 +107,21 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
       },
       { threshold: 0.1 }
     );
+
     this.revealEls.forEach(el => this.observer.observe(el.nativeElement));
-    this.revealEls.changes.subscribe((els: QueryList<ElementRef>) => {
-      els.forEach(el => this.observer.observe(el.nativeElement));
+
+    this.revealSub = this.revealEls.changes.subscribe((els: QueryList<ElementRef>) => {
+      els.forEach(el => {
+        if (!el.nativeElement.classList.contains('revealed')) {
+          this.observer.observe(el.nativeElement);
+        }
+      });
     });
   }
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+    this.revealSub?.unsubscribe();
+    this.langSub?.unsubscribe();
   }
 }

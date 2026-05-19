@@ -20,7 +20,7 @@ export class ProjectDetail implements OnInit {
 
   projectId: string = '';
   baseProject!: Project;
-  
+
   project = {
     id: '',
     name: '',
@@ -42,19 +42,26 @@ export class ProjectDetail implements OnInit {
     image: ''
   };
 
+  // ✅ getter للاستخدام في الـ template بدل string concatenation
+  get heroBgImage(): string {
+    return `url("${this.project.image}")`;
+  }
+
   breadcrumbItems: any[] = [];
 
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('id') || 'p1';
     this.baseProject = PROJECTS.find(p => p.id === this.projectId) || PROJECTS[0];
-    
+
     this.project.id = this.baseProject.id;
     this.project.image = this.baseProject.image;
-    
-    // Status translation handled dynamically
     this.project.statusClass = this.baseProject.status === 'done' ? 'status-done' : 'status-progress';
 
-    this.updateContent();
+    // ✅ انتظر الترجمة تتحمل الأول
+    this.translate.get(`projects_page.items.${this.baseProject.key}.title`).subscribe(() => {
+      this.updateContent();
+    });
+
     this.translate.onLangChange.subscribe(() => {
       this.updateContent();
     });
@@ -65,19 +72,13 @@ export class ProjectDetail implements OnInit {
     const cat = this.baseProject.categoryKey;
     const isAr = this.langService.currentLang() === 'ar';
 
-    // Since translate.instant relies on loaded translations, we grab them directly.
-    // Notice we fetch both AR and EN logic here if needed, but since we rely on currentLang,
-    // we just assign the current active translation to both or rely on the HTML logic.
-    // The HTML uses project.name if AR, or project.nameEn if EN.
-    
     const title = this.translate.instant(`projects_page.items.${key}.title`);
     const desc = this.translate.instant(`projects_page.items.${key}.desc`);
     const region = this.translate.instant(`projects_page.items.${key}.region`);
     const service = this.translate.instant(`projects_page.categories.${cat}`);
-    
-    const statusLabel = this.baseProject.status === 'done' 
-      ? this.translate.instant('projects_page.status_done') 
-      : this.translate.instant('projects_page.status_progress');
+    const statusLabel = this.translate.instant(
+      this.baseProject.status === 'done' ? 'projects_page.status_done' : 'projects_page.status_progress'
+    );
 
     if (isAr) {
       this.project.name = title;
