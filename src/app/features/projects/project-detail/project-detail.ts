@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Breadcrumb } from '../../../shared/components/breadcrumb/breadcrumb';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 import { LanguageService } from '../../../core/services/language';
 import { PROJECTS, Project } from '../../../core/data/projects.data';
@@ -10,7 +9,7 @@ import { PROJECTS, Project } from '../../../core/data/projects.data';
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule, Breadcrumb, RevealDirective],
+  imports: [CommonModule, RouterModule, TranslateModule, RevealDirective],
   templateUrl: './project-detail.html',
   styleUrls: ['./project-detail.scss']
 })
