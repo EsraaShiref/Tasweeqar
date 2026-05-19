@@ -17,14 +17,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../../core/services/language';
-import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
-
 import { PROJECTS, Project } from '../../core/data/projects.data';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, TranslateModule, RouterModule, FormsModule, Breadcrumb],
+  imports: [CommonModule, TranslateModule, RouterModule, FormsModule],
   templateUrl: './projects.html',
   styleUrls: ['./projects.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

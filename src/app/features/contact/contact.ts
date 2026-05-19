@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Breadcrumb } from '../../shared/components/breadcrumb/breadcrumb';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environments';
 
@@ -16,7 +15,7 @@ const EJS_PUBLIC_KEY = environment.emailjs.publicKey;
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, Breadcrumb],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
 })
