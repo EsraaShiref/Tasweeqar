@@ -300,17 +300,20 @@ section { padding-block: 80px; }
 }
 
 // ── Global Navbar Layout Overrides ───────────────────────────────────────────
-app-navbar {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1000;
+.navbar:not(.scrolled) {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-.navbar:not(.scrolled) {
-  background: transparent !important;
-  background-color: transparent !important;
+// ── Hero Spacing Compensation for Fixed Navbar ────────────────────────────────
+.hero,
+.about-hero,
+.srv-hero,
+.projects-hero,
+.contact-hero {
+  padding-top: 72px !important;
+
+  @media (max-width: 767px) {
+    padding-top: 60px !important;
+  }
 }

@@ -9,8 +9,7 @@ $gold: #c8a96e;
 $gold-dark: #a8893e;
 
 .navbar {
-  position: sticky;
-  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -21,10 +20,9 @@ $gold-dark: #a8893e;
 
   // ── Scrolled state ────────────────────────────────────────────────────────
   &.scrolled {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
 
     // Logo box becomes subtle in scrolled state
     .navbar__logo-box {
@@ -40,38 +38,30 @@ $gold-dark: #a8893e;
     }
 
     .navbar__links a {
-      color: white !important;
+      color: var(--color-text);
 
       &:hover {
-        color: white !important;
-        background: rgba(125, 106, 63, 0.5) !important;
-        border-radius: 50px !important;
+        color: var(--color-primary);
       }
 
       &.nav-active {
-        color: white !important;
-        background: #7D6A3F !important;
-        border-radius: 50px !important;
+        color: #c9a84c !important;
       }
     }
 
     .navbar__toggle-btn {
-      background: transparent !important;
-      border-color: rgba(255, 255, 255, 0.25) !important;
-      color: white !important;
-
-      i, span {
-        color: white !important;
-      }
+      background: var(--color-surface);
+      border-color: var(--color-border);
+      color: var(--color-text);
 
       &:hover {
-        border-color: white !important;
-        background: rgba(255, 255, 255, 0.08) !important;
+        border-color: var(--color-primary);
+        color: var(--color-primary);
       }
     }
 
     .navbar__hamburger {
-      color: white !important;
+      color: var(--color-text);
     }
   }
 
@@ -141,7 +131,7 @@ $gold-dark: #a8893e;
   &__brand {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #FFFFFF !important;
+    color: var(--color-primary);
     animation: logoEntrance 1s ease 0.3s forwards;
     opacity: 0;
     white-space: nowrap;
@@ -172,7 +162,7 @@ $gold-dark: #a8893e;
 
     a {
       text-decoration: none;
-      color: #FFFFFF !important;
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 500;
       font-size: 0.95rem;
       transition: var(--transition);
@@ -188,34 +178,31 @@ $gold-dark: #a8893e;
         left: 14px;
         right: 14px;
         height: 2px;
-        background: #c9a84c;
+        background: var(--color-primary);
         transform: scaleX(0);
         transition: var(--transition);
         border-radius: 2px;
       }
 
       &:hover {
-        color: #FFFFFF !important;
-        background: rgba(125, 106, 63, 0.5) !important;
-        border-radius: 50px !important;
+        color: var(--color-primary);
+        background: rgba($gold, 0.08);
       }
 
       &.nav-active {
-        color: #FFFFFF !important;
-        background: #7D6A3F !important;
-        border-radius: 50px !important;
+        color: #c9a84c !important;
       }
     }
 
     // Contact CTA button
     .navbar__cta {
-      background: #c9a84c !important;
-      color: #FFFFFF !important;
+      background: linear-gradient(135deg, $gold, $gold-dark) !important;
+      color: #fff !important;
       padding: 10px 24px;
-      border-radius: 50px !important;
+      border-radius: 8px;
       font-weight: 600;
       border-color: transparent !important;
-      box-shadow: 0 4px 14px rgba(201, 168, 76, 0.28) !important;
+      box-shadow: 0 4px 14px rgba($gold, 0.28);
       transition:
         transform 0.3s ease,
         box-shadow 0.3s ease !important;
@@ -225,15 +212,14 @@ $gold-dark: #a8893e;
       }
 
       &:hover {
-        background: #b8973b !important;
+        background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 8%)) !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 22px rgba(201, 168, 76, 0.4) !important;
-        color: #FFFFFF !important;
+        box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
+        color: #fff !important;
       }
 
       &.nav-active {
-        background: #c9a84c !important;
-        color: #FFFFFF !important;
+        color: #c9a84c !important;
       }
     }
   }
@@ -249,9 +235,9 @@ $gold-dark: #a8893e;
     display: flex;
     align-items: center;
     gap: 6px;
-    background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    color: white !important;
+    background: rgba($gold, 0.1);
+    border: 1px solid rgba($gold, 0.25);
+    color: rgba(255, 255, 255, 0.9);
     padding: 8px 14px;
     border-radius: 8px;
     cursor: pointer;
@@ -259,13 +245,10 @@ $gold-dark: #a8893e;
     font-weight: 600;
     transition: var(--transition);
 
-    i, span {
-      color: white !important;
-    }
-
     &:hover {
-      border-color: white !important;
-      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: rgba($gold, 0.15);
     }
   }
 
@@ -281,7 +264,7 @@ $gold-dark: #a8893e;
 
 // ── Scrolled: light mode ──────────────────────────────────────────────────────
 [data-theme='light'] .navbar.scrolled {
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid rgba($gold, 0.2);
 
   .navbar__logo-box {
@@ -298,7 +281,7 @@ $gold-dark: #a8893e;
 
 // ── Scrolled: dark mode ───────────────────────────────────────────────────────
 [data-theme='dark'] .navbar.scrolled {
-  background: transparent !important;
+  background: rgba(10, 15, 30, 0.92);
   border-bottom: 1px solid rgba($gold, 0.1);
 
   .navbar__logo-box {
@@ -319,9 +302,8 @@ $gold-dark: #a8893e;
 
     &__links {
       display: none;
-      position: absolute;
-      top: 100%;
-      z-index: 999;
+      position: fixed;
+      top: 80px;
       left: 0;
       right: 0;
       background: rgba(8, 14, 30, 0.97);
@@ -343,11 +325,12 @@ $gold-dark: #a8893e;
         &:hover {
           color: $gold !important;
         }
+
         &.nav-active {
           color: #c9a84c !important;
         }
       }
-      
+
       .navbar__cta {
         margin-top: 10px;
         text-align: center;
@@ -403,7 +386,8 @@ $gold-dark: #a8893e;
   }
 
   .lang-btn {
-    display: none; /* hide from navbar bar */
+    display: none;
+    /* hide from navbar bar */
   }
 
   .lang-btn-menu {
@@ -442,8 +426,8 @@ $gold-dark: #a8893e;
       box-shadow: none !important;
       border-radius: 0 !important;
       padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: #FFFFFF !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 18px;
       font-family: 'Cairo', sans-serif;
       font-weight: 400;
@@ -454,19 +438,12 @@ $gold-dark: #a8893e;
 
     &.mobile-menu a.router-link-exact-active,
     &.mobile-menu a.nav-active {
-      color: #FFFFFF !important;
-      background: #7D6A3F !important;
-      background-color: #7D6A3F !important;
-      border-radius: 50px !important;
-      border-bottom: none !important;
+      color: #c9a84c !important;
+      border-bottom: 1px solid #c9a84c !important;
     }
 
     &.mobile-menu a:hover {
-      color: #FFFFFF !important;
-      background: rgba(125, 106, 63, 0.5) !important;
-      background-color: rgba(125, 106, 63, 0.5) !important;
-      border-radius: 50px !important;
-      border-bottom: none !important;
+      color: #c9a84c;
       transition: color 0.2s ease;
     }
 
@@ -474,13 +451,14 @@ $gold-dark: #a8893e;
       display: block;
       margin-top: 12px;
       background: #c9a84c !important;
-      color: #FFFFFF !important;
+      color: #1a1a1a !important;
       text-align: center;
       padding: 10px !important;
-      border-radius: 50px !important;
+      border-radius: 8px !important;
     }
   }
 }
+
 // ── Keyframes (unchanged) ─────────────────────────────────────────────────────
 @keyframes logoEntrance {
   0% {
@@ -537,21 +515,3 @@ $gold-dark: #a8893e;
     transform: translateY(-4px) scale(1) rotate(0deg);
   }
 }
-
-@media(max-width:767px){
-  .hamburger, .navbar__hamburger {
-    display:flex !important;
-    align-items:center;
-    justify-content:center;
-    width:40px; height:40px;
-    background:transparent;
-    border:1px solid rgba(201,168,76,0.4);
-    border-radius:8px;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    flex-shrink:0;
-  }
-}
-
-
