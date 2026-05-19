@@ -1,6 +1,8 @@
 import {
   Component,
+  OnInit,
   AfterViewInit,
+  OnDestroy,
   ViewChildren,
   QueryList,
   ElementRef,
@@ -11,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language';
 import { EmailService } from '../../core/services/emailjs.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -20,12 +23,15 @@ import { EmailService } from '../../core/services/emailjs.service';
   styleUrls: ['./contact.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Contact implements AfterViewInit {
+export class Contact implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
   // ── Services ──────────────────────────────────────────────────────────────
   protected langService = inject(LanguageService);
   private emailService = inject(EmailService);
+  private seoService = inject(SeoService);
+
+  private observer!: IntersectionObserver;
 
   get isRtl() {
     return this.langService.currentLang() === 'ar';
@@ -45,19 +51,37 @@ export class Contact implements AfterViewInit {
   hasError = false;
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
+  ngOnInit(): void {
+    this.seoService.setPage(
+      {
+        title: 'تواصل معنا | تسويقار',
+        description: 'تواصل مع تسويقار للمقاولات العامة اليوم لمناقشة مشروعك والحصول على استشارة متخصصة.',
+      },
+      {
+        title: 'Contact Us | Tasweeqar',
+        description: 'Contact Tasweeqar General Contracting today to discuss your project and get an expert consultation.',
+      },
+      this.langService.currentLang() as 'ar' | 'en'
+    );
+  }
+
   ngAfterViewInit(): void {
     this.observeElements();
   }
 
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
+
   private observeElements(): void {
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) e.target.classList.add('in-view');
         }),
       { threshold: 0.12 },
     );
-    this.animatedElements.forEach((el) => observer.observe(el.nativeElement));
+    this.animatedElements.forEach((el) => this.observer.observe(el.nativeElement));
   }
 
   // ── Submit — delegates to EmailService ────────────────────────────────────

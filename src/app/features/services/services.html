@@ -130,10 +130,10 @@
           </div>
 
           <h4 class="process-card__title">
-            {{ langService.currentLang() === 'ar' ? step.titleAr : step.titleEn }}
+            {{ step.titleKey | translate }}
           </h4>
           <p class="process-card__desc">
-            {{ langService.currentLang() === 'ar' ? step.descAr : step.descEn }}
+            {{ step.descKey | translate }}
           </p>
 
           <!-- connector line (hidden on last) -->

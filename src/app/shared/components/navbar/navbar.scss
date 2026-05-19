@@ -411,7 +411,7 @@ $gold-dark: #a8893e;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 12px;
-    font-family: 'Cairo', sans-serif;
+    font-family: var(--font-ar);
     font-size: 15px;
     cursor: pointer;
   }
@@ -441,7 +441,7 @@ $gold-dark: #a8893e;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       color: rgba(255, 255, 255, 0.85);
       font-size: 18px;
-      font-family: 'Cairo', sans-serif;
+      font-family: var(--font-ar);
       font-weight: 400;
       text-align: center;
       display: block;

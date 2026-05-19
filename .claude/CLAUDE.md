@@ -11,6 +11,7 @@
 Stack: Angular 21 · Standalone Components · SCSS · @ngx-translate · EmailJS · Angular Signals
 
 **Goals for this session:**
+
 1. Fix all consistency issues listed in this file
 2. Enforce one pattern per concern across all components
 3. Make the project production-ready
@@ -74,28 +75,33 @@ src/
 ```
 
 ### Legacy tokens — DO NOT USE in any new or edited code
+
 ```
 --navy: #1a2744   →  use --color-navy
 --gold: #c9a84c   →  use --color-primary
 --off:  #f7f5f0   →  use --color-surface-alt
 ```
+
 Always use `--color-*` tokens. Never hardcode hex values in component SCSS.
 
 ### Fonts
+
 ```css
---font-ar: 'Tajawal', sans-serif;   /* Arabic text */
---font-en: 'Urbanist', sans-serif;  /* English text */
+--font-ar: 'Tajawal', sans-serif; /* Arabic text */
+--font-en: 'Urbanist', sans-serif; /* English text */
 ```
 
 ### Breakpoints (`_mixins.scss`)
+
 ```scss
-@include respond-to('mobile')   // max-width: 767px
-@include respond-to('tablet')   // 768px – 1024px
-@include respond-to('laptop')   // 1025px – 1279px
-@include respond-to('desktop')  // min-width: 1280px
+@include respond-to('mobile') // max-width: 767px
+  @include respond-to('tablet') // 768px – 1024px
+  @include respond-to('laptop') // 1025px – 1279px
+  @include respond-to('desktop'); // min-width: 1280px
 ```
 
 ### Dark Mode
+
 Applied via `data-theme="dark"` on `<html>` by `ThemeService.apply()`.
 All dark overrides live in `styles.scss` under `[data-theme='dark']`.
 **Never** read `data-theme` from the DOM manually — use `ThemeService.isDark` signal.
@@ -105,6 +111,7 @@ All dark overrides live in `styles.scss` under `[data-theme='dark']`.
 ## Services — How to Use Each One
 
 ### ThemeService (`core/services/theme.ts`)
+
 ```typescript
 themeService = inject(ThemeService);
 // Read:   themeService.isDark()    → boolean (signal)
@@ -112,6 +119,7 @@ themeService = inject(ThemeService);
 ```
 
 ### LanguageService (`core/services/language.ts`)
+
 ```typescript
 langService = inject(LanguageService);
 // Read:   langService.currentLang()   → 'ar' | 'en' (signal)
@@ -120,6 +128,7 @@ langService = inject(LanguageService);
 ```
 
 ### SeoService (`core/services/seo.service.ts`)
+
 ```typescript
 // Must be called in ngOnInit of EVERY feature component
 private seoService = inject(SeoService);
@@ -135,7 +144,9 @@ ngOnInit() {
 ```
 
 ### EmailService (`core/services/emailjs.service.ts`)
+
 Currently broken — has hardcoded placeholder strings. After fixing, use it like this:
+
 ```typescript
 private emailService = inject(EmailService);
 
@@ -152,6 +163,7 @@ this.emailService.sendContactEmail({
 ## Mandatory Patterns — Follow These Exactly
 
 ### 1. Dependency Injection — `inject()` only, no constructors
+
 ```typescript
 // CORRECT
 langService = inject(LanguageService);
@@ -162,6 +174,7 @@ constructor(private themeService: ThemeService) {}
 ```
 
 ### 2. Never import `CommonModule`
+
 ```typescript
 // WRONG — currently in: home.ts, about.ts, services.ts, projects.ts,
 //          project-detail.ts, contact.ts
@@ -172,6 +185,7 @@ imports: [NgIf, NgFor, NgClass, NgStyle, AsyncPipe, ...]
 ```
 
 ### 3. `ChangeDetectionStrategy.OnPush` on every component
+
 ```typescript
 // Only projects.ts has this — add to ALL other components
 @Component({
@@ -181,26 +195,29 @@ imports: [NgIf, NgFor, NgClass, NgStyle, AsyncPipe, ...]
 ```
 
 ### 4. Reveal animations — use `RevealDirective`, not manual observers
+
 ```typescript
 // WRONG — home.ts does this
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
 // CORRECT
-imports: [RevealDirective]
+imports: [RevealDirective];
 // Template: <div appReveal="slide-up" [delay]="200">...</div>
 ```
 
 ### 5. Count-up animation — use `CounterDirective`, not inline setInterval
+
 ```typescript
 // WRONG — home.ts reimplements count-up manually with setInterval
 // CounterDirective already exists and is correct
 
 // CORRECT
-imports: [CounterDirective]
+imports: [CounterDirective];
 // Template: <span [appCounter]="150" [duration]="2000"></span>
 ```
 
 ### 6. Theme state — read from service, never from DOM
+
 ```typescript
 // WRONG — about.ts does this
 this.isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -211,6 +228,7 @@ themeService = inject(ThemeService);
 ```
 
 ### 7. i18n — no hardcoded text strings in component `.ts` files
+
 ```typescript
 // WRONG — services.ts processSteps array
 { titleAr: 'الاستشارة الأولية', titleEn: 'Initial Consultation' }
@@ -221,6 +239,7 @@ themeService = inject(ThemeService);
 ```
 
 ### 8. Cleanup IntersectionObserver in ngOnDestroy
+
 ```typescript
 // WRONG — about.ts and services.ts create observers but have no ngOnDestroy
 
@@ -240,19 +259,23 @@ ngOnDestroy(): void {
 ### CRITICAL — blocks correct production behavior
 
 **[1] Route animations not firing**
+
 - `app.ts` calls `getRouteAnimationData()` which reads `route.snapshot.data['animation']`
 - No route in `app.routes.ts` has a `data` property
 - Fix: add `data: { animation: 'HomePage' }` (unique string per route) to every route
 
 **[2] `SeoService` never called anywhere**
+
 - Every page has no `<title>` or `<meta name="description">` set at runtime
 - Fix: call `seoService.setPage(...)` in `ngOnInit` of every feature component
 
 **[3] `emailjs.service.ts` has hardcoded placeholder credentials**
+
 - `private SERVICE_ID = 'YOUR_SERVICE_ID'` — never reads from `environment`
 - Fix: replace with `private SERVICE_ID = environment.emailjs.serviceId` etc.
 
 **[4] `contact.ts` bypasses `EmailService` entirely**
+
 - Imports emailjs directly and reads from `environment` itself
 - `EmailService` is dead code as a result
 - Fix: delete direct emailjs call in `contact.ts`, inject and use `EmailService`
@@ -260,71 +283,84 @@ ngOnDestroy(): void {
 ### CONSISTENCY — same logic everywhere
 
 **[5] `app.ts` mixes constructor injection with `inject()`**
+
 - Has constructor for `ThemeService` + `LanguageService` but `inject()` for `ChildrenOutletContexts`
 - Fix: convert all to `inject()`
 
 **[6] `CommonModule` in every feature component**
+
 - `home.ts`, `about.ts`, `services.ts`, `projects.ts`, `project-detail.ts`, `contact.ts`
 - Fix: remove CommonModule, import individual directives
 
 **[7] `ChangeDetectionStrategy.OnPush` missing from 5 components**
+
 - `home.ts`, `about.ts`, `services.ts`, `contact.ts`, `project-detail.ts`
 
 **[8] `about.ts` reads dark mode from DOM**
+
 - `ngOnInit()` reads `data-theme` attribute instead of using `ThemeService.isDark` signal
 
 **[9] `services.ts` — processSteps data has hardcoded Arabic/English strings**
+
 - `titleAr`, `titleEn`, `descAr`, `descEn` fields — breaks i18n consistency
 - Fix: replace with `titleKey`/`descKey` and add translations to i18n files
 
 **[10] `CounterDirective` is unused**
+
 - `home.ts` manually reimplements count-up with setInterval
 - Fix: remove manual count-up, use `[appCounter]` directive in template
 
 **[11] `RevealDirective` underused in home**
+
 - `home.ts` manually sets up IntersectionObserver for reveal instead of using directive
 
 **[12] Observer leaks in `about.ts` and `services.ts`**
+
 - Both create `IntersectionObserver` in `AfterViewInit` but never disconnect
 - Fix: add `ngOnDestroy` with `this.observer?.disconnect()`
 
 ### CLEANUP — code hygiene
 
 **[13] `index.html` loads two redundant Google Font families**
+
 - Loads Cairo + Inter, but design uses Tajawal + Urbanist (loaded in `styles.scss`)
 - Fix: remove the `<link>` for Cairo + Inter from `index.html`
 
 **[14] `index.html` loads Tabler Icons — appears unused**
+
 - `@tabler/icons-webfont` CDN link present, but zero `ti-*` classes found in any template
 - Verify and remove if unused
 
 **[15] `console.log` / `console.error` in `emailjs.service.ts`**
+
 - Remove both before production
 
 **[16] `project-detail.ts` has hardcoded static fields**
+
 - `area: '45,000 متر مربع'`, `year: '2024'`, `client: 'وزارة الإسكان'` hardcoded in component
 - These should come from `projects.data.ts` or i18n keys
 
 **[17] Legacy tokens in `styles.scss` (`--navy`, `--gold`, `--off`)**
+
 - Verify no component SCSS uses them, then remove
 
 ---
 
 ## Files Requiring Changes
 
-| File | Required Changes |
-|------|-----------------|
-| `app.ts` | Use `inject()` only — remove constructor |
-| `app.routes.ts` | Add `data: { animation: 'X' }` to all 6 routes |
-| `core/services/emailjs.service.ts` | Read from `environment`, remove console.log |
-| `features/home/home.ts` | Remove CommonModule, add OnPush, use CounterDirective + RevealDirective, remove manual observers |
-| `features/about/about.ts` | Remove CommonModule, add OnPush, use ThemeService signal, add ngOnDestroy |
-| `features/services/services.ts` | Remove CommonModule, add OnPush, move processSteps to i18n keys, add ngOnDestroy |
-| `features/projects/projects.ts` | Remove CommonModule |
-| `features/projects/project-detail/project-detail.ts` | Remove CommonModule, add OnPush, move hardcoded data out |
-| `features/contact/contact.ts` | Remove CommonModule, add OnPush, use EmailService |
-| Every feature `.ts` | Add `seoService.setPage(...)` in ngOnInit |
-| `index.html` | Remove Cairo/Inter font link, remove Tabler Icons CDN |
+| File                                                 | Required Changes                                                                                 |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `app.ts`                                             | Use `inject()` only — remove constructor                                                         |
+| `app.routes.ts`                                      | Add `data: { animation: 'X' }` to all 6 routes                                                   |
+| `core/services/emailjs.service.ts`                   | Read from `environment`, remove console.log                                                      |
+| `features/home/home.ts`                              | Remove CommonModule, add OnPush, use CounterDirective + RevealDirective, remove manual observers |
+| `features/about/about.ts`                            | Remove CommonModule, add OnPush, use ThemeService signal, add ngOnDestroy                        |
+| `features/services/services.ts`                      | Remove CommonModule, add OnPush, move processSteps to i18n keys, add ngOnDestroy                 |
+| `features/projects/projects.ts`                      | Remove CommonModule                                                                              |
+| `features/projects/project-detail/project-detail.ts` | Remove CommonModule, add OnPush, move hardcoded data out                                         |
+| `features/contact/contact.ts`                        | Remove CommonModule, add OnPush, use EmailService                                                |
+| Every feature `.ts`                                  | Add `seoService.setPage(...)` in ngOnInit                                                        |
+| `index.html`                                         | Remove Cairo/Inter font link, remove Tabler Icons CDN                                            |
 
 ---
 
@@ -362,3 +398,11 @@ ngOnDestroy(): void {
 - [ ] All `IntersectionObserver` instances disconnected in `ngOnDestroy`
 - [ ] Unused fonts/CDN links removed from `index.html`
 - [ ] No hardcoded hex colors or text strings in `.ts` files
+
+## JSON Safety Rule
+
+After ANY edit to public/i18n/ar.json or public/i18n/en.json, immediately run:
+node -e "JSON.parse(require('fs').readFileSync('public/i18n/ar.json','utf8')); console.log('ar OK')"
+node -e "JSON.parse(require('fs').readFileSync('public/i18n/en.json','utf8')); console.log('en OK')"
+A JSON syntax error silently breaks ALL translations across the entire app.
+Never edit JSON files without validating after each change.

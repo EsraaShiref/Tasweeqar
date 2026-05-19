@@ -161,63 +161,110 @@
         "city": "Riyadh",
         "region": "Riyadh, Central Region",
         "category": "General Contracting",
-        "desc": "Construction of a 15-floor commercial tower with offices and retail space in central Riyadh to the highest quality standards."
+        "desc": "Construction of a 15-floor commercial tower with offices and retail space in central Riyadh to the highest quality standards.",
+        "area": "45,000 sq m",
+        "year": "2024",
+        "client": "Ministry of Housing"
       },
       "p2": {
         "title": "Jeddah Residential Complex",
         "city": "Jeddah",
         "region": "Jeddah, Western Region",
         "category": "Construction",
-        "desc": "A luxury residential complex with 120 diverse housing units and full amenities spanning 8,000 sqm."
+        "desc": "A luxury residential complex with 120 diverse housing units and full amenities spanning 8,000 sqm.",
+        "area": "8,000 sq m",
+        "year": "2023",
+        "client": "National Real Estate Company"
       },
       "p3": {
         "title": "Dammam Industrial Facility",
         "city": "Dammam",
         "region": "Dammam, Eastern Region",
         "category": "MEP Extensions",
-        "desc": "Complete electrical, mechanical, and plumbing installation for a major industrial facility with high production capacity."
+        "desc": "Complete electrical, mechanical, and plumbing installation for a major industrial facility with high production capacity.",
+        "area": "25,000 sq m",
+        "year": "2024",
+        "client": "Saudi Basic Industries Corporation"
       },
       "p4": {
         "title": "Khobar Office Building",
         "city": "Khobar",
         "region": "Khobar, Eastern Region",
         "category": "General Contracting",
-        "desc": "Modern 8-floor administrative building with multi-level parking and premium interior finishes."
+        "desc": "Modern 8-floor administrative building with multi-level parking and premium interior finishes.",
+        "area": "8,500 sq m",
+        "year": "2022",
+        "client": "Khobar Holding"
       },
       "p5": {
         "title": "Riyadh Infrastructure Project",
         "city": "Riyadh",
         "region": "Riyadh, Central Region",
         "category": "Excavation",
-        "desc": "Excavation and backfilling for a massive infrastructure project covering roads and tunnels over 200,000 sqm."
+        "desc": "Excavation and backfilling for a massive infrastructure project covering roads and tunnels over 200,000 sqm.",
+        "area": "200,000 sq m",
+        "year": "2025",
+        "client": "Riyadh Municipality"
       },
       "p6": {
         "title": "Madinah Educational Center",
         "city": "Madinah",
         "region": "Madinah, Western Region",
         "category": "Construction",
-        "desc": "An integrated educational complex housing primary, middle, and secondary schools with a capacity of 2,000 students."
+        "desc": "An integrated educational complex housing primary, middle, and secondary schools with a capacity of 2,000 students.",
+        "area": "15,000 sq m",
+        "year": "2023",
+        "client": "Ministry of Education"
       },
       "p7": {
         "title": "Makkah Hotel Renovation",
         "city": "Makkah",
         "region": "Makkah, Western Region",
         "category": "Maintenance",
-        "desc": "Comprehensive maintenance and full renovation of a 5-star hotel with 350 rooms and updated electrical and mechanical systems."
+        "desc": "Comprehensive maintenance and full renovation of a 5-star hotel with 350 rooms and updated electrical and mechanical systems.",
+        "area": "30,000 sq m",
+        "year": "2024",
+        "client": "Global Hotels Group"
       },
       "p8": {
         "title": "Tabuk Villa Complex",
         "city": "Tabuk",
         "region": "Tabuk, Northwestern Region",
         "category": "Construction",
-        "desc": "Construction of 45 luxury villas with private pools, gardens, and full community amenities per latest building standards."
+        "desc": "Construction of 45 luxury villas with private pools, gardens, and full community amenities per latest building standards.",
+        "area": "50,000 sq m",
+        "year": "2023",
+        "client": "Emaar Real Estate Establishment"
       },
       "p9": {
         "title": "Abha Government Building",
         "city": "Abha",
         "region": "Abha, Asir Region",
         "category": "Project Services",
-        "desc": "Management and execution of a major government complex housing 20 departments with full logistical and administrative services."
+        "desc": "Management and execution of a major government complex housing 20 departments with full logistical and administrative services.",
+        "area": "65,000 sq m",
+        "year": "2024",
+        "client": "Ministry of Municipal and Rural Affairs and Housing"
+      }
+    }
+  },
+  "services_page": {
+    "process": {
+      "step1": {
+        "title": "Initial Consultation",
+        "desc": "We meet with you to fully understand your project requirements and goals."
+      },
+      "step2": {
+        "title": "Study & Planning",
+        "desc": "We prepare a comprehensive study and detailed plan for the most efficient execution."
+      },
+      "step3": {
+        "title": "Execution",
+        "desc": "Our specialist team executes the project with precision and high professionalism."
+      },
+      "step4": {
+        "title": "Delivery & Quality Assurance",
+        "desc": "We deliver on time with a guarantee of the highest quality standards."
       }
     }
   }

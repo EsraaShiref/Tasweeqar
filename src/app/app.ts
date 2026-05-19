@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
 import { Navbar } from './shared/components/navbar/navbar';
 import { ThemeService } from './core/services/theme';
@@ -12,7 +12,8 @@ import { routeAnimations } from './core/animations/route-animations';
   imports: [RouterOutlet, Navbar, Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-  animations: [routeAnimations]
+  animations: [routeAnimations],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App implements OnInit {
   // ── All dependencies via inject() — no constructor ──

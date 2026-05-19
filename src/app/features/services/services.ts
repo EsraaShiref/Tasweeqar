@@ -1,15 +1,18 @@
 import {
   Component,
+  OnInit,
   AfterViewInit,
+  OnDestroy,
   QueryList,
   ViewChildren,
   ElementRef,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language';
+import { SeoService } from '../../core/services/seo.service';
 import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 export interface ServiceCard {
@@ -21,23 +24,26 @@ export interface ServiceCard {
 export interface ProcessStep {
   step: number;
   icon: string;
-  titleAr: string;
-  titleEn: string;
-  descAr: string;
-  descEn: string;
+  titleKey: string;
+  descKey: string;
 }
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule, TiltDirective],
+  imports: [RouterModule, TranslateModule, TiltDirective],
   templateUrl: './services.html',
   styleUrls: ['./services.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Services implements AfterViewInit {
+export class Services implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
   protected langService = inject(LanguageService);
+  private seoService = inject(SeoService);
+
+  private observer!: IntersectionObserver;
+
   get isRtl() { return this.langService.currentLang() === 'ar'; }
 
   /** All service cards – last one spans full width */
@@ -56,50 +62,59 @@ export class Services implements AfterViewInit {
     {
       step: 1,
       icon: 'fa-comments',
-      titleAr: 'الاستشارة الأولية',
-      titleEn: 'Initial Consultation',
-      descAr: 'نجتمع بك لفهم متطلبات مشروعك وأهدافك بشكل كامل.',
-      descEn: 'We meet with you to fully understand your project requirements and goals.',
+      titleKey: 'services_page.process.step1.title',
+      descKey: 'services_page.process.step1.desc',
     },
     {
       step: 2,
       icon: 'fa-file-contract',
-      titleAr: 'الدراسة والتخطيط',
-      titleEn: 'Study & Planning',
-      descAr: 'نُعِدّ دراسة شاملة وخطة تفصيلية لتنفيذ المشروع بأعلى كفاءة.',
-      descEn:
-        'We prepare a comprehensive study and detailed plan for the most efficient execution.',
+      titleKey: 'services_page.process.step2.title',
+      descKey: 'services_page.process.step2.desc',
     },
     {
       step: 3,
       icon: 'fa-hard-hat',
-      titleAr: 'التنفيذ',
-      titleEn: 'Execution',
-      descAr: 'ينفذ فريقنا المتخصص المشروع بدقة واحترافية عالية.',
-      descEn: 'Our specialist team executes the project with precision and high professionalism.',
+      titleKey: 'services_page.process.step3.title',
+      descKey: 'services_page.process.step3.desc',
     },
     {
       step: 4,
       icon: 'fa-circle-check',
-      titleAr: 'التسليم وضمان الجودة',
-      titleEn: 'Delivery & Quality Assurance',
-      descAr: 'نُسلّم المشروع في الموعد المحدد مع ضمان أعلى معايير الجودة.',
-      descEn: 'We deliver on time with a guarantee of the highest quality standards.',
+      titleKey: 'services_page.process.step4.title',
+      descKey: 'services_page.process.step4.desc',
     },
   ];
+
+  ngOnInit(): void {
+    this.seoService.setPage(
+      {
+        title: 'خدماتنا | تسويقار',
+        description: 'اكتشف خدمات المقاولات والإنشاء والصيانة والحفريات والترميم التي تقدمها تسويقار في المملكة.',
+      },
+      {
+        title: 'Our Services | Tasweeqar',
+        description: 'Explore the contracting, construction, maintenance, excavation, and renovation services offered by Tasweeqar.',
+      },
+      this.langService.currentLang() as 'ar' | 'en'
+    );
+  }
 
   ngAfterViewInit(): void {
     this.observeElements();
   }
 
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
+
   private observeElements(): void {
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) e.target.classList.add('in-view');
         }),
       { threshold: 0.12 },
     );
-    this.animatedElements.forEach((el) => observer.observe(el.nativeElement));
+    this.animatedElements.forEach((el) => this.observer.observe(el.nativeElement));
   }
 }

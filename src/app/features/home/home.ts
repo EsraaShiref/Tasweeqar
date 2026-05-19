@@ -1,26 +1,20 @@
-import { Component, OnInit, NgZone, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/services/language';
+import { SeoService } from '../../core/services/seo.service';
 import { PROJECTS, Project } from '../../core/data/projects.data';
-import { CommonModule } from '@angular/common';
-
+import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TranslateModule, RouterLink, CommonModule],
+  imports: [TranslateModule, RouterLink, TiltDirective],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home implements OnInit {
-  stats = [
-    { target: 150, suffix: '+', label: 'stats.projects' },
-    { target: 200, suffix: '+', label: 'stats.clients' },
-    { target: 10, suffix: '+', label: 'stats.years' },
-    { target: 50, suffix: '+', label: 'stats.workers' },
-  ];
-
+export class Home implements OnInit, OnDestroy {
   readonly featuredProjects: Project[] = PROJECTS.filter(p => p.featured);
 
   particles = Array.from({ length: 30 }, () => ({
@@ -32,44 +26,37 @@ export class Home implements OnInit {
     opacity: Math.random() * 0.4 + 0.1,
   }));
 
-  displayValues: number[] = [0, 0, 0, 0];
-  animated = false;
-
   protected langService = inject(LanguageService);
-  private ngZone = inject(NgZone);
+  private seoService = inject(SeoService);
 
+  private revealObserver!: IntersectionObserver;
 
-  ngOnInit() {
-    this.observeStats();
+  ngOnInit(): void {
+    this.seoService.setPage(
+      {
+        title: 'الرئيسية | تسويقار',
+        description: 'تسويقار — شركة مقاولات وبناء سعودية متخصصة في المشاريع الإنشائية والصيانة والحفريات.',
+      },
+      {
+        title: 'Home | Tasweeqar',
+        description: 'Tasweeqar — Saudi contracting & construction company specialising in building, maintenance, and excavation projects.',
+      },
+      this.langService.currentLang() as 'ar' | 'en'
+    );
     this.observeElements();
   }
 
-  observeStats() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !this.animated) {
-            this.animated = true;
-            this.ngZone.run(() => this.startCountUp());
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-
-    setTimeout(() => {
-      const statsSection = document.querySelector('.hero__stats');
-      if (statsSection) observer.observe(statsSection);
-    }, 500);
+  ngOnDestroy(): void {
+    this.revealObserver?.disconnect();
   }
 
-  observeElements() {
-    const observer = new IntersectionObserver(
+  private observeElements(): void {
+    this.revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
+            this.revealObserver.unobserve(entry.target);
           }
         });
       },
@@ -77,22 +64,7 @@ export class Home implements OnInit {
     );
 
     setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => this.revealObserver.observe(el));
     }, 300);
-  }
-
-  startCountUp() {
-    this.stats.forEach((stat, index) => {
-      const duration = 2000;
-      const steps = 60;
-      const increment = stat.target / steps;
-      let step = 0;
-
-      const timer = setInterval(() => {
-        step++;
-        this.displayValues[index] = Math.min(Math.round(increment * step), stat.target);
-        if (step >= steps) clearInterval(timer);
-      }, duration / steps);
-    });
   }
 }

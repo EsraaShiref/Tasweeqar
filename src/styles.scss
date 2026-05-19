@@ -3,9 +3,6 @@
 
 :root {
   /* Brand tokens */
-  --navy: #1a2744;
-  --gold: #c9a84c;
-  --off: #f7f5f0;
   --r: 12px;
   --shadow: 0 2px 12px rgba(26,39,68,.08);
 
@@ -171,8 +168,8 @@ section {
 }
 
 // ── Language-specific fonts ────────────────────────────────────────────────────
-[lang="ar"] { font-family: 'Cairo', sans-serif; line-height: 1.85; }
-[lang="en"] { font-family: 'Inter', sans-serif; line-height: 1.6; }
+[lang="ar"] { font-family: var(--font-ar); line-height: 1.85; }
+[lang="en"] { font-family: var(--font-en); line-height: 1.6; }
 
 // ── Shared hero layout helpers (replaces repeated inline styles) ──────────────
 .hero__container-inner {
@@ -214,7 +211,7 @@ section {
   padding: 12px 28px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-ar);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -234,7 +231,7 @@ nav a:hover {
 
 h2 {
   font-size: 2rem;
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-ar);
   color: #1a2744;
 }
 

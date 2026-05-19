@@ -174,7 +174,7 @@ $gold: #c8a96e;
     color:rgba(255,255,255,0.65);
     font-size:14px;
     padding:7px 0;
-    font-family:'Cairo',sans-serif;
+    font-family: var(--font-ar);
     text-decoration:none;
     border-bottom:1px solid rgba(255,255,255,0.05);
     transition:color 0.2s, padding-right 0.2s;
@@ -306,7 +306,7 @@ $gold: #c8a96e;
     color:#c9a84c;
     letter-spacing:0.5px;
     margin-bottom: 10px !important;
-    font-family:'Cairo',sans-serif;
+    font-family: var(--font-ar);
   }
 
   .footer-contact .contact-item,

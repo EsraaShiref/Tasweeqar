@@ -1,4 +1,4 @@
-import { Component, HostListener, signal, inject, OnInit, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, signal, inject, OnInit, OnDestroy, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,8 @@ import { LanguageService } from '../../../core/services/language';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss'
+  styleUrl: './navbar.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Navbar implements OnInit, OnDestroy {
   protected themeService = inject(ThemeService);

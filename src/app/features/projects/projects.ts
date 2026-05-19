@@ -12,18 +12,19 @@ import {
   ViewChildren,
   QueryList
 } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LanguageService } from '../../core/services/language';
+import { SeoService } from '../../core/services/seo.service';
 import { PROJECTS, Project } from '../../core/data/projects.data';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, TranslateModule, RouterModule, FormsModule],
+  imports: [TranslateModule, RouterModule, FormsModule],
   templateUrl: './projects.html',
   styleUrls: ['./projects.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,6 +35,7 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private translate = inject(TranslateService);
   private route = inject(ActivatedRoute);
+  private seoService = inject(SeoService);
 
   private observer!: IntersectionObserver;
   private revealSub!: Subscription;
@@ -79,6 +81,18 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   // ── IntersectionObserver for reveal animation ──────────
   ngOnInit(): void {
+    this.seoService.setPage(
+      {
+        title: 'مشاريعنا | تسويقار',
+        description: 'تصفح معرض مشاريع تسويقار الإنشائية، مشاريع الصيانة، الحفريات والمباني السكنية والتجارية المنفذة في مختلف مناطق المملكة.',
+      },
+      {
+        title: 'Our Projects | Tasweeqar',
+        description: 'Browse Tasweeqar’s portfolio of construction, maintenance, excavation, residential, and commercial projects across Saudi Arabia.',
+      },
+      this.langService.currentLang() as 'ar' | 'en'
+    );
+
     this.route.queryParams.subscribe(params => {
       if (params['filter']) {
         this.activeFilter.set(params['filter']);
