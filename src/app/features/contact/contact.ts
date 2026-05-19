@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environments';
 
@@ -19,12 +20,12 @@ const EJS_PUBLIC_KEY = environment.emailjs.publicKey;
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
 })
-export class Contact implements OnInit, AfterViewInit {
+export class Contact implements AfterViewInit {
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
   // ── Language ──────────────────────────────────────────────────────────────
-  currentLang = 'ar';
-  get isRtl() { return this.currentLang === 'ar'; }
+  protected langService = inject(LanguageService);
+  get isRtl() { return this.langService.currentLang() === 'ar'; }
 
   // ── Form model (matches [(ngModel)]="form.xxx" in the HTML) ───────────────
   form = {
@@ -40,13 +41,9 @@ export class Contact implements OnInit, AfterViewInit {
   hasError = false;   // shows error message
 
   // ─────────────────────────────────────────────────────────────────────────
-  private translate = inject(TranslateService);
 
 
-  ngOnInit(): void {
-    this.currentLang = this.translate.currentLang || 'ar';
-    this.translate.onLangChange.subscribe(e => this.currentLang = e.lang);
-  }
+
 
   ngAfterViewInit(): void {
     this.observeElements();

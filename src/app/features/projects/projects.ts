@@ -37,14 +37,12 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   private observer!: IntersectionObserver;
   private revealSub!: Subscription;
-  private langSub!: Subscription;
 
   @ViewChildren('revealEl') revealEls!: QueryList<ElementRef>;
 
   // ── Search & Filter State ──────────────────────────────
   searchQuery = signal('');
   activeFilter = signal('all');
-  private currentLang = signal(this.translate.currentLang);
 
   readonly categories = ['all', 'contracting', 'maintenance', 'mep', 'excavation', 'construction', 'services'];
 
@@ -53,7 +51,7 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Computed Filtered List ─────────────────────────────
   readonly filteredProjects = computed(() => {
-    this.currentLang(); // track language changes for reactivity
+    this.langService.currentLang(); // track language changes for reactivity
     const q = this.searchQuery().toLowerCase().trim();
     const cat = this.activeFilter();
     return this.allProjects.filter(p => {
@@ -66,11 +64,6 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
     });
   });
 
-  constructor() {
-    this.langSub = this.translate.onLangChange.subscribe(e => {
-      this.currentLang.set(e.lang);
-    });
-  }
 
   private getTranslation(key: string): string {
     return this.translate.instant(key) || '';
@@ -122,6 +115,5 @@ export class Projects implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.observer?.disconnect();
     this.revealSub?.unsubscribe();
-    this.langSub?.unsubscribe();
   }
 }

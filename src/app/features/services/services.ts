@@ -1,7 +1,5 @@
 import {
   Component,
-  OnInit,
-  OnDestroy,
   AfterViewInit,
   QueryList,
   ViewChildren,
@@ -10,8 +8,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language';
 import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 export interface ServiceCard {
@@ -36,13 +34,11 @@ export interface ProcessStep {
   templateUrl: './services.html',
   styleUrls: ['./services.scss'],
 })
-export class Services implements OnInit, AfterViewInit, OnDestroy {
+export class Services implements AfterViewInit {
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
-  currentLang = 'ar';
-  isRtl = true;
-
-  private langSub!: Subscription;
+  protected langService = inject(LanguageService);
+  get isRtl() { return this.langService.currentLang() === 'ar'; }
 
   /** All service cards – last one spans full width */
   serviceCards: ServiceCard[] = [
@@ -92,25 +88,8 @@ export class Services implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  private translate = inject(TranslateService);
-
-
-  ngOnInit(): void {
-    this.currentLang = this.translate.currentLang || 'ar';
-    this.isRtl = this.currentLang === 'ar';
-
-    this.langSub = this.translate.onLangChange.subscribe((e) => {
-      this.currentLang = e.lang;
-      this.isRtl = e.lang === 'ar';
-    });
-  }
-
   ngAfterViewInit(): void {
     this.observeElements();
-  }
-
-  ngOnDestroy(): void {
-    this.langSub?.unsubscribe();
   }
 
   private observeElements(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,6 +17,16 @@ export class ProjectDetail implements OnInit {
   private route = inject(ActivatedRoute);
   langService = inject(LanguageService);
   private translate = inject(TranslateService);
+
+  constructor() {
+    // Re-render content whenever the active language changes
+    effect(() => {
+      this.langService.currentLang(); // track signal
+      if (this.baseProject) {
+        this.updateContent();
+      }
+    });
+  }
 
   projectId: string = '';
   baseProject!: Project;
@@ -52,19 +62,9 @@ export class ProjectDetail implements OnInit {
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('id') || 'p1';
     this.baseProject = PROJECTS.find(p => p.id === this.projectId) || PROJECTS[0];
-
     this.project.id = this.baseProject.id;
     this.project.image = this.baseProject.image;
     this.project.statusClass = this.baseProject.status === 'done' ? 'status-done' : 'status-progress';
-
-    // ✅ انتظر الترجمة تتحمل الأول
-    this.translate.get(`projects_page.items.${this.baseProject.key}.title`).subscribe(() => {
-      this.updateContent();
-    });
-
-    this.translate.onLangChange.subscribe(() => {
-      this.updateContent();
-    });
   }
 
   updateContent() {

@@ -15,7 +15,7 @@
         </span>
 
         <h1 class="srv-hero__title">
-          {{ currentLang === 'ar' ? 'اكتشف' : 'Explore Our' }}
+          {{ langService.currentLang() === 'ar' ? 'اكتشف' : 'Explore Our' }}
           <span class="gold-text">
             {{ 'services_categories.title' | translate }}
           </span>
@@ -101,16 +101,16 @@
       <div class="section-header" #animatedEl>
         <span class="section-label">
           <i class="fas fa-cogs"></i>
-          {{ currentLang === 'ar' ? 'آلية العمل' : 'How We Work' }}
+          {{ langService.currentLang() === 'ar' ? 'آلية العمل' : 'How We Work' }}
         </span>
         <h2 class="section-title">
-          {{ currentLang === 'ar' ? 'منهجيتنا في' : 'Our Methodology for' }}
+          {{ langService.currentLang() === 'ar' ? 'منهجيتنا في' : 'Our Methodology for' }}
           <span class="gold-text">
-            {{ currentLang === 'ar' ? 'التنفيذ' : 'Execution' }}
+            {{ langService.currentLang() === 'ar' ? 'التنفيذ' : 'Execution' }}
           </span>
         </h2>
         <p class="section-sub">
-          {{ currentLang === 'ar'
+          {{ langService.currentLang() === 'ar'
           ? 'نتبع منهجية مدروسة في كل مشروع لضمان النتائج المثلى.'
           : 'We follow a structured methodology on every project to ensure optimal results.' }}
         </p>
@@ -130,10 +130,10 @@
           </div>
 
           <h4 class="process-card__title">
-            {{ currentLang === 'ar' ? step.titleAr : step.titleEn }}
+            {{ langService.currentLang() === 'ar' ? step.titleAr : step.titleEn }}
           </h4>
           <p class="process-card__desc">
-            {{ currentLang === 'ar' ? step.descAr : step.descEn }}
+            {{ langService.currentLang() === 'ar' ? step.descAr : step.descEn }}
           </p>
 
           <!-- connector line (hidden on last) -->

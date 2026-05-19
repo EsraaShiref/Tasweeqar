@@ -12,19 +12,19 @@
 
         <span class="hero-badge">
           <i class="fas fa-envelope"></i>
-          {{ currentLang === 'ar' ? 'تواصل معنا' : 'Contact Us' }}
+          {{ langService.currentLang() === 'ar' ? 'تواصل معنا' : 'Contact Us' }}
         </span>
 
         <h1 class="contact-hero__title">
-          {{ currentLang === 'ar' ? 'نحن هنا' : 'We Are Here' }}
+          {{ langService.currentLang() === 'ar' ? 'نحن هنا' : 'We Are Here' }}
           <span class="gold-text">
-            {{ currentLang === 'ar' ? 'لمساعدتك' : 'To Help You' }}
+            {{ langService.currentLang() === 'ar' ? 'لمساعدتك' : 'To Help You' }}
           </span>
         </h1>
 
         <p class="contact-hero__subtitle">
           {{
-            currentLang === 'ar'
+            langService.currentLang() === 'ar'
               ? 'لديك سؤال أو مشروع تريد مناقشته؟ فريقنا جاهز للإجابة على جميع استفساراتك.'
               : 'Have a question or a project in mind? Our team is ready to answer all your inquiries.'
           }}
@@ -56,11 +56,11 @@
         <div class="contact-info" #animatedEl>
 
           <h2 class="contact-info__heading">
-            {{ currentLang === 'ar' ? 'تواصل معنا' : 'Get in Touch' }}
+            {{ langService.currentLang() === 'ar' ? 'تواصل معنا' : 'Get in Touch' }}
           </h2>
           <p class="contact-info__desc">
             {{
-              currentLang === 'ar'
+              langService.currentLang() === 'ar'
                 ? 'سواء كنت بحاجة إلى استشارة، أو شراكة، أو لديك ملاحظات، نحن هنا دائماً.'
                 : 'Whether you need advice, partnership opportunities, or have feedback, we\'re here to help.'
             }}
@@ -75,7 +75,7 @@
               </div>
               <div class="contact-card__body">
                 <span class="contact-card__label">
-                  {{ currentLang === 'ar' ? 'راسلنا' : 'Email Us' }}
+                  {{ langService.currentLang() === 'ar' ? 'راسلنا' : 'Email Us' }}
                 </span>
                 <a href="mailto:tasweeqar@gmail.com" class="contact-card__value">
                   tasweeqar@gmail.com
@@ -89,7 +89,7 @@
               </div>
               <div class="contact-card__body">
                 <span class="contact-card__label">
-                  {{ currentLang === 'ar' ? 'اتصل بنا' : 'Call Us' }}
+                  {{ langService.currentLang() === 'ar' ? 'اتصل بنا' : 'Call Us' }}
                 </span>
                 <a href="tel:+966580000910" class="contact-card__value">
                   +966580000910
@@ -103,10 +103,10 @@
               </div>
               <div class="contact-card__body">
                 <span class="contact-card__label">
-                  {{ currentLang === 'ar' ? 'موقعنا' : 'Visit Us' }}
+                  {{ langService.currentLang() === 'ar' ? 'موقعنا' : 'Visit Us' }}
                 </span>
                 <span class="contact-card__value">
-                  {{ currentLang === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia' }}
+                  {{ langService.currentLang() === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia' }}
                 </span>
               </div>
             </div>
@@ -124,16 +124,16 @@
               <div class="form-success__icon">
                 <i class="fas fa-circle-check"></i>
               </div>
-              <h3>{{ currentLang === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!' }}</h3>
+              <h3>{{ langService.currentLang() === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!' }}</h3>
               <p>
                 {{
-                  currentLang === 'ar'
+                  langService.currentLang() === 'ar'
                     ? 'شكراً لتواصلك معنا. سنرد عليك في أقرب وقت ممكن.'
                     : 'Thank you for reaching out. We\'ll get back to you as soon as possible.'
                 }}
               </p>
               <button class="btn-reset" (click)="resetForm()">
-                {{ currentLang === 'ar' ? 'إرسال رسالة أخرى' : 'Send Another Message' }}
+                {{ langService.currentLang() === 'ar' ? 'إرسال رسالة أخرى' : 'Send Another Message' }}
               </button>
             </div>
           }
@@ -147,7 +147,7 @@
             >
             <div class="form-field">
               <label class="form-label" for="cf-name">
-                {{ currentLang === 'ar' ? 'الاسم الكامل' : 'Your Name' }}
+                {{ langService.currentLang() === 'ar' ? 'الاسم الكامل' : 'Your Name' }}
                 <span class="form-required">*</span>
               </label>
               <input
@@ -157,7 +157,7 @@
                 [(ngModel)]="form.name"
                 name="name"
                 #nameRef="ngModel"
-                [placeholder]="currentLang === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your name'"
+                [placeholder]="langService.currentLang() === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your name'"
                 required
                 minlength="3"
                 [class.invalid]="nameRef.invalid && (nameRef.dirty || nameRef.touched)"
@@ -165,10 +165,10 @@
               @if (nameRef.invalid && (nameRef.dirty || nameRef.touched)) {
                 <div class="form-error">
                   @if (nameRef.errors?.['required']) {
-                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
                   }
                   @if (nameRef.errors?.['minlength']) {
-                    <small>{{ currentLang === 'ar' ? 'الاسم يجب أن يكون 3 أحرف على الأقل.' : 'Name must be at least 3 characters.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'الاسم يجب أن يكون 3 أحرف على الأقل.' : 'Name must be at least 3 characters.' }}</small>
                   }
                 </div>
               }
@@ -176,7 +176,7 @@
 
             <div class="form-field">
               <label class="form-label" for="cf-email">
-                {{ currentLang === 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}
+                {{ langService.currentLang() === 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}
                 <span class="form-required">*</span>
               </label>
               <input
@@ -186,7 +186,7 @@
                 [(ngModel)]="form.email"
                 name="email"
                 #emailRef="ngModel"
-                [placeholder]="currentLang === 'ar' ? 'your@email.com' : 'your@email.com'"
+                [placeholder]="langService.currentLang() === 'ar' ? 'your@email.com' : 'your@email.com'"
                 required
                 email
                 [class.invalid]="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
@@ -194,10 +194,10 @@
               @if (emailRef.invalid && (emailRef.dirty || emailRef.touched)) {
                 <div class="form-error">
                   @if (emailRef.errors?.['required']) {
-                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
                   }
                   @if (emailRef.errors?.['email']) {
-                    <small>{{ currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.' }}</small>
                   }
                 </div>
               }
@@ -205,7 +205,7 @@
 
             <div class="form-field">
               <label class="form-label" for="cf-subject">
-                {{ currentLang === 'ar' ? 'الموضوع' : 'Subject' }}
+                {{ langService.currentLang() === 'ar' ? 'الموضوع' : 'Subject' }}
               </label>
               <input
                 id="cf-subject"
@@ -213,14 +213,14 @@
                 type="text"
                 [(ngModel)]="form.subject"
                 name="subject"
-                [placeholder]="currentLang === 'ar' ? 'عم يدور الحديث؟' : 'What\'s this about?'"
+                [placeholder]="langService.currentLang() === 'ar' ? 'عم يدور الحديث؟' : 'What\'s this about?'"
               />
             </div>
 
             <div class="form-field">
               <div style="display: flex; justify-content: space-between; align-items: baseline;">
                 <label class="form-label" for="cf-message">
-                  {{ currentLang === 'ar' ? 'الرسالة' : 'Message' }}
+                  {{ langService.currentLang() === 'ar' ? 'الرسالة' : 'Message' }}
                   <span class="form-required">*</span>
                 </label>
                 <!-- Fixed RTL issue with character counter -->
@@ -235,7 +235,7 @@
                 name="message"
                 #messageRef="ngModel"
                 rows="5"
-                [placeholder]="currentLang === 'ar' ? 'أخبرنا كيف يمكننا مساعدتك...' : 'Tell us what you need help with...'"
+                [placeholder]="langService.currentLang() === 'ar' ? 'أخبرنا كيف يمكننا مساعدتك...' : 'Tell us what you need help with...'"
                 required
                 minlength="20"
                 maxlength="500"
@@ -244,10 +244,10 @@
               @if (messageRef.invalid && (messageRef.dirty || messageRef.touched)) {
                 <div class="form-error">
                   @if (messageRef.errors?.['required']) {
-                    <small>{{ currentLang === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'هذا الحقل مطلوب.' : 'This field is required.' }}</small>
                   }
                   @if (messageRef.errors?.['minlength']) {
-                    <small>{{ currentLang === 'ar' ? 'يجب أن تحتوي الرسالة على 20 حرفاً على الأقل.' : 'Message must be at least 20 characters.' }}</small>
+                    <small>{{ langService.currentLang() === 'ar' ? 'يجب أن تحتوي الرسالة على 20 حرفاً على الأقل.' : 'Message must be at least 20 characters.' }}</small>
                   }
                 </div>
               }
@@ -262,13 +262,13 @@
               @if (!sending) {
                 <ng-container>
                   <i class="fas fa-paper-plane"></i>
-                  {{ currentLang === 'ar' ? 'إرسال الرسالة' : 'Send Message' }}
+                  {{ langService.currentLang() === 'ar' ? 'إرسال الرسالة' : 'Send Message' }}
                 </ng-container>
               }
               @if (sending) {
                 <ng-container>
                   <i class="fas fa-circle-notch fa-spin"></i>
-                  {{ currentLang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...' }}
+                  {{ langService.currentLang() === 'ar' ? 'جارٍ الإرسال...' : 'Sending...' }}
                 </ng-container>
               }
             </button>

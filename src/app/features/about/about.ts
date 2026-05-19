@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language';
 import { TiltDirective } from '../../shared/directives/tilt.directive';
 
 @Component({
@@ -12,15 +12,14 @@ import { TiltDirective } from '../../shared/directives/tilt.directive';
   templateUrl: './about.html',
   styleUrls: ['./about.scss']
 })
-export class About implements OnInit, OnDestroy {
+export class About implements OnInit, AfterViewInit {
 
   @ViewChildren('animatedEl') animatedElements!: QueryList<ElementRef>;
 
-  currentLang = 'ar';
+  protected langService = inject(LanguageService);
   isDark = false;
-  isRtl = true;
 
-  private langSub!: Subscription;
+  get isRtl() { return this.langService.currentLang() === 'ar'; }
 
   stats = [
     { key: 'projects', value: '500+', icon: 'fa-building' },
@@ -52,27 +51,14 @@ export class About implements OnInit, OnDestroy {
     }
   ];
 
-  private translate = inject(TranslateService);
-
-
   ngOnInit(): void {
-    this.currentLang = this.translate.currentLang || 'ar';
-    this.isRtl = this.currentLang === 'ar';
     this.isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-
-    this.langSub = this.translate.onLangChange.subscribe(event => {
-      this.currentLang = event.lang;
-      this.isRtl = event.lang === 'ar';
-    });
   }
 
   ngAfterViewInit(): void {
     this.observeElements();
   }
 
-  ngOnDestroy(): void {
-    this.langSub?.unsubscribe();
-  }
 
   private observeElements(): void {
     const observer = new IntersectionObserver(
