@@ -298,3 +298,19 @@ section { padding-block: 80px; }
     &::-webkit-scrollbar { display: none; }
   }
 }
+
+// ── Global Navbar Layout Overrides ───────────────────────────────────────────
+app-navbar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.navbar:not(.scrolled) {
+  background: transparent !important;
+  background-color: transparent !important;
+}

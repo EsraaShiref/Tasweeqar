@@ -21,9 +21,10 @@ $gold-dark: #a8893e;
 
   // ── Scrolled state ────────────────────────────────────────────────────────
   &.scrolled {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
 
     // Logo box becomes subtle in scrolled state
     .navbar__logo-box {
@@ -39,30 +40,38 @@ $gold-dark: #a8893e;
     }
 
     .navbar__links a {
-      color: var(--color-text);
+      color: white !important;
 
       &:hover {
-        color: var(--color-primary);
+        color: white !important;
+        background: rgba(125, 106, 63, 0.5) !important;
+        border-radius: 50px !important;
       }
 
       &.nav-active {
-        color: #c9a84c !important;
+        color: white !important;
+        background: #7D6A3F !important;
+        border-radius: 50px !important;
       }
     }
 
     .navbar__toggle-btn {
-      background: var(--color-surface);
-      border-color: var(--color-border);
-      color: var(--color-text);
+      background: transparent !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      color: white !important;
+
+      i, span {
+        color: white !important;
+      }
 
       &:hover {
-        border-color: var(--color-primary);
-        color: var(--color-primary);
+        border-color: white !important;
+        background: rgba(255, 255, 255, 0.08) !important;
       }
     }
 
     .navbar__hamburger {
-      color: var(--color-text);
+      color: white !important;
     }
   }
 
@@ -132,7 +141,7 @@ $gold-dark: #a8893e;
   &__brand {
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: #FFFFFF !important;
     animation: logoEntrance 1s ease 0.3s forwards;
     opacity: 0;
     white-space: nowrap;
@@ -163,7 +172,7 @@ $gold-dark: #a8893e;
 
     a {
       text-decoration: none;
-      color: rgba(255, 255, 255, 0.9);
+      color: #FFFFFF !important;
       font-weight: 500;
       font-size: 0.95rem;
       transition: var(--transition);
@@ -179,31 +188,34 @@ $gold-dark: #a8893e;
         left: 14px;
         right: 14px;
         height: 2px;
-        background: var(--color-primary);
+        background: #c9a84c;
         transform: scaleX(0);
         transition: var(--transition);
         border-radius: 2px;
       }
 
       &:hover {
-        color: var(--color-primary);
-        background: rgba($gold, 0.08);
+        color: #FFFFFF !important;
+        background: rgba(125, 106, 63, 0.5) !important;
+        border-radius: 50px !important;
       }
 
       &.nav-active {
-        color: #c9a84c !important;
+        color: #FFFFFF !important;
+        background: #7D6A3F !important;
+        border-radius: 50px !important;
       }
     }
 
     // Contact CTA button
     .navbar__cta {
-      background: linear-gradient(135deg, $gold, $gold-dark) !important;
-      color: #fff !important;
+      background: #c9a84c !important;
+      color: #FFFFFF !important;
       padding: 10px 24px;
-      border-radius: 8px;
+      border-radius: 50px !important;
       font-weight: 600;
       border-color: transparent !important;
-      box-shadow: 0 4px 14px rgba($gold, 0.28);
+      box-shadow: 0 4px 14px rgba(201, 168, 76, 0.28) !important;
       transition:
         transform 0.3s ease,
         box-shadow 0.3s ease !important;
@@ -213,14 +225,15 @@ $gold-dark: #a8893e;
       }
 
       &:hover {
-        background: linear-gradient(135deg, $gold-dark, darken($gold-dark, 8%)) !important;
+        background: #b8973b !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
-        color: #fff !important;
+        box-shadow: 0 8px 22px rgba(201, 168, 76, 0.4) !important;
+        color: #FFFFFF !important;
       }
 
       &.nav-active {
-        color: #c9a84c !important;
+        background: #c9a84c !important;
+        color: #FFFFFF !important;
       }
     }
   }
@@ -236,9 +249,9 @@ $gold-dark: #a8893e;
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba($gold, 0.1);
-    border: 1px solid rgba($gold, 0.25);
-    color: rgba(255, 255, 255, 0.9);
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: white !important;
     padding: 8px 14px;
     border-radius: 8px;
     cursor: pointer;
@@ -246,10 +259,13 @@ $gold-dark: #a8893e;
     font-weight: 600;
     transition: var(--transition);
 
+    i, span {
+      color: white !important;
+    }
+
     &:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      background: rgba($gold, 0.15);
+      border-color: white !important;
+      background: rgba(255, 255, 255, 0.08) !important;
     }
   }
 
@@ -265,7 +281,7 @@ $gold-dark: #a8893e;
 
 // ── Scrolled: light mode ──────────────────────────────────────────────────────
 [data-theme='light'] .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.92);
+  background: transparent !important;
   border-bottom: 1px solid rgba($gold, 0.2);
 
   .navbar__logo-box {
@@ -282,7 +298,7 @@ $gold-dark: #a8893e;
 
 // ── Scrolled: dark mode ───────────────────────────────────────────────────────
 [data-theme='dark'] .navbar.scrolled {
-  background: rgba(10, 15, 30, 0.92);
+  background: transparent !important;
   border-bottom: 1px solid rgba($gold, 0.1);
 
   .navbar__logo-box {
@@ -427,7 +443,7 @@ $gold-dark: #a8893e;
       border-radius: 0 !important;
       padding: 14px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.85);
+      color: #FFFFFF !important;
       font-size: 18px;
       font-family: 'Cairo', sans-serif;
       font-weight: 400;
@@ -438,12 +454,19 @@ $gold-dark: #a8893e;
 
     &.mobile-menu a.router-link-exact-active,
     &.mobile-menu a.nav-active {
-      color: #c9a84c !important;
-      border-bottom: 1px solid #c9a84c !important;
+      color: #FFFFFF !important;
+      background: #7D6A3F !important;
+      background-color: #7D6A3F !important;
+      border-radius: 50px !important;
+      border-bottom: none !important;
     }
 
     &.mobile-menu a:hover {
-      color: #c9a84c;
+      color: #FFFFFF !important;
+      background: rgba(125, 106, 63, 0.5) !important;
+      background-color: rgba(125, 106, 63, 0.5) !important;
+      border-radius: 50px !important;
+      border-bottom: none !important;
       transition: color 0.2s ease;
     }
 
@@ -451,10 +474,10 @@ $gold-dark: #a8893e;
       display: block;
       margin-top: 12px;
       background: #c9a84c !important;
-      color: #1a1a1a !important;
+      color: #FFFFFF !important;
       text-align: center;
       padding: 10px !important;
-      border-radius: 8px !important;
+      border-radius: 50px !important;
     }
   }
 }
