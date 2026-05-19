@@ -44,8 +44,16 @@ $gold-dark: #a8893e;
         color: var(--color-primary);
       }
 
+      // &.nav-active {
+      //   color: #c9a84c !important;
+      // }
+
       &.nav-active {
         color: #c9a84c !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        border-bottom: 2px solid #C9A84C !important;
+        padding-bottom: 6px;
       }
     }
 
@@ -191,6 +199,10 @@ $gold-dark: #a8893e;
 
       &.nav-active {
         color: #c9a84c !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        border-bottom: 2px solid #C9A84C !important;
+        padding-bottom: 6px;
       }
     }
 
