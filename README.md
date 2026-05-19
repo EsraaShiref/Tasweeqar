@@ -126,7 +126,7 @@ npm install -g @angular/cli
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/tasweeqar.git
+git clone https://github.com/EsraaShiref/tasweeqar.git
 cd tasweeqar
 
 # Install dependencies
