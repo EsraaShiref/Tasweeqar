@@ -45,15 +45,15 @@
           <!-- Stats row -->
           <div class="stats-grid">
             @for (s of stats; track s.key; let i = $index) {
-              <div class="stat-card" [style.animation-delay]="(i * 0.1) + 's'">
-                <div class="stat-icon">
-                  <i class="fas {{ s.icon }}"></i>
-                </div>
-                <div class="stat-body">
-                  <span class="stat-value">{{ s.value }}</span>
-                  <span class="stat-label">{{ 'stats.' + s.key | translate }}</span>
-                </div>
+            <div class="stat-card" [style.animation-delay]="(i * 0.1) + 's'">
+              <div class="stat-icon">
+                <i class="fas {{ s.icon }}"></i>
               </div>
+              <div class="stat-body">
+                <span class="stat-value">{{ s.value }}</span>
+                <span class="stat-label">{{ 'stats.' + s.key | translate }}</span>
+              </div>
+            </div>
             }
           </div>
         </div>
@@ -66,13 +66,11 @@
             <div class="ring ring-inner"></div>
             <div class="logo-particles">
               @for (p of [1,2,3,4,5,6,7,8]; track p) {
-                <span class="particle p{{p}}"></span>
+              <span class="particle p{{p}}"></span>
               }
             </div>
             <div class="logo-wrapper">
-              <img src="/images/logo.png"
-                   alt="Tasweeqar Logo"
-                   class="company-logo" />
+              <img src="/images/logo.png" alt="Tasweeqar Logo" class="company-logo" />
             </div>
             <div class="logo-glow"></div>
           </div>
@@ -104,20 +102,17 @@
 
       <div class="features-grid">
         @for (f of features; track f.icon; let i = $index) {
-          <div class="feature-card"
-               #animatedEl
-               [style.animation-delay]="(i * 0.12) + 's'"
-               appTilt>
-            <div class="feature-icon-wrap">
-              <div class="feature-icon-bg"></div>
-              <i class="fas {{ f.icon }}"></i>
-            </div>
-            <div class="feature-body">
-              <h3 class="feature-title">{{ f.titleKey | translate }}</h3>
-              <p class="feature-desc">{{ f.descKey | translate }}</p>
-            </div>
-            <div class="card-accent"></div>
+        <div class="feature-card" #animatedEl [style.animation-delay]="(i * 0.12) + 's'" appTilt>
+          <div class="feature-icon-wrap">
+            <div class="feature-icon-bg"></div>
+            <i class="fas {{ f.icon }}"></i>
           </div>
+          <div class="feature-body">
+            <h3 class="feature-title">{{ f.titleKey | translate }}</h3>
+            <p class="feature-desc">{{ f.descKey | translate }}</p>
+          </div>
+          <div class="card-accent"></div>
+        </div>
         }
       </div>
     </div>
@@ -177,7 +172,8 @@
             <h4>{{ currentLang === 'ar' ? 'شهادات الجودة' : 'Quality Certifications' }}</h4>
             <p>{{ currentLang === 'ar'
               ? 'حصلنا على شهادات معايير الجودة الدولية وتوسعنا في قطاعات البنية التحتية.'
-              : 'Obtained international quality standard certifications and expanded into infrastructure sectors.' }}</p>
+              : 'Obtained international quality standard certifications and expanded into infrastructure sectors.' }}
+            </p>
           </div>
         </div>
 
@@ -190,7 +186,8 @@
             <h4>{{ currentLang === 'ar' ? 'رؤية المستقبل' : 'Vision Ahead' }}</h4>
             <p>{{ currentLang === 'ar'
               ? 'نواصل مسيرة البناء بمعايير أعلى، مواكبين رؤية 2030 وطموحات المملكة.'
-              : 'We continue building with higher standards, aligned with Vision 2030 and the Kingdom\'s ambitions.' }}</p>
+              : 'We continue building with higher standards, aligned with Vision 2030 and the Kingdom\'s ambitions.' }}
+            </p>
           </div>
         </div>
       </div>
@@ -205,7 +202,7 @@
         <h2 class="cta-title">{{ 'cta.title' | translate }}</h2>
         <p class="cta-desc">{{ 'cta.desc' | translate }}</p>
         <a class="cta-btn"
-           href="mailto:Israashiref@gmail.com?subject=استفسار من موقع تسويقار&body=السلام عليكم،%0A%0Aأود الاستفسار عن...">
+          href="mailto:tasweeqar@gmail.com?subject=استفسار من موقع تسويقار&body=السلام عليكم،%0A%0Aأود الاستفسار عن...">
           <span>{{ 'cta.btn' | translate }}</span>
           <i class="fas" [class.fa-arrow-left]="isRtl" [class.fa-arrow-right]="!isRtl"></i>
         </a>
