@@ -2,8 +2,8 @@ import { Component, HostListener, signal, inject, OnInit, OnDestroy, PLATFORM_ID
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ThemeService } from '../../core/services/theme';
-import { LanguageService } from '../../core/services/language';
+import { ThemeService } from '../../../core/services/theme';
+import { LanguageService } from '../../../core/services/language';
 
 @Component({
   selector: 'app-navbar',

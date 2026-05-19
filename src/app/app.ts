@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet, ChildrenOutletContexts } from '@angular/router';
-import { Navbar } from './shared/components/navbar';
+import { Navbar } from './shared/components/navbar/navbar';
 import { ThemeService } from './core/services/theme';
 import { LanguageService } from './core/services/language';
-import { Footer } from "./shared/components/footer";
+import { Footer } from "./shared/components/footer/footer";
 import { routeAnimations } from './core/animations/route-animations';
 
 @Component({
