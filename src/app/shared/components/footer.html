@@ -9,10 +9,26 @@
         </a>
         <p class="footer__desc">{{ 'footer.desc' | translate }}</p>
         <div class="footer__social social-row">
-          <a href="#" class="footer__social-link"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="footer__social-link"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="footer__social-link"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" class="footer__social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+          <!-- X (Twitter) -->
+          <a href="https://www.x.com" target="_blank" class="footer__social-link">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com" target="_blank" class="footer__social-link">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/966580000910?text=مرحباً، أود الاستفسار عن خدمات تسويقار للمقاولات" target="_blank"
+            class="footer__social-link">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com" target="_blank" class="footer__social-link">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
         </div>
       </div>
 
@@ -40,26 +56,29 @@
           </li>
           <li class="contact-item">
             <i class="fa-solid fa-phone"></i>
-            <span>+966580000910</span>
+            <a href="tel:+966580000910">+966580000910</a>
           </li>
           <li class="contact-item">
             <i class="fa-solid fa-location-dot"></i>
-            <span>{{ langService.currentLang() === 'ar' ? 'المملكة العربية السعودية' : 'Saudi Arabia' }}</span>
+            <a href="https://www.google.com/maps/search/3676+%D8%B7%D8%B1%D9%8A%D9%82+%D8%A7%D9%84%D9%85%D9%84%D9%83+%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87+%D8%A8%D9%86+%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2+%D8%AD%D9%8A+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%A7%D8%A8,+%D8%A7%D9%84%D8%AC%D8%A8%D9%8A%D9%84+ENAB3676,+%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9+%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9%E2%80%AD/@26.9918,49.6497,17z?hl=en&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank">
+              {{ langService.currentLang() === 'ar' ? 'المملكة العربية السعودية' : 'Saudi Arabia' }}
+            </a>
           </li>
           <li class="contact-item">
             <i class="fa-solid fa-globe"></i>
-            <a href="https://tasweeqar.com">tasweeqar.com</a>
+            <a href="https://tasweeqar.com" target="_blank">tasweeqar.com</a>
           </li>
         </ul>
         <div class="contact-icons-row">
           <a href="mailto:tasweeqar@gmail.com" aria-label="email">
             <i class="ti ti-mail"></i>
           </a>
-          <a href="tel:+966580000910" aria-label="phone">
+          <a href="tel:+966580000910" aria-label="phone" target="_blank">
             <i class="ti ti-phone"></i>
           </a>
-          <a href="https://maps.google.com/?q=Saudi+Arabia" target="_blank" aria-label="location">
-            <i class="ti ti-map-pin"></i>
+          <a href="https://www.google.com/maps/search/3676+%D8%B7%D8%B1%D9%8A%D9%82+%D8%A7%D9%84%D9%85%D9%84%D9%83+%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87+%D8%A8%D9%86+%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2+%D8%AD%D9%8A+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%A7%D8%A8,+%D8%A7%D9%84%D8%AC%D8%A8%D9%8A%D9%84+ENAB3676,+%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9+%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9%E2%80%AD%E2%80%AD/@26.9918,49.6497,17z?hl=en&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+            <i class="fa-solid fa-location-dot"></i>
           </a>
           <a href="https://tasweeqar.com" target="_blank" aria-label="website">
             <i class="ti ti-world"></i>
