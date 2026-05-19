@@ -2,11 +2,14 @@ import { Component, OnInit, NgZone, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/services/language';
+import { PROJECTS, Project } from '../../core/data/projects.data';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TranslateModule, RouterLink],
+  imports: [TranslateModule, RouterLink, CommonModule],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
@@ -17,6 +20,9 @@ export class Home implements OnInit {
     { target: 10, suffix: '+', label: 'stats.years' },
     { target: 50, suffix: '+', label: 'stats.workers' },
   ];
+
+  readonly featuredProjects: Project[] = PROJECTS.filter(p => p.featured);
+
   particles = Array.from({ length: 30 }, () => ({
     x: Math.random() * 100,
     y: Math.random() * 100,

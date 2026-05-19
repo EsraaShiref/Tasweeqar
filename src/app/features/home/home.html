@@ -209,194 +209,48 @@
     </div>
 
     <div class="featured-projects__grid">
-      <!-- Project 1 -->
-      <div class="project-card reveal" style="--delay: 0s">
-        <!-- Shimmer — matches project-card__shimmer from projects.scss -->
+      @for (project of featuredProjects; track project.id; let i = $index) {
+      <div class="project-card reveal" [style.--delay]="(i * 0.1) + 's'">
         <span class="project-card__shimmer"></span>
-        <div class="project-card__image">
-          <img src="/images/Projects/project1.jpg" alt="Project 1" loading="lazy" />
-          <!-- City badge — updated structure to match projects page -->
-          <div class="project-card__badge">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'الرياض' : 'Riyadh' }}
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p1.title' | translate }}</h3>
-          <p class="project-card__region">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p1.region' | translate }}
-          </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p1.desc' | translate }}</p>
-          <div class="project-card__footer">
-            <div class="project-card__status project-card__status--done">
-              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
-            </div>
-            <a [routerLink]="['/projects', 'p1']" class="project-card__link">
-              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
-              <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-                [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
-            </a>
-          </div>
-        </div>
-        <!-- Bottom accent bar — matches project-card__accent -->
-        <span class="project-card__accent"></span>
-      </div>
 
-      <!-- Project 2 -->
-      <div class="project-card reveal" style="--delay: 0.1s">
-        <span class="project-card__shimmer"></span>
         <div class="project-card__image">
-          <img src="/images/Projects/hero.jpg" alt="Project 2" loading="lazy" />
+          <img [src]="project.image" [alt]="'projects_page.items.' + project.key + '.title' | translate"
+            loading="lazy" />
           <div class="project-card__badge">
             <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'جدة' : 'Jeddah' }}
+            {{ 'projects_page.items.' + project.key + '.city' | translate }}
           </div>
         </div>
-        <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p2.title' | translate }}</h3>
-          <p class="project-card__region">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p2.region' | translate }}
-          </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p2.desc' | translate }}</p>
-          <div class="project-card__footer">
-            <div class="project-card__status project-card__status--done">
-              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
-            </div>
-            <a [routerLink]="['/projects', 'p2']" class="project-card__link">
-              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
-              <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-                [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
-            </a>
-          </div>
-        </div>
-        <span class="project-card__accent"></span>
-      </div>
 
-      <!-- Project 3 -->
-      <div class="project-card reveal" style="--delay: 0.2s">
-        <span class="project-card__shimmer"></span>
-        <div class="project-card__image">
-          <img src="/images/Projects/project2.jpg" alt="Project 3" loading="lazy" />
-          <div class="project-card__badge">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'الدمام' : 'Dammam' }}
-          </div>
-        </div>
         <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p3.title' | translate }}</h3>
+          <h3>{{ 'projects_page.items.' + project.key + '.title' | translate }}</h3>
           <p class="project-card__region">
             <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p3.region' | translate }}
+            {{ 'projects_page.items.' + project.key + '.region' | translate }}
           </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p3.desc' | translate }}</p>
+          <p class="project-card__desc">
+            {{ 'projects_page.items.' + project.key + '.desc' | translate }}
+          </p>
           <div class="project-card__footer">
-            <div class="project-card__status project-card__status--progress">
+            <div class="project-card__status" [class.project-card__status--done]="project.status === 'done'"
+              [class.project-card__status--progress]="project.status === 'progress'">
+              @if (project.status === 'done') {
+              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
+              } @else {
               {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
+              }
             </div>
-            <a [routerLink]="['/projects', 'p3']" class="project-card__link">
+            <a [routerLink]="['/projects', project.id]" class="project-card__link">
               {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
               <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
                 [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
             </a>
           </div>
         </div>
-        <span class="project-card__accent"></span>
-      </div>
 
-      <!-- Project 4 -->
-      <div class="project-card reveal" style="--delay: 0.3s">
-        <span class="project-card__shimmer"></span>
-        <div class="project-card__image">
-          <img src="/images/Projects/project3.jpg" alt="Project 4" loading="lazy" />
-          <div class="project-card__badge">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'الخبر' : 'Khobar' }}
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p4.title' | translate }}</h3>
-          <p class="project-card__region">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p4.region' | translate }}
-          </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p4.desc' | translate }}</p>
-          <div class="project-card__footer">
-            <div class="project-card__status project-card__status--done">
-              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
-            </div>
-            <a [routerLink]="['/projects', 'p4']" class="project-card__link">
-              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
-              <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-                [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
-            </a>
-          </div>
-        </div>
         <span class="project-card__accent"></span>
       </div>
-
-      <!-- Project 5 -->
-      <div class="project-card reveal" style="--delay: 0.4s">
-        <span class="project-card__shimmer"></span>
-        <div class="project-card__image">
-          <img src="/images/Projects/project4.jpg" alt="Project 5" loading="lazy" />
-          <div class="project-card__badge">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'الرياض' : 'Riyadh' }}
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p5.title' | translate }}</h3>
-          <p class="project-card__region">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p5.region' | translate }}
-          </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p5.desc' | translate }}</p>
-          <div class="project-card__footer">
-            <div class="project-card__status project-card__status--progress">
-              {{ langService.currentLang() === 'ar' ? 'جاري التنفيذ' : 'In Progress' }}
-            </div>
-            <a [routerLink]="['/projects', 'p5']" class="project-card__link">
-              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
-              <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-                [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
-            </a>
-          </div>
-        </div>
-        <span class="project-card__accent"></span>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="project-card reveal" style="--delay: 0.5s">
-        <span class="project-card__shimmer"></span>
-        <div class="project-card__image">
-          <img src="/images/Projects/project5.jpg" alt="Project 6" loading="lazy" />
-          <div class="project-card__badge">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ langService.currentLang() === 'ar' ? 'المدينة' : 'Madinah' }}
-          </div>
-        </div>
-        <div class="project-card__content">
-          <h3>{{ 'featured_projects.items.p6.title' | translate }}</h3>
-          <p class="project-card__region">
-            <i class="fa-solid fa-location-dot"></i>
-            {{ 'featured_projects.items.p6.region' | translate }}
-          </p>
-          <p class="project-card__desc">{{ 'featured_projects.items.p6.desc' | translate }}</p>
-          <div class="project-card__footer">
-            <div class="project-card__status project-card__status--done">
-              {{ langService.currentLang() === 'ar' ? 'منجز' : 'Completed' }}
-            </div>
-            <a [routerLink]="['/projects', 'p6']" class="project-card__link">
-              {{ langService.currentLang() === 'ar' ? 'استعراض' : 'Explore' }}
-              <i class="fa-solid" [class.fa-arrow-left]="langService.currentLang() === 'ar'"
-                [class.fa-arrow-right]="langService.currentLang() === 'en'"></i>
-            </a>
-          </div>
-        </div>
-        <span class="project-card__accent"></span>
-      </div>
+      }
     </div>
 
     <div class="featured-projects__cta">
