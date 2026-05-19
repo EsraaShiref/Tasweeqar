@@ -15,7 +15,6 @@ import { EmailService } from '../../core/services/emailjs.service';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  // CommonModule removed — NgIf / NgFor not used; @if/@for built-in control flow is used instead
   imports: [FormsModule, TranslateModule],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],
@@ -28,7 +27,9 @@ export class Contact implements AfterViewInit {
   protected langService = inject(LanguageService);
   private emailService = inject(EmailService);
 
-  get isRtl() { return this.langService.currentLang() === 'ar'; }
+  get isRtl() {
+    return this.langService.currentLang() === 'ar';
+  }
 
   // ── Form model ────────────────────────────────────────────────────────────
   form = {
