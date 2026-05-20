@@ -39,6 +39,10 @@ Built with **Angular 21 standalone components**, no NgModules, full signal-based
 - 💬 **WhatsApp FAB** — direct link to company WhatsApp
 - 🚀 **Lazy-loaded routes** — all feature pages load on demand
 - 🎞️ **Route animations** — smooth page transitions via Angular Animations
+- 🗺️ **sitemap.xml + robots.txt** — search engine ready
+- 🔍 **JSON-LD structured data** — rich results in Google Search
+- ⚡ **Google Fonts preconnect** — optimized font loading
+- 🚫 **Custom 404 page** — bilingual, themed, with back-to-home button
 
 ---
 
@@ -196,6 +200,9 @@ ng build --configuration production
 - [ ] All images in `public/images/` are optimized (WebP preferred)
 - [ ] Hosting config redirects all routes to `index.html` (Angular SPA)
 - [ ] `ng build --configuration production` → zero errors, zero warnings
+- [ ] Update `sitemap.xml` lastmod dates before each deployment
+- [ ] Verify `https://tasweeqar.com/sitemap.xml` is accessible after deploy
+- [ ] Test 404 page by visiting a non-existent route
 
 ### Hosting (Firebase / Vercel / Netlify)
 
@@ -237,6 +244,20 @@ For SPA routing, configure your host to serve `index.html` for all routes:
 | `/projects` | `Projects` | Full portfolio with filter & search |
 | `/projects/:id` | `ProjectDetail` | Individual project detail page |
 | `/contact` | `Contact` | Contact form + company info |
+| `/*` (404) | `NotFound` | Custom 404 — bilingual, themed |
+
+---
+
+## 🔍 SEO
+
+| File | Purpose |
+|------|---------|
+| `public/robots.txt` | Allows all crawlers, points to sitemap |
+| `public/sitemap.xml` | All 6 routes with priority and lastmod |
+| `index.html` JSON-LD | Organization schema for Google rich results |
+| `SeoService` | Sets `<title>` and meta per route and language |
+
+Test your structured data at [Google Rich Results Test](https://search.google.com/test/rich-results)
 
 ---
 
