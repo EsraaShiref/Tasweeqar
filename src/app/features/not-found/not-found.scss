@@ -1,0 +1,174 @@
+@use '../../../mixins' as *;
+
+$gold: #c8a96e;
+$gold-dark: #a8893e;
+$gold-light: #f5e098;
+
+.not-found-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1628;
+  color: #f0ece3;
+  overflow: hidden;
+  padding: 120px 0 80px;
+
+  [data-theme='dark'] & {
+    background: #07101e;
+  }
+
+  // Fine gold grid overlay to match main heroes
+  .not-found-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba($gold, .055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($gold, .055) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Central radial glow
+  .not-found-hero__glow {
+    position: absolute;
+    width: 720px;
+    height: 720px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($gold, .15) 0%, transparent 62%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .not-found-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .not-found-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: slide-up .85s ease both;
+  }
+
+  .not-found-code {
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    background: linear-gradient(135deg, $gold 0%, $gold-light 50%, $gold-dark 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 12px rgba($gold, 0.2));
+  }
+
+  .not-found-icon {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: $gold;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 10px;
+  }
+
+  .not-found-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.25;
+    color: #f0ece3;
+    font-family: var(--font-en);
+
+    [dir='rtl'] & {
+      font-family: var(--font-ar);
+    }
+  }
+
+  .not-found-message {
+    font-size: clamp(.95rem, 2.5vw, 1.15rem);
+    color: rgba(240, 236, 227, .75);
+    line-height: 1.8;
+    margin: 0 0 15px 0;
+    font-family: var(--font-en);
+
+    [dir='rtl'] & {
+      font-family: var(--font-ar);
+    }
+  }
+
+  // Large primary gold button
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, $gold, $gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 36px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba($gold, .28);
+    transition: transform .3s ease, box-shadow .3s ease, opacity .2s ease;
+    text-decoration: none;
+    font-family: var(--font-en);
+
+    [dir='rtl'] & {
+      font-family: var(--font-ar);
+    }
+
+    i {
+      font-size: 0.95rem;
+      transition: transform .3s ease;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba($gold, .42);
+
+      i {
+        transform: translateX(4px);
+
+        [dir='rtl'] & {
+          transform: translateX(-4px);
+        }
+      }
+    }
+
+    &:active {
+      transform: scale(.98);
+    }
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

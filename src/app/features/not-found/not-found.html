@@ -1,0 +1,28 @@
+<div class="not-found-page" [dir]="isRtl ? 'rtl' : 'ltr'">
+  <div class="not-found-hero__grid"></div>
+  <div class="not-found-hero__glow"></div>
+
+  <div class="container not-found-container">
+    <div class="not-found-content">
+      <!-- Animated/Large 404 text -->
+      <h1 class="not-found-code">404</h1>
+      
+      <!-- Icon representation -->
+      <div class="not-found-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+
+      <!-- Translated Title -->
+      <h2 class="not-found-title">{{ 'not_found.title' | translate }}</h2>
+
+      <!-- Translated Message -->
+      <p class="not-found-message">{{ 'not_found.message' | translate }}</p>
+
+      <!-- Back to Home Button -->
+      <a routerLink="/" class="btn-primary">
+        <span>{{ 'not_found.btn' | translate }}</span>
+        <i class="fas" [class.fa-arrow-left]="isRtl" [class.fa-arrow-right]="!isRtl"></i>
+      </a>
+    </div>
+  </div>
+</div>

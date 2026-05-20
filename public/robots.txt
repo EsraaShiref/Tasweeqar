@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tasweeqar.com/sitemap.xml

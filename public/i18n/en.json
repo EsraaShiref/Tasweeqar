@@ -279,5 +279,10 @@
     "p6": "In conclusion, we extend our sincere gratitude and appreciation to everyone who has placed their trust in us, reaffirming our constant commitment to providing the best services and achieving the highest levels of satisfaction for our valued clients and partners. And Allah is the arbiter of success,,,",
     "name": "Mohammad Fadel Al-Waili",
     "role": "General Manager, Tasweeqar Contracting"
+  },
+  "not_found": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist or has been moved.",
+    "btn": "Back to Home"
   }
 }
