@@ -22,6 +22,9 @@
   --color-bg: #FAFAF8;             /* Warm White — main background */
   --color-surface: #FFFFFF;        /* Pure White — cards */
   --color-surface-alt: #F7F4EE;    /* Warm Gray — alternating sections */
+  --color-card: var(--color-surface);
+  --color-nav: var(--color-surface);
+  --color-footer: var(--color-navy);
   --color-border: #E8E2D4;         /* Warm Border */
   --color-text-primary: #1A1A2E;   /* Deep Text */
   --color-text-secondary: #5C5C7A; /* Muted Text */
@@ -56,10 +59,13 @@
 }
 
 [data-theme='dark'] {
-  --color-bg: #0D1B3E;          // Deep navy, NOT #000
-  --color-surface: #162040;     // Cards
-  --color-surface-alt: #1E2D52; // Alt sections
-  --color-border: #2A3F6E;      // Borders
+  --color-bg:           #0a0d1a;   /* deep near-black navy — match hero */
+  --color-surface:      #0f1220;   /* slightly lighter for cards */
+  --color-surface-alt:  #141828;   /* for hover states / alternating sections */
+  --color-card:         #0d1020;   /* project cards background */
+  --color-border:       #1e2340;   /* subtle borders */
+  --color-nav:          #0a0d1a;   /* navbar — same as hero */
+  --color-footer:       #080b16;   /* footer — slightly deeper */
   
   --color-text-primary: #F0EBE0;   // Warm white
   --color-text-secondary: #B8C5DB; // Muted blue-white
@@ -74,8 +80,8 @@
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-gold: 0 4px 24px rgba(184, 151, 58, 0.2);
 
-  --color-navbar: #0D1B3E;
-  --color-footer-bg: #0A1530;
+  --color-navbar: var(--color-nav);
+  --color-footer-bg: var(--color-footer);
   --color-footer-text: #F0EBE0;
 }
 

@@ -9,6 +9,7 @@
 $primary: var(--color-primary); // #c8a96e
 $bg: var(--color-bg);
 $surface: var(--color-surface);
+$card: var(--color-card);
 $text: var(--color-text);
 $muted: var(--color-text-muted);
 $border: var(--color-border);
@@ -329,7 +330,7 @@ $gold-light: #f5e098;
   flex-direction: column;
   gap: 14px;
   padding: 32px 28px 28px;
-  background: $bg;
+  background: $card;
   border: 1px solid $border;
   border-radius: 20px;
   text-decoration: none;

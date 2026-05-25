@@ -16,7 +16,10 @@ $gold-dark: #a8893e;
   z-index: 1000;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
 
   // ── Scrolled state ────────────────────────────────────────────────────────
   &.scrolled {
@@ -52,7 +55,7 @@ $gold-dark: #a8893e;
         color: #c9a84c !important;
         background: transparent !important;
         border-radius: 0 !important;
-        border-bottom: 2px solid #C9A84C !important;
+        border-bottom: 2px solid #c9a84c !important;
         padding-bottom: 6px;
       }
     }
@@ -113,7 +116,10 @@ $gold-dark: #a8893e;
     box-shadow:
       0 2px 16px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba($gold, 0.12);
-    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    transition:
+      background 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
 
     img {
       height: 44px;
@@ -201,14 +207,18 @@ $gold-dark: #a8893e;
         color: #c9a84c !important;
         background: transparent !important;
         border-radius: 0 !important;
-        border-bottom: 2px solid #C9A84C !important;
+        border-bottom: 2px solid #c9a84c !important;
         padding-bottom: 6px;
       }
     }
 
     // Contact CTA button
     .navbar__cta {
-      background: linear-gradient(135deg, $gold-dark, color.adjust($gold-dark, $lightness: -8%)) !important;
+      background: linear-gradient(
+        135deg,
+        $gold-dark,
+        color.adjust($gold-dark, $lightness: -8%)
+      ) !important;
       color: #fff !important;
       padding: 10px 24px;
       border-radius: 8px;
@@ -224,7 +234,11 @@ $gold-dark: #a8893e;
       }
 
       &:hover {
-        background: linear-gradient(135deg, $gold-dark, color.adjust($gold-dark, $lightness: -8%)) !important;
+        background: linear-gradient(
+          135deg,
+          $gold-dark,
+          color.adjust($gold-dark, $lightness: -8%)
+        ) !important;
         transform: translateY(-2px);
         box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
         color: #fff !important;
@@ -293,7 +307,7 @@ $gold-dark: #a8893e;
 
 // ── Scrolled: dark mode ───────────────────────────────────────────────────────
 [data-theme='dark'] .navbar.scrolled {
-  background: rgba(10, 15, 30, 0.92);
+  background: rgba(10, 13, 26, 0.92);
   border-bottom: 1px solid rgba($gold, 0.1);
 
   .navbar__logo-box {
@@ -304,10 +318,40 @@ $gold-dark: #a8893e;
   }
 }
 
-
 // ── Mobile & Tablet Responsive ───────────────────────────────────────────────
 @mixin navbar-mobile-tablet {
   .navbar {
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      flex-direction: row;
+
+      [dir='rtl'] & {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse; // LTR: logo-box | name ✅
+
+      [dir='rtl'] & {
+        flex-direction: row-reverse; // RTL: logo-box (يمين) | name (شمال) ✅
+      }
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      direction: ltr;
+      flex-shrink: 0; /* ← أضيفي دا */
+      overflow: visible; /* ← وأضيفي دا */
+    }
+
     &__sep {
       display: none;
     }
@@ -343,9 +387,38 @@ $gold-dark: #a8893e;
         }
       }
 
-      .navbar__cta {
-        margin-top: 10px;
-        text-align: center;
+      &.mobile-menu a.navbar__cta {
+        background: linear-gradient(
+          135deg,
+          $gold-dark,
+          #{color.adjust($gold-dark, $lightness: -8%)}
+        ) !important;
+        color: #fff !important;
+        padding: 12px 24px !important;
+        border-radius: 8px !important;
+        border-bottom: none !important;
+        font-weight: 600 !important;
+        margin-top: 16px !important;
+        box-shadow: 0 4px 14px rgba($gold, 0.28) !important;
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+
+        &:hover {
+          background: linear-gradient(
+            135deg,
+            $gold-dark,
+            #{color.adjust($gold-dark, $lightness: -8%)}
+          ) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
+        }
+
+        &.nav-active {
+          color: #fff !important;
+          border-bottom: none !important;
+        }
       }
     }
 
@@ -375,26 +448,23 @@ $gold-dark: #a8893e;
   }
 
   .navbar__inner {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 16px;
     height: 60px;
-    width: 100%;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-direction: row-reverse;
+    overflow: visible; /* ← أضيفي دا */
+    flex-wrap: nowrap; /* ← وأضيفي دا */
   }
 
   .nav-left {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0; /* ← أضيفي دا */
+    overflow: visible; /* ← وأضيفي دا */
+  }
+
+  .mode-toggle {
+    display: flex !important; /* ← أضيفي السطرين دول */
+    visibility: visible !important;
   }
 
   .lang-btn {
@@ -459,14 +529,38 @@ $gold-dark: #a8893e;
       transition: color 0.2s ease;
     }
 
-    .navbar__cta {
-      display: block;
-      margin-top: 12px;
-      background: #c9a84c !important;
-      color: #1a1a1a !important;
-      text-align: center;
-      padding: 10px !important;
+    &.mobile-menu a.navbar__cta {
+      background: linear-gradient(
+        135deg,
+        $gold-dark,
+        #{color.adjust($gold-dark, $lightness: -8%)}
+      ) !important;
+      color: #fff !important;
+      padding: 12px 24px !important;
       border-radius: 8px !important;
+      border-bottom: none !important;
+      font-weight: 600 !important;
+      margin-top: 16px !important;
+      box-shadow: 0 4px 14px rgba($gold, 0.28) !important;
+      display: block !important;
+      text-align: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+
+      &:hover {
+        background: linear-gradient(
+          135deg,
+          $gold-dark,
+          #{color.adjust($gold-dark, $lightness: -8%)}
+        ) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba($gold, 0.4) !important;
+      }
+
+      &.nav-active {
+        color: #fff !important;
+        border-bottom: none !important;
+      }
     }
   }
 }
@@ -491,7 +585,6 @@ $gold-dark: #a8893e;
 }
 
 @keyframes logoFloat {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -503,7 +596,6 @@ $gold-dark: #a8893e;
 }
 
 @keyframes logoGlow {
-
   0%,
   100% {
     filter: drop-shadow(0 0 6px rgba($gold, 0.3));
